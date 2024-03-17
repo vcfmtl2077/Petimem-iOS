@@ -1,3 +1,6 @@
 2024/03/15 --- update
 Wei: update data model and data diagram, rename the activity colelction and keep authentication as a part of user attribute, add expense colelction
 Yan: update proposal document and export design document as pdf
+
+2024/03/17 --- update
+Yan: Create splash screen; creare login page; create signup page;
