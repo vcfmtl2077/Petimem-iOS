@@ -4,3 +4,7 @@ Yan: update proposal document and export design document as pdf
 
 2024/03/17 --- update
 Yan: Create splash screen; creare login page; create signup page;
+
+2024/03/18 --- update
+Wei: Deep dive firebase sdk, build utils class, including authentication, collection crud and image upload
+Yan: Build home page view, including home page navigation, pet profile view and "create" button
