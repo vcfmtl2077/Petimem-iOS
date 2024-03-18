@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76403E6D2BA7EA8E00C2CAB1 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */; };
 		EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */; };
 		EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDB2BA49F42001C15AB /* ContentView.swift */; };
 		EF691BDE2BA49F42001C15AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDD2BA49F42001C15AB /* Item.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		EF691BD62BA49F42001C15AB /* PetimemApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetimemApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetimemAppApp.swift; sourceTree = "<group>"; };
 		EF691BDB2BA49F42001C15AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */,
 				EF691BDB2BA49F42001C15AB /* ContentView.swift */,
 				EF691BDD2BA49F42001C15AB /* Item.swift */,
+				76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */,
 				EF691BDF2BA49F43001C15AB /* Assets.xcassets */,
 				EF691BE12BA49F43001C15AB /* Preview Content */,
 			);
@@ -262,6 +265,7 @@
 			files = (
 				EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */,
 				EF691BDE2BA49F42001C15AB /* Item.swift in Sources */,
+				76403E6D2BA7EA8E00C2CAB1 /* loginView.swift in Sources */,
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,9 +444,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.petimem.ios.PetimemApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -468,9 +476,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.petimem.ios.PetimemApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
