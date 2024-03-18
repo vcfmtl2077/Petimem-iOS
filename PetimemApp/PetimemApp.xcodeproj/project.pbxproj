@@ -79,6 +79,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF5C03C82BA881FF0076CA27 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				EF691BDB2BA49F42001C15AB /* ContentView.swift */,
+				76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */,
+				76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */,
+				76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		EF5C03C92BA882150076CA27 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EF691BDD2BA49F42001C15AB /* Item.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		EF5C03CA2BA882210076CA27 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		EF691BCD2BA49F42001C15AB = {
 			isa = PBXGroup;
 			children = (
@@ -102,12 +128,10 @@
 		EF691BD82BA49F42001C15AB /* PetimemApp */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C03CA2BA882210076CA27 /* utils */,
+				EF5C03C92BA882150076CA27 /* model */,
+				EF5C03C82BA881FF0076CA27 /* view */,
 				EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */,
-				EF691BDB2BA49F42001C15AB /* ContentView.swift */,
-				EF691BDD2BA49F42001C15AB /* Item.swift */,
-				76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */,
-				76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */,
-				76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */,
 				EF691BDF2BA49F43001C15AB /* Assets.xcassets */,
 				EF691BE12BA49F43001C15AB /* Preview Content */,
 			);
