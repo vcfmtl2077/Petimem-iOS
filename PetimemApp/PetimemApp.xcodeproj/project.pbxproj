@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		76403E6D2BA7EA8E00C2CAB1 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */; };
+		76403E6F2BA7ECD600C2CAB1 /* signUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */; };
+		76403E712BA7ED7400C2CAB1 /* splashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */; };
 		EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */; };
 		EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDB2BA49F42001C15AB /* ContentView.swift */; };
 		EF691BDE2BA49F42001C15AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDD2BA49F42001C15AB /* Item.swift */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpView.swift; sourceTree = "<group>"; };
+		76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashScreenView.swift; sourceTree = "<group>"; };
 		EF691BD62BA49F42001C15AB /* PetimemApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetimemApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetimemAppApp.swift; sourceTree = "<group>"; };
 		EF691BDB2BA49F42001C15AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				EF691BDB2BA49F42001C15AB /* ContentView.swift */,
 				EF691BDD2BA49F42001C15AB /* Item.swift */,
 				76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */,
+				76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */,
+				76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */,
 				EF691BDF2BA49F43001C15AB /* Assets.xcassets */,
 				EF691BE12BA49F43001C15AB /* Preview Content */,
 			);
@@ -264,7 +270,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */,
+				76403E6F2BA7ECD600C2CAB1 /* signUpView.swift in Sources */,
 				EF691BDE2BA49F42001C15AB /* Item.swift in Sources */,
+				76403E712BA7ED7400C2CAB1 /* splashScreenView.swift in Sources */,
 				76403E6D2BA7EA8E00C2CAB1 /* loginView.swift in Sources */,
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,
 			);
