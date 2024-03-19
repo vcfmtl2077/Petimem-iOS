@@ -8,3 +8,7 @@ Yan: Create splash screen; creare login page; create signup page;
 2024/03/18 --- update
 Wei: Deep dive firebase sdk, build utils class, including authentication, collection crud and image upload
 Yan: Build home page view, including home page navigation, pet profile view and "create" button
+
+2024/03/19 --- update
+Wei: Enable firebase authentication in login view
+Yan: Reference Sample Project from Swift Playground
