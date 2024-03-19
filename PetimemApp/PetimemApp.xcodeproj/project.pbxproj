@@ -10,6 +10,11 @@
 		76403E6D2BA7EA8E00C2CAB1 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */; };
 		76403E6F2BA7ECD600C2CAB1 /* signUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */; };
 		76403E712BA7ED7400C2CAB1 /* splashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */; };
+		EF5C03CC2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */; };
+		EF5C03CD2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */; };
+		EF5C03CE2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */; };
+		EF5C03D12BA9D9720076CA27 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EF5C03D02BA9D9720076CA27 /* FirebaseAnalytics */; };
+		EF5C03D32BA9D9720076CA27 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF5C03D22BA9D9720076CA27 /* FirebaseAnalyticsSwift */; };
 		EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */; };
 		EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDB2BA49F42001C15AB /* ContentView.swift */; };
 		EF691BDE2BA49F42001C15AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDD2BA49F42001C15AB /* Item.swift */; };
@@ -41,6 +46,7 @@
 		76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpView.swift; sourceTree = "<group>"; };
 		76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashScreenView.swift; sourceTree = "<group>"; };
+		EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF691BD62BA49F42001C15AB /* PetimemApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetimemApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetimemAppApp.swift; sourceTree = "<group>"; };
 		EF691BDB2BA49F42001C15AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF5C03D32BA9D9720076CA27 /* FirebaseAnalyticsSwift in Frameworks */,
+				EF5C03D12BA9D9720076CA27 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +136,7 @@
 		EF691BD82BA49F42001C15AB /* PetimemApp */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */,
 				EF5C03CA2BA882210076CA27 /* utils */,
 				EF5C03C92BA882150076CA27 /* model */,
 				EF5C03C82BA881FF0076CA27 /* view */,
@@ -179,6 +188,10 @@
 			dependencies = (
 			);
 			name = PetimemApp;
+			packageProductDependencies = (
+				EF5C03D02BA9D9720076CA27 /* FirebaseAnalytics */,
+				EF5C03D22BA9D9720076CA27 /* FirebaseAnalyticsSwift */,
+			);
 			productName = PetimemApp;
 			productReference = EF691BD62BA49F42001C15AB /* PetimemApp.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +264,9 @@
 				Base,
 			);
 			mainGroup = EF691BCD2BA49F42001C15AB;
+			packageReferences = (
+				EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = EF691BD72BA49F42001C15AB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -269,6 +285,7 @@
 			files = (
 				EF691BE32BA49F43001C15AB /* Preview Assets.xcassets in Resources */,
 				EF691BE02BA49F43001C15AB /* Assets.xcassets in Resources */,
+				EF5C03CC2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF5C03CD2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF5C03CE2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +649,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.22.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF5C03D02BA9D9720076CA27 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		EF5C03D22BA9D9720076CA27 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF691BCE2BA49F42001C15AB /* Project object */;
 }
