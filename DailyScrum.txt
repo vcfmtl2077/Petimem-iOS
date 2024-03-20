@@ -19,3 +19,13 @@ Yan: Build home page view, including home page navigation, pet profile view and 
 2024/03/19 --- update
 Wei: Enable firebase authentication in login view
 Yan: Reference Sample Project from Swift Playground
+
+2024/03/20 --- update
+Done since last scrum
+fireauth sdk invovled
+content view & addNewPet view updated
+Git branch conflicts resolved
+
+Plan until next Scrum
+Yan: contentView & addNewPetView updated
+Wei: fireauth with email/password
