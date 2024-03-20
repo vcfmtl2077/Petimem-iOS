@@ -11,22 +11,27 @@ struct ContentView: View {
     @State private var selectedTab: Tab = .home
 
     var body: some View {
-        VStack {
-            
-            switch selectedTab {
+        ZStack{
+            Color("bgHomeColor")
+                .ignoresSafeArea()
+            VStack {
+                switch selectedTab {
                 case .home:
-                Text("Home Content")
+                    Text("Home Content")
                 case .event:
-                Text("Event Content")
+                    Text("Event Content")
                 case .moment:
-                Text("Moment Content")
+                    Text("Moment Content")
                 case .expense:
-                Text("Expense Content")
+                    Text("Expense Content")
                 case .more:
-                Text("More Content")
+                    Text("More Content")
+                }
+               
+                Spacer()
+                tabView(selectedTab: $selectedTab)
+                
             }
-            Spacer()
-            tabView(selectedTab: $selectedTab)
         }
     }
 }

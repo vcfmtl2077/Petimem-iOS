@@ -27,7 +27,7 @@ struct tabView: View {
             VStack{
                 Text("")
                 Text("")
-                HStack(spacing: 25) {
+                HStack(spacing: 23) {
                     Button(action: { selectedTab = .home }) {
                         VStack {
                             Image("homeIcon")
@@ -68,7 +68,7 @@ struct tabView: View {
                         VStack {
                             Image("moreIcon")
                                 .resizable()
-                                .frame(width: selectedTab == .more ? 50 : 40, height: selectedTab == .more ? 65 : 55)
+                                .frame(width: selectedTab == .more ? 50 : 40, height: selectedTab == .more ? 65 : 60)
                         }
                     }
                 }
