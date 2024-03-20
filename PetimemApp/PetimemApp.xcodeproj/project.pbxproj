@@ -15,6 +15,7 @@
 		EF5C03CE2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */; };
 		EF5C03D12BA9D9720076CA27 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EF5C03D02BA9D9720076CA27 /* FirebaseAnalytics */; };
 		EF5C03D32BA9D9720076CA27 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF5C03D22BA9D9720076CA27 /* FirebaseAnalyticsSwift */; };
+		EF5C03D62BA9F3F00076CA27 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EF5C03D52BA9F3F00076CA27 /* FirebaseAuth */; };
 		EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */; };
 		EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDB2BA49F42001C15AB /* ContentView.swift */; };
 		EF691BDE2BA49F42001C15AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDD2BA49F42001C15AB /* Item.swift */; };
@@ -66,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF5C03D32BA9D9720076CA27 /* FirebaseAnalyticsSwift in Frameworks */,
+				EF5C03D62BA9F3F00076CA27 /* FirebaseAuth in Frameworks */,
 				EF5C03D12BA9D9720076CA27 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +115,13 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		EF5C03D42BA9F3F00076CA27 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EF691BCD2BA49F42001C15AB = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +129,7 @@
 				EF691BEB2BA49F43001C15AB /* PetimemAppTests */,
 				EF691BF52BA49F43001C15AB /* PetimemAppUITests */,
 				EF691BD72BA49F42001C15AB /* Products */,
+				EF5C03D42BA9F3F00076CA27 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -191,6 +201,7 @@
 			packageProductDependencies = (
 				EF5C03D02BA9D9720076CA27 /* FirebaseAnalytics */,
 				EF5C03D22BA9D9720076CA27 /* FirebaseAnalyticsSwift */,
+				EF5C03D52BA9F3F00076CA27 /* FirebaseAuth */,
 			);
 			productName = PetimemApp;
 			productReference = EF691BD62BA49F42001C15AB /* PetimemApp.app */;
@@ -671,6 +682,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
+		};
+		EF5C03D52BA9F3F00076CA27 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
