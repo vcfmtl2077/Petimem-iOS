@@ -10,6 +10,8 @@
 		76403E6D2BA7EA8E00C2CAB1 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */; };
 		76403E6F2BA7ECD600C2CAB1 /* signUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */; };
 		76403E712BA7ED7400C2CAB1 /* splashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */; };
+		767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E582F2BAA7AAD0010AE56 /* tabView.swift */; };
+		76EFD0F32BA9CC15001AF124 /* addNewPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */; };
 		EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */; };
 		EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDB2BA49F42001C15AB /* ContentView.swift */; };
 		EF691BDE2BA49F42001C15AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF691BDD2BA49F42001C15AB /* Item.swift */; };
@@ -41,6 +43,8 @@
 		76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
 		76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signUpView.swift; sourceTree = "<group>"; };
 		76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashScreenView.swift; sourceTree = "<group>"; };
+		767E582F2BAA7AAD0010AE56 /* tabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
+		76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewPetView.swift; sourceTree = "<group>"; };
 		EF691BD62BA49F42001C15AB /* PetimemApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetimemApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetimemAppApp.swift; sourceTree = "<group>"; };
 		EF691BDB2BA49F42001C15AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,11 +108,13 @@
 			children = (
 				EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */,
 				EF691BDB2BA49F42001C15AB /* ContentView.swift */,
+				76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */,
 				EF691BDD2BA49F42001C15AB /* Item.swift */,
 				76403E6C2BA7EA8E00C2CAB1 /* loginView.swift */,
 				76403E6E2BA7ECD600C2CAB1 /* signUpView.swift */,
 				76403E702BA7ED7400C2CAB1 /* splashScreenView.swift */,
 				EF691BDF2BA49F43001C15AB /* Assets.xcassets */,
+				767E582F2BAA7AAD0010AE56 /* tabView.swift */,
 				EF691BE12BA49F43001C15AB /* Preview Content */,
 			);
 			path = PetimemApp;
@@ -271,10 +277,12 @@
 			files = (
 				EF691BDC2BA49F42001C15AB /* ContentView.swift in Sources */,
 				76403E6F2BA7ECD600C2CAB1 /* signUpView.swift in Sources */,
+				767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */,
 				EF691BDE2BA49F42001C15AB /* Item.swift in Sources */,
 				76403E712BA7ED7400C2CAB1 /* splashScreenView.swift in Sources */,
 				76403E6D2BA7EA8E00C2CAB1 /* loginView.swift in Sources */,
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,
+				76EFD0F32BA9CC15001AF124 /* addNewPetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
