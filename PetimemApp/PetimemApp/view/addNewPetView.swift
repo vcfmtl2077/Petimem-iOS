@@ -31,7 +31,7 @@ let gender = ["Female","Male"]
                     //input validation
                 }
                     .foregroundColor(.white)
-                    .frame(width: 330, height: 50)
+                    .frame(width: 330, height: 55)
                     .background(Color("buttonAddColor"))
                     .cornerRadius(20)
                 Spacer()
@@ -65,12 +65,12 @@ let gender = ["Female","Male"]
                     Text("Name:")
                         .bold()
                         .font(.title3)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("buttonAddColor"))
                     Text("")
                     Text("")
                     TextField("Your pet name", text: $petName)
                         .padding()
-                        .frame(width: 200, height: 30)
+                        .frame(width: 200, height: 35)
                         .background(Color.white)
                         .cornerRadius(10)
                         .overlay(
@@ -88,7 +88,7 @@ let gender = ["Female","Male"]
                     Text("Gender:")
                         .bold()
                         .font(.title3)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("buttonAddColor"))
                     Spacer()
                     ForEach(gender, id: \.self) { option in
                         HStack {
@@ -117,7 +117,7 @@ let gender = ["Female","Male"]
                     Text("Birthday:")
                         .bold()
                         .font(.title3)
-                        .foregroundColor(.blue)
+                        .foregroundColor(Color("buttonAddColor"))
                     
                     Spacer()
                     Text("")
