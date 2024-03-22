@@ -38,7 +38,7 @@ let gender = ["Female","Male"]
                 Text("")
                 
             }
-            VStack{
+            VStack(spacing: 15){
                 Spacer()
                 //profile picture selection
                 PhotosPicker(selection: $viewModel.selectedItem){
@@ -55,8 +55,6 @@ let gender = ["Female","Male"]
                             .foregroundColor(Color(.systemGray))
                     }
                 }
-                Text("")
-                Text("")
                 Text("")
                 // rest of the form inputs
                 // Name row
@@ -80,7 +78,7 @@ let gender = ["Female","Male"]
                     Spacer()
                 }
                
-                Text("")
+                
                 
                 //Gender row
                 HStack{
@@ -110,8 +108,6 @@ let gender = ["Female","Male"]
                 }
                 
                 //Birthday row
-                Text("")
-                
                 HStack{
                     Spacer()
                     Text("Birthday:")

@@ -29,3 +29,16 @@ Git branch conflicts resolved
 Plan until next Scrum
 Yan: contentView & addNewPetView updated
 Wei: fireauth with email/password
+
+2024/03/22 --- update
+1. Done since last scrum
+Enable firebase authentication in login view
+addNewPet view
+
+2. Plan until next Scrum
+Create more view(add sign out)
+addNewEventView
+addNewExpenseView
+
+3. Need assistance / figure things out
+Not for now
