@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		765DAB962BAB4C7F0009E3DD /* profileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DAB952BAB4C7F0009E3DD /* profileViewModel.swift */; };
 		767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E582F2BAA7AAD0010AE56 /* tabView.swift */; };
 		76EFD0F32BA9CC15001AF124 /* addNewPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */; };
 		EF4B9C732BAB27D100559419 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6C2BAB27D100559419 /* Item.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		765DAB952BAB4C7F0009E3DD /* profileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileViewModel.swift; sourceTree = "<group>"; };
 		767E582F2BAA7AAD0010AE56 /* tabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
 		76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewPetView.swift; sourceTree = "<group>"; };
 		EF4B9C6C2BAB27D100559419 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				EF4B9C6C2BAB27D100559419 /* Item.swift */,
+				765DAB952BAB4C7F0009E3DD /* profileViewModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -108,6 +111,7 @@
 				EF4B9C6F2BAB27D100559419 /* loginView.swift */,
 				EF4B9C702BAB27D100559419 /* signUpView.swift */,
 				EF4B9C712BAB27D100559419 /* splashScreenView.swift */,
+				76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -155,7 +159,6 @@
 				EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */,
 				EF5C03CA2BA882210076CA27 /* utils */,
 				EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */,
-				76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */,
 				EF691BDF2BA49F43001C15AB /* Assets.xcassets */,
 				767E582F2BAA7AAD0010AE56 /* tabView.swift */,
 				EF691BE12BA49F43001C15AB /* Preview Content */,
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				765DAB962BAB4C7F0009E3DD /* profileViewModel.swift in Sources */,
 				EF4B9C732BAB27D100559419 /* Item.swift in Sources */,
 				EF4B9C772BAB27D100559419 /* splashScreenView.swift in Sources */,
 				767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */,
