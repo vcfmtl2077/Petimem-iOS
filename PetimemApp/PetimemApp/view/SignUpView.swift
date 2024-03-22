@@ -7,11 +7,34 @@
 
 import SwiftUI
 
-struct signUpView: View {
-    @State private var username = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
+final class SignupEmailViewModel: ObservableObject {
+    @Published var username = ""
+    @Published var email = ""
+    @Published var password = ""
+    @Published var confirmPassword = ""
+    
+    func signup() {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("No email or password found.")
+            return
+        }
+        
+        Task{
+            do{
+                let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
+                print("success")
+                print(userData)
+            }catch{
+                print("Error: \(error)")
+            }
+        }
+    }
+}
+
+struct SignUpView: View {
+    
+    @StateObject private var viewModel = SignupEmailViewModel()
+    
     var body: some View {
         ZStack{
             Color("bgColor")
@@ -29,6 +52,7 @@ struct signUpView: View {
                 Spacer()
                 Button("Sign Up"){
                     //input validation
+                    viewModel.signup()
                 }
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
@@ -43,7 +67,7 @@ struct signUpView: View {
                     .bold()
                     .font(.title2)
                     .foregroundColor(.blue)
-                TextField("Username", text: $username)
+                TextField("Username", text: $viewModel.username)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.white)
@@ -52,7 +76,7 @@ struct signUpView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke( Color.blue)
                     )
-                TextField("Email", text: $email)
+                TextField("Email", text: $viewModel.email)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.white)
@@ -61,7 +85,7 @@ struct signUpView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke( Color.blue)
                     )
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $viewModel.password)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.white)
@@ -70,7 +94,7 @@ struct signUpView: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke( Color.blue)
                     )
-                SecureField("confirmPassword", text: $confirmPassword)
+                SecureField("confirmPassword", text: $viewModel.confirmPassword)
                     .padding()
                     .frame(width: 300, height: 50)
                     .background(Color.white)
@@ -89,5 +113,5 @@ struct signUpView: View {
 }
 
 #Preview {
-    signUpView()
+    SignUpView()
 }
