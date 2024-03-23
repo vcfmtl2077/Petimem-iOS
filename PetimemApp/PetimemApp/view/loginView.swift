@@ -23,7 +23,7 @@ struct loginView: View {
                     .frame(width: 280, height: 170, alignment: .leading)
                 Spacer()
                 Rectangle()
-                    .frame(width: 340, height: 350)
+                    .frame(width: 340, height: 400)
                     .foregroundColor(.white.opacity(0.6))
                     .cornerRadius(20)
                 Spacer()
