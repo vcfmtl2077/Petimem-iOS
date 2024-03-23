@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct loginView: View {
+struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var wrongEmail = 0
@@ -18,6 +18,7 @@ struct loginView: View {
             Color("bgColor")
                 .ignoresSafeArea()
             VStack{
+                Spacer()
                 Image("logoText")
                     .resizable()
                     .frame(width: 280, height: 170, alignment: .leading)
@@ -37,6 +38,7 @@ struct loginView: View {
                 Spacer()
             }
             VStack(spacing: 20){
+                    Text("")
                     Text("")
                     Text("")
                     Text("")
@@ -61,6 +63,8 @@ struct loginView: View {
                                     )
                     Button("Login"){
                         //Authenticate user
+                        
+                        
                     }
                         .foregroundColor(.white)
                         .frame(width: 300, height: 50)
@@ -118,5 +122,5 @@ struct loginView: View {
 }
 
 #Preview {
-    loginView()
+    LoginView()
 }

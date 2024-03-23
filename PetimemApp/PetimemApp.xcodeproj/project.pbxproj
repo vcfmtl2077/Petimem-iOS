@@ -13,9 +13,9 @@
 		EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF35FBA62BAD2E21006E0A9E /* AuthenticationManager.swift */; };
 		EF4B9C732BAB27D100559419 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6C2BAB27D100559419 /* Item.swift */; };
 		EF4B9C742BAB27D100559419 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6E2BAB27D100559419 /* ContentView.swift */; };
-		EF4B9C752BAB27D100559419 /* loginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6F2BAB27D100559419 /* loginView.swift */; };
+		EF4B9C752BAB27D100559419 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6F2BAB27D100559419 /* LoginView.swift */; };
 		EF4B9C762BAB27D100559419 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C702BAB27D100559419 /* SignUpView.swift */; };
-		EF4B9C772BAB27D100559419 /* splashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C712BAB27D100559419 /* splashScreenView.swift */; };
+		EF4B9C772BAB27D100559419 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C712BAB27D100559419 /* SplashScreenView.swift */; };
 		EF5C03CC2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */; };
 		EF5C03CD2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */; };
 		EF5C03CE2BA9D8140076CA27 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */; };
@@ -54,9 +54,9 @@
 		EF35FBA62BAD2E21006E0A9E /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		EF4B9C6C2BAB27D100559419 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		EF4B9C6E2BAB27D100559419 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EF4B9C6F2BAB27D100559419 /* loginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginView.swift; sourceTree = "<group>"; };
+		EF4B9C6F2BAB27D100559419 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EF4B9C702BAB27D100559419 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		EF4B9C712BAB27D100559419 /* splashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = splashScreenView.swift; sourceTree = "<group>"; };
+		EF4B9C712BAB27D100559419 /* SplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EF691BD62BA49F42001C15AB /* PetimemApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetimemApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetimemAppApp.swift; sourceTree = "<group>"; };
@@ -118,9 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				EF4B9C6E2BAB27D100559419 /* ContentView.swift */,
-				EF4B9C6F2BAB27D100559419 /* loginView.swift */,
+				EF4B9C6F2BAB27D100559419 /* LoginView.swift */,
 				EF4B9C702BAB27D100559419 /* SignUpView.swift */,
-				EF4B9C712BAB27D100559419 /* splashScreenView.swift */,
+				EF4B9C712BAB27D100559419 /* SplashScreenView.swift */,
 				76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */,
 			);
 			path = view;
@@ -345,10 +345,10 @@
 			files = (
 				765DAB962BAB4C7F0009E3DD /* profileViewModel.swift in Sources */,
 				EF4B9C732BAB27D100559419 /* Item.swift in Sources */,
-				EF4B9C772BAB27D100559419 /* splashScreenView.swift in Sources */,
+				EF4B9C772BAB27D100559419 /* SplashScreenView.swift in Sources */,
 				EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */,
 				767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */,
-				EF4B9C752BAB27D100559419 /* loginView.swift in Sources */,
+				EF4B9C752BAB27D100559419 /* LoginView.swift in Sources */,
 				EF4B9C742BAB27D100559419 /* ContentView.swift in Sources */,
 				EF4B9C762BAB27D100559419 /* SignUpView.swift in Sources */,
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,

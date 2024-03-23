@@ -28,7 +28,7 @@ struct PetimemAppApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-            SignUpView()
+            SplashScreenView()
         }
         .modelContainer(sharedModelContainer)
     }

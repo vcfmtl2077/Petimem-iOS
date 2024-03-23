@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct splashScreenView: View {
+struct SplashScreenView: View {
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.5
     
     var body: some View {
         if isActive{
-            
+            LoginView()
         }else{
             ZStack{
                 Color("bgColor")
@@ -39,7 +39,9 @@ struct splashScreenView: View {
             }
             .onAppear{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
-                    self.isActive = true
+                    withAnimation {
+                        self.isActive = true
+                    }
                 }
             }
         }
@@ -48,5 +50,5 @@ struct splashScreenView: View {
 }
 
 #Preview {
-    splashScreenView()
+    SplashScreenView()
 }
