@@ -12,7 +12,6 @@ final class SignupEmailViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
     @Published var confirmPassword = ""
-    
     func signup() {
         guard !email.isEmpty, !password.isEmpty else {
             print("No email or password found.")
@@ -34,7 +33,8 @@ final class SignupEmailViewModel: ObservableObject {
 struct SignUpView: View {
     
     @StateObject private var viewModel = SignupEmailViewModel()
-    
+    @Environment(\.dismiss) var dismiss
+    @State var showAlert: Bool = false
     var body: some View {
         ZStack{
             Color("bgColor")
@@ -53,12 +53,16 @@ struct SignUpView: View {
                 Spacer()
                 Button("Sign Up"){
                     //input validation
-                    viewModel.signup()
+//                    viewModel.signup()
+                    dismiss()
                 }
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
                     .background(Color.blue)
                     .cornerRadius(20)
+                    .alert(isPresented: $showAlert, content: {
+                        Alert(title: Text("Signup Successful."))
+                    })
                 Spacer()
             }
             VStack(spacing: 20){
@@ -110,6 +114,10 @@ struct SignUpView: View {
                     .frame(width: 250)
             }
         }
+    }
+    
+    func getAlert() -> Alert {
+        return Alert(title: Text("Signup Successful."),message: Text("Signup Successful."),dismissButton: .default(Text("OK")))
     }
 }
 
