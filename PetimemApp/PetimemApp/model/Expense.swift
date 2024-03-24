@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct expense: Identifiable{
+struct Expense: Identifiable{
     let id: UUID = .init()
     //properties
     var title: String
@@ -25,7 +25,7 @@ struct expense: Identifiable{
     }
 }
 
-var sampleExpenses: [expense] = [
+var sampleExpenses: [Expense] = [
     .init(title: "RoyalCanin", amount: 90.00, category: .food, dateAdded: .now, tint: "White"),
     .init(title: "RoyalCanin", amount: 90.00, category: .food, dateAdded: .now, tint: "White"),
     .init(title: "RoyalCanin", amount: 90.00, category: .food, dateAdded: .now, tint: "White"),

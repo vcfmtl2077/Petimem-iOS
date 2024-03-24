@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct addNewExpenseView: View {
+struct AddNewExpenseView: View {
     var body: some View {
         ZStack{
             Color("bgHomeColor")
@@ -37,5 +37,5 @@ struct addNewExpenseView: View {
 }
 
 #Preview {
-    addNewExpenseView()
+    AddNewExpenseView()
 }

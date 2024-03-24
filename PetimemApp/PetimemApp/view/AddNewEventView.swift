@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct addNewEventView: View {
+struct AddNewEventView: View {
     @State private var title = ""
     
     var body: some View {
@@ -36,5 +36,5 @@ struct addNewEventView: View {
 }
 
 #Preview {
-    addNewEventView()
+    AddNewEventView()
 }

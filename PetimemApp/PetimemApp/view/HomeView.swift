@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct homeView: View {
+struct HomeView: View {
     var body: some View {
         Button("Add Your Pet"){
         }
@@ -19,5 +19,5 @@ struct homeView: View {
 }
 
 #Preview {
-    homeView()
+    HomeView()
 }
