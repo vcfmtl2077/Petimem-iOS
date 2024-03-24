@@ -23,7 +23,7 @@ final class LoginViewModel: ObservableObject {
 
         Task{
             do{
-                let _ = try await AuthenticationManager.shared.signInUser(email: email, password: password)
+                let userData = try await AuthenticationManager.shared.signInUser(email: email, password: password)
                 DispatchQueue.main.async { [weak self] in
                     self?.alertMessage = "User Login Successful!"
                     self?.showAlert = true
