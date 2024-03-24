@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Expense: Identifiable{
     let id: UUID = .init()
@@ -37,4 +38,4 @@ var sampleExpenses: [Expense] = [
     .init(title: "Didi", amount: 75.00, category: .grooming, dateAdded: .now, tint: "White"),
     .init(title: "ChouchouLeash", amount: 70.00, category: .accessories, dateAdded: .now, tint: "White")
     
-]
+] 

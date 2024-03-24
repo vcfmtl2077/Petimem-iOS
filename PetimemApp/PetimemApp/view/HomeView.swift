@@ -8,13 +8,26 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var showingAddNewPetView = false
     var body: some View {
-        Button("Add Your Pet"){
+        NavigationStack{
+            ZStack{
+                Color("bgHomeColor")
+                    .ignoresSafeArea()
+                Button("Add Your Pet"){
+                    showingAddNewPetView = true
+                }
+                .foregroundColor(.white)
+                .frame(width: 330, height: 55)
+                .background(Color("buttonAddColor"))
+                .cornerRadius(20)
+            }
+            .navigationTitle("Pets")
         }
-        .foregroundColor(.white)
-        .frame(width: 330, height: 55)
-        .background(Color("buttonAddColor"))
-        .cornerRadius(20)
+        
+        NavigationLink(destination: AddNewPetView(), isActive: $showingAddNewPetView) {
+                            EmptyView()
+                        }.hidden()
     }
 }
 
