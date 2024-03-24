@@ -18,20 +18,13 @@ struct ContentView: View {
                 VStack {
                     switch selectedTab {
                     case .home:
-                        Button("Add Your Pet"){
-                            
-                        }
-                        .foregroundColor(.white)
-                        .frame(width: 330, height: 55)
-                        .background(Color("buttonAddColor"))
-                        .cornerRadius(20)
-                        
+                        homeView()
                     case .event:
                         Text("Event Content")
                     case .moment:
                         Text("Moment Content")
                     case .expense:
-                        Text("Expense Content")
+                        expenseView()
                     case .more:
                         Text("More Content")
                     }
@@ -50,3 +43,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

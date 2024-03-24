@@ -9,7 +9,30 @@ import SwiftUI
 
 struct addNewExpenseView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Color("bgHomeColor")
+                .ignoresSafeArea()
+            VStack{
+                Spacer()
+                Rectangle()
+                    .foregroundColor(Color("bgFrameColor"))
+                    .frame(width: 330,height: 450)
+                    .cornerRadius(20)
+                Spacer()
+                Button(action: {
+                    // Input validation or action to perform
+                }) {
+                    Text("Add")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(width: 330, height: 56)
+                        .background(Color("buttonAddColor"))
+                        .cornerRadius(20)
+                }
+                Spacer()
+                
+            }
+        }
     }
 }
 
