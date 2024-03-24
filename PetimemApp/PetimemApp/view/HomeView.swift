@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct homeView: View {
+struct HomeView: View {
     @State private var showingAddNewPetView = false
     var body: some View {
         NavigationStack{
@@ -25,12 +25,12 @@ struct homeView: View {
             .navigationTitle("Pets")
         }
         
-        NavigationLink(destination: addNewPetView(), isActive: $showingAddNewPetView) {
+        NavigationLink(destination: AddNewPetView(), isActive: $showingAddNewPetView) {
                             EmptyView()
                         }.hidden()
     }
 }
 
 #Preview {
-    homeView()
+    HomeView()
 }

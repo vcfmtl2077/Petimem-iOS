@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct expenseView: View {
+struct ExpenseView: View {
     @State private var startDate: Date = .now.startOfMonth
     @State private var endDate: Date = .now.endOfMonth
     @State private var totalAmount = 1000.00
@@ -71,7 +71,7 @@ struct expenseView: View {
                 }
             }
             .background(
-                                NavigationLink(destination: addNewExpenseView(), isActive: $showingAddNewExpense) {
+                                NavigationLink(destination: AddNewExpenseView(), isActive: $showingAddNewExpense) {
                                     EmptyView()
                                 }
                             )
@@ -125,7 +125,7 @@ struct CategoryView: View {
 }
 
 struct ExpenseCardView: View {
-    var Expense: expense
+    var Expense: Expense
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 25)
@@ -193,5 +193,5 @@ struct DateFilterView: View {
 
 #Preview {
     //ExpenseCardView(Expense: sampleExpenses[0])
-    expenseView()
+    ExpenseView()
 }
