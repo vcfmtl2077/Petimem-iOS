@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab: Tab = .home
-    
     var body: some View {
         NavigationView{
             ZStack{
