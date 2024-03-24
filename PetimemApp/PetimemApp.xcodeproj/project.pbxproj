@@ -8,7 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		765DAB962BAB4C7F0009E3DD /* profileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765DAB952BAB4C7F0009E3DD /* profileViewModel.swift */; };
+		766805742BADD344008C572B /* homeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766805732BADD344008C572B /* homeView.swift */; };
 		767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E582F2BAA7AAD0010AE56 /* tabView.swift */; };
+		768CF0302BABE10D00B5EFD1 /* addNewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CF02F2BABE10D00B5EFD1 /* addNewEventView.swift */; };
+		768CF0322BABE52E00B5EFD1 /* addNewExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768CF0312BABE52E00B5EFD1 /* addNewExpenseView.swift */; };
+		76AFCF172BADE30300465060 /* expenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AFCF162BADE30300465060 /* expenseView.swift */; };
+		76AFCF1B2BAF491500465060 /* expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AFCF1A2BAF491500465060 /* expense.swift */; };
+		76AFCF212BAF4F1700465060 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AFCF202BAF4F1700465060 /* Category.swift */; };
+		76AFCF232BAF52FC00465060 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AFCF222BAF52FC00465060 /* DateExtensions.swift */; };
+		76AFCF252BAF82A400465060 /* expenseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AFCF242BAF82A400465060 /* expenseCardView.swift */; };
 		76EFD0F32BA9CC15001AF124 /* addNewPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */; };
 		EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF35FBA62BAD2E21006E0A9E /* AuthenticationManager.swift */; };
 		EF4B9C732BAB27D100559419 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6C2BAB27D100559419 /* Item.swift */; };
@@ -49,7 +57,15 @@
 
 /* Begin PBXFileReference section */
 		765DAB952BAB4C7F0009E3DD /* profileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileViewModel.swift; sourceTree = "<group>"; };
+		766805732BADD344008C572B /* homeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeView.swift; sourceTree = "<group>"; };
 		767E582F2BAA7AAD0010AE56 /* tabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
+		768CF02F2BABE10D00B5EFD1 /* addNewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewEventView.swift; sourceTree = "<group>"; };
+		768CF0312BABE52E00B5EFD1 /* addNewExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewExpenseView.swift; sourceTree = "<group>"; };
+		76AFCF162BADE30300465060 /* expenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseView.swift; sourceTree = "<group>"; };
+		76AFCF1A2BAF491500465060 /* expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense.swift; sourceTree = "<group>"; };
+		76AFCF202BAF4F1700465060 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		76AFCF222BAF52FC00465060 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = PetimemApp/model/DateExtensions.swift; sourceTree = SOURCE_ROOT; };
+		76AFCF242BAF82A400465060 /* expenseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expenseCardView.swift; sourceTree = "<group>"; };
 		76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewPetView.swift; sourceTree = "<group>"; };
 		EF35FBA62BAD2E21006E0A9E /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		EF4B9C6C2BAB27D100559419 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -110,6 +126,9 @@
 			children = (
 				EF4B9C6C2BAB27D100559419 /* Item.swift */,
 				765DAB952BAB4C7F0009E3DD /* profileViewModel.swift */,
+				76AFCF1A2BAF491500465060 /* expense.swift */,
+				76AFCF202BAF4F1700465060 /* Category.swift */,
+				76AFCF242BAF82A400465060 /* expenseCardView.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -122,6 +141,9 @@
 				EF4B9C702BAB27D100559419 /* SignUpView.swift */,
 				EF4B9C712BAB27D100559419 /* SplashScreenView.swift */,
 				76EFD0F22BA9CC15001AF124 /* addNewPetView.swift */,
+				768CF0312BABE52E00B5EFD1 /* addNewExpenseView.swift */,
+				76AFCF162BADE30300465060 /* expenseView.swift */,
+				768CF02F2BABE10D00B5EFD1 /* addNewEventView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -344,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				765DAB962BAB4C7F0009E3DD /* profileViewModel.swift in Sources */,
+				76AFCF232BAF52FC00465060 /* DateExtensions.swift in Sources */,
 				EF4B9C732BAB27D100559419 /* Item.swift in Sources */,
 				EF4B9C772BAB27D100559419 /* SplashScreenView.swift in Sources */,
 				EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */,
@@ -352,7 +375,9 @@
 				EF4B9C742BAB27D100559419 /* ContentView.swift in Sources */,
 				EF4B9C762BAB27D100559419 /* SignUpView.swift in Sources */,
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,
+				768CF0302BABE10D00B5EFD1 /* addNewEventView.swift in Sources */,
 				76EFD0F32BA9CC15001AF124 /* addNewPetView.swift in Sources */,
+				76AFCF172BADE30300465060 /* expenseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +541,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PetimemApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 8479FN9AA6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -548,6 +574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PetimemApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 8479FN9AA6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
