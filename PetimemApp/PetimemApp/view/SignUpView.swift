@@ -23,7 +23,7 @@ final class SignupEmailViewModel: ObservableObject {
         
         Task{
             do{
-                let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
+                _ = try await AuthenticationManager.shared.createUser(email: email, password: password)
                 DispatchQueue.main.async { [weak self] in
                     self?.alertMessage = "User Signup Successful!"
                     self?.showAlert = true

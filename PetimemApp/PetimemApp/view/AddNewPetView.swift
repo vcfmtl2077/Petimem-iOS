@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct addNewPetView: View {
+struct AddNewPetView: View {
     
 @StateObject var viewModel = ProfileViewModel()
 @State private var petName = ""
@@ -131,5 +131,5 @@ let gender = ["Female","Male"]
     }
 
 #Preview {
-    addNewPetView()
+    AddNewPetView()
 }

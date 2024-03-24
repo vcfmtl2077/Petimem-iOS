@@ -17,13 +17,13 @@ struct ContentView: View {
                 VStack {
                     switch selectedTab {
                     case .home:
-                        homeView()
+                        HomeView()
                     case .event:
                         Text("Event Content")
                     case .moment:
                         Text("Moment Content")
                     case .expense:
-                        expenseView()
+                        ExpenseView()
                     case .more:
                         Text("More Content")
                     }
