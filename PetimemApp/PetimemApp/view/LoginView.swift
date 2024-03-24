@@ -7,12 +7,46 @@
 
 import SwiftUI
 
+final class LoginViewModel: ObservableObject {
+    @Published var email = ""
+    @Published var password = ""
+    @Published var showAlert = false
+    @Published var alertMessage = ""
+    @Published var logInSuccess = false
+
+    func signIn() {
+        guard !email.isEmpty,!password.isEmpty else {
+            alertMessage = "Invalid input or passwords do not match."
+            showAlert = true
+            return
+        }
+
+        Task{
+            do{
+                let userData = try await AuthenticationManager.shared.signInUser(email: email, password: password)
+                DispatchQueue.main.async { [weak self] in
+                    self?.alertMessage = "User Login Successful!"
+                    self?.showAlert = true
+                    self?.logInSuccess = true
+                }
+                
+            }catch{
+                DispatchQueue.main.async { [weak self] in
+                    self?.alertMessage = error.localizedDescription
+                    self?.showAlert = true
+                    self?.logInSuccess = false
+                }
+            }
+        }
+    }
+}
+
+
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
     @State private var wrongEmail = 0
     @State private var wrongPassword = 0
-    @State private var showingLoginScreen = false
+    @State private var showingHomeScreen = false
+    @StateObject private var viewModel = LoginViewModel()
     var body: some View {
         NavigationStack {
             ZStack{
@@ -43,7 +77,7 @@ struct LoginView: View {
                         Text("")
                         Text("")
                         Text("")
-                        TextField("Email", text: $email)
+                    TextField("Email", text: $viewModel.email)
                             .padding()
                             .frame(width: 300, height: 50)
                             .background(Color.white)
@@ -52,7 +86,7 @@ struct LoginView: View {
                                     RoundedRectangle(cornerRadius: 20)
                                     .stroke(wrongEmail > 0 ? Color.red : Color.blue, lineWidth:CGFloat(wrongEmail > 0 ? wrongEmail : 1))
                                         )
-                        SecureField("Password", text: $password)
+                    SecureField("Password", text: $viewModel.password)
                             .padding()
                             .frame(width: 300, height: 50)
                             .background(Color.white)
@@ -64,8 +98,7 @@ struct LoginView: View {
                                         )
                         Button("Login"){
                             //Authenticate user
-                            ContentView()
-                            
+                            viewModel.signIn()
                         }
                             .foregroundColor(.white)
                             .frame(width: 300, height: 50)
@@ -111,13 +144,35 @@ struct LoginView: View {
                                 .frame(width: 30, height: 30)
                         }
                     }
-                    
-                        NavigationLink(destination: Text("You are logged in"), isActive: $showingLoginScreen){
-                            EmptyView()
-                    }
                    
                 }
                 
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                if viewModel.logInSuccess {
+                    return Alert(
+                        title: Text("Login Successful"),
+                        message: Text(viewModel.alertMessage),
+                        dismissButton: .default(Text("OK"), action: {
+                            self.showingHomeScreen = true
+                        })
+                    )
+                } else {
+                    return Alert(
+                        title: Text("Login Failed"),
+                        message: Text(viewModel.alertMessage),
+                        dismissButton: .default(Text("Try Again"))
+                    )
+                }
+            }
+            .onAppear{
+                let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+                self.showingHomeScreen = authUser == nil ? true : false
+            }
+            .fullScreenCover(isPresented: $showingHomeScreen) {
+                NavigationStack{
+                    ContentView().navigationBarHidden(true)
+                }
             }
         }.navigationTitle("Sign Up")
     }
