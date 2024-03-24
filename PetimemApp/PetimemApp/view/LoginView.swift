@@ -32,7 +32,7 @@ struct LoginView: View {
                     Spacer()
                     HStack{
                         Text("No account yet?")
-                        NavigationLink(destination: SignUpView().navigationBarHidden(true)){
+                        NavigationLink(destination: SignUpView()){
                             Text("Create an account")
                         }
                     }

@@ -8,23 +8,34 @@
 import SwiftUI
 
 final class SignupEmailViewModel: ObservableObject {
-    @Published var username = ""
     @Published var email = ""
     @Published var password = ""
     @Published var confirmPassword = ""
+    @Published var showAlert = false
+    @Published var alertMessage = ""
+    @Published var signUpSuccess = false
     func signup() {
         guard !email.isEmpty, !password.isEmpty else {
-            print("No email or password found.")
+            alertMessage = "Invalid input or passwords do not match."
+            showAlert = true
             return
         }
         
         Task{
             do{
                 let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-                print("success")
-                print(userData)
+                DispatchQueue.main.async { [weak self] in
+                    self?.alertMessage = "User Signup Successful!"
+                    self?.showAlert = true
+                    self?.signUpSuccess = true
+                }
+                
             }catch{
-                print("Error: \(error)")
+                DispatchQueue.main.async { [weak self] in
+                    self?.alertMessage = error.localizedDescription
+                    self?.showAlert = true
+                    self?.signUpSuccess = false
+                }
             }
         }
     }
@@ -53,16 +64,15 @@ struct SignUpView: View {
                 Spacer()
                 Button("Sign Up"){
                     //input validation
-//                    viewModel.signup()
-                    dismiss()
+                    viewModel.signup()
                 }
-                    .foregroundColor(.white)
-                    .frame(width: 300, height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(20)
-                    .alert(isPresented: $showAlert, content: {
-                        Alert(title: Text("Signup Successful."))
-                    })
+                .foregroundColor(.white)
+                .frame(width: 300, height: 50)
+                .background(Color.blue)
+                .cornerRadius(20)
+                .alert(isPresented: $showAlert, content: {
+                    Alert(title: Text("Signup Successful."))
+                })
                 Spacer()
             }
             VStack(spacing: 20){
@@ -72,15 +82,15 @@ struct SignUpView: View {
                     .bold()
                     .font(.title2)
                     .foregroundColor(.blue)
-//                TextField("Username", text: $viewModel.username)
-//                    .padding()
-//                    .frame(width: 300, height: 50)
-//                    .background(Color.white)
-//                    .cornerRadius(20)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 20)
-//                            .stroke( Color.blue)
-//                    )
+                //                TextField("Username", text: $viewModel.username)
+                //                    .padding()
+                //                    .frame(width: 300, height: 50)
+                //                    .background(Color.white)
+                //                    .cornerRadius(20)
+                //                    .overlay(
+                //                        RoundedRectangle(cornerRadius: 20)
+                //                            .stroke( Color.blue)
+                //                    )
                 TextField("Email", text: $viewModel.email)
                     .padding()
                     .frame(width: 300, height: 50)
@@ -114,11 +124,26 @@ struct SignUpView: View {
                     .frame(width: 250)
             }
         }
+        .alert(isPresented: $viewModel.showAlert) {
+            if viewModel.signUpSuccess {
+                return Alert(
+                    title: Text("Signup Successful"),
+                    message: Text(viewModel.alertMessage),
+                    dismissButton: .default(Text("OK"), action: {
+                        viewModel.signUpSuccess = true
+                        dismiss()
+                    })
+                )
+            } else {
+                return Alert(
+                    title: Text("Signup Failed"),
+                    message: Text(viewModel.alertMessage),
+                    dismissButton: .default(Text("Try Again"))
+                )
+            }
+        }
     }
     
-    func getAlert() -> Alert {
-        return Alert(title: Text("Signup Successful."),message: Text("Signup Successful."),dismissButton: .default(Text("OK")))
-    }
 }
 
 #Preview {
