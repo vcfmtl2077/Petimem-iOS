@@ -1,9 +1,11 @@
 //
-//  addNewExpenseView.swift
+//  AddNewExpenseView.swift
 //  PetimemApp
 //
-//  Created by Yan Deng on 2024-03-20.
+//  Created by Yan Deng on 2024-03-25.
 //
+
+import SwiftUI
 
 import SwiftUI
 
@@ -166,6 +168,7 @@ struct AddNewExpenseView: View {
         return formatter
     }
 }
+
 
 #Preview {
     AddNewExpenseView()
