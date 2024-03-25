@@ -45,7 +45,7 @@ final class LoginViewModel: ObservableObject {
 struct LoginView: View {
     @State private var wrongEmail = 0
     @State private var wrongPassword = 0
-    @State private var showingHomeScreen = false
+    @State  var showingHomeScreen = false
     @StateObject private var viewModel = LoginViewModel()
     var body: some View {
         NavigationStack {
@@ -171,7 +171,7 @@ struct LoginView: View {
             }
             .fullScreenCover(isPresented: $showingHomeScreen) {
                 NavigationStack{
-                    ContentView().navigationBarHidden(true)
+                    ContentView(showingHomeScreen: $showingHomeScreen).navigationBarHidden(true)
                 }
             }
         }.navigationTitle("Sign Up")
