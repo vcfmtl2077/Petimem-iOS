@@ -23,6 +23,8 @@
 		EF17B8872BB0720A00C7E737 /* AddNewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF17B8862BB0720A00C7E737 /* AddNewEventView.swift */; };
 		EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF35FBA62BAD2E21006E0A9E /* AuthenticationManager.swift */; };
 		EF43BC272BB0C56F00297A36 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43BC262BB0C56F00297A36 /* SettingsView.swift */; };
+		EF43BC2E2BB119F800297A36 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EF43BC2D2BB119F800297A36 /* GoogleSignIn */; };
+		EF43BC302BB119F800297A36 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF43BC2F2BB119F800297A36 /* GoogleSignInSwift */; };
 		EF4B9C742BAB27D100559419 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6E2BAB27D100559419 /* ContentView.swift */; };
 		EF4B9C752BAB27D100559419 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C6F2BAB27D100559419 /* LoginView.swift */; };
 		EF4B9C762BAB27D100559419 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B9C702BAB27D100559419 /* SignUpView.swift */; };
@@ -96,7 +98,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF43BC302BB119F800297A36 /* GoogleSignInSwift in Frameworks */,
 				EF5C03D32BA9D9720076CA27 /* FirebaseAnalyticsSwift in Frameworks */,
+				EF43BC2E2BB119F800297A36 /* GoogleSignIn in Frameworks */,
 				EF5C03D62BA9F3F00076CA27 /* FirebaseAuth in Frameworks */,
 				EF5C03D12BA9D9720076CA27 /* FirebaseAnalytics in Frameworks */,
 			);
@@ -263,6 +267,8 @@
 				EF5C03D02BA9D9720076CA27 /* FirebaseAnalytics */,
 				EF5C03D22BA9D9720076CA27 /* FirebaseAnalyticsSwift */,
 				EF5C03D52BA9F3F00076CA27 /* FirebaseAuth */,
+				EF43BC2D2BB119F800297A36 /* GoogleSignIn */,
+				EF43BC2F2BB119F800297A36 /* GoogleSignInSwift */,
 			);
 			productName = PetimemApp;
 			productReference = EF691BD62BA49F42001C15AB /* PetimemApp.app */;
@@ -338,6 +344,7 @@
 			mainGroup = EF691BCD2BA49F42001C15AB;
 			packageReferences = (
 				EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EF43BC2C2BB119C000297A36 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = EF691BD72BA49F42001C15AB /* Products */;
 			projectDirPath = "";
@@ -740,6 +747,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EF43BC2C2BB119C000297A36 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -751,6 +766,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EF43BC2D2BB119F800297A36 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF43BC2C2BB119C000297A36 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		EF43BC2F2BB119F800297A36 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF43BC2C2BB119C000297A36 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		EF5C03D02BA9D9720076CA27 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
