@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab: Tab = .home
+    @Binding var showingHomeScreen:Bool
     var body: some View {
         NavigationView{
             ZStack{
@@ -17,15 +18,15 @@ struct ContentView: View {
                 VStack {
                     switch selectedTab {
                     case .home:
-                        homeView()
+                        HomeView()
                     case .event:
                         Text("Event Content")
                     case .moment:
                         Text("Moment Content")
                     case .expense:
-                        expenseView()
+                        ExpenseView()
                     case .more:
-                        Text("More Content")
+                        SettingsView(showingHomeScreen: $showingHomeScreen)
                     }
                     
                     Spacer()
@@ -39,7 +40,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(showingHomeScreen: .constant(true))
     }
 }
 

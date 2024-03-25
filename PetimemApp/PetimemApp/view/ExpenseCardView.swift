@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct expenseCardView: View {
+struct ExpenseCardView: View {
     var totalAmount: Double
     var body: some View {
         ZStack{
@@ -33,6 +33,6 @@ struct expenseCardView: View {
 
 #Preview {
     ScrollView{
-        expenseCardView(totalAmount: 1000)
+        ExpenseCardView(totalAmount: 1000)
     }
 }
