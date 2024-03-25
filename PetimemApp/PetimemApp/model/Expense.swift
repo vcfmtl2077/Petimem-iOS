@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SwiftData
+import Firebase
 
 struct Expense: Identifiable{
     let id: UUID = .init()
@@ -37,5 +37,4 @@ var sampleExpenses: [Expense] = [
     .init(title: "RoyalCanin", amount: 90.00, category: .food, dateAdded: .now, tint: "White"),
     .init(title: "Didi", amount: 75.00, category: .grooming, dateAdded: .now, tint: "White"),
     .init(title: "ChouchouLeash", amount: 70.00, category: .accessories, dateAdded: .now, tint: "White")
-    
 ] 

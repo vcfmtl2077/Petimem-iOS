@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7671A5342BB1F3B100B2F5D7 /* AddNewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7671A5332BB1F3B100B2F5D7 /* AddNewEventView.swift */; };
 		767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E582F2BAA7AAD0010AE56 /* tabView.swift */; };
 		76AFCF172BADE30300465060 /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AFCF162BADE30300465060 /* ExpenseView.swift */; };
 		76AFCF232BAF52FC00465060 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AFCF222BAF52FC00465060 /* DateExtensions.swift */; };
@@ -20,7 +21,6 @@
 		EF0C13972BAFE3E400B1CF8A /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0C13902BAFE3E400B1CF8A /* Expense.swift */; };
 		EF0C13992BAFE3E400B1CF8A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0C13922BAFE3E400B1CF8A /* Item.swift */; };
 		EF0C139A2BAFE3E500B1CF8A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0C13932BAFE3E400B1CF8A /* ProfileViewModel.swift */; };
-		EF17B8872BB0720A00C7E737 /* AddNewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF17B8862BB0720A00C7E737 /* AddNewEventView.swift */; };
 		EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF35FBA62BAD2E21006E0A9E /* AuthenticationManager.swift */; };
 		EF43BC272BB0C56F00297A36 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF43BC262BB0C56F00297A36 /* SettingsView.swift */; };
 		EF43BC2E2BB119F800297A36 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EF43BC2D2BB119F800297A36 /* GoogleSignIn */; };
@@ -61,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7671A5332BB1F3B100B2F5D7 /* AddNewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddNewEventView.swift; path = PetimemApp/view/AddNewEventView.swift; sourceTree = SOURCE_ROOT; };
 		767E582F2BAA7AAD0010AE56 /* tabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabView.swift; sourceTree = "<group>"; };
 		768CF0312BABE52E00B5EFD1 /* AddNewExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExpenseView.swift; sourceTree = "<group>"; };
 		76AFCF162BADE30300465060 /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		EF0C13902BAFE3E400B1CF8A /* Expense.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		EF0C13922BAFE3E400B1CF8A /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		EF0C13932BAFE3E400B1CF8A /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		EF17B8862BB0720A00C7E737 /* AddNewEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewEventView.swift; sourceTree = "<group>"; };
 		EF35FBA62BAD2E21006E0A9E /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		EF43BC262BB0C56F00297A36 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EF4B9C6E2BAB27D100559419 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		EF0C13832BAFE2A000B1CF8A /* view */ = {
 			isa = PBXGroup;
 			children = (
-				EF17B8862BB0720A00C7E737 /* AddNewEventView.swift */,
+				7671A5332BB1F3B100B2F5D7 /* AddNewEventView.swift */,
 				EF4B9C6E2BAB27D100559419 /* ContentView.swift */,
 				EF4B9C6F2BAB27D100559419 /* LoginView.swift */,
 				EF4B9C702BAB27D100559419 /* SignUpView.swift */,
@@ -397,9 +397,9 @@
 				76AFCF232BAF52FC00465060 /* DateExtensions.swift in Sources */,
 				EF0C13882BAFE2A000B1CF8A /* ExpenseView.swift in Sources */,
 				EF4B9C772BAB27D100559419 /* SplashScreenView.swift in Sources */,
+				7671A5342BB1F3B100B2F5D7 /* AddNewEventView.swift in Sources */,
 				EF0C13962BAFE3E400B1CF8A /* DateExtensions.swift in Sources */,
 				EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */,
-				EF17B8872BB0720A00C7E737 /* AddNewEventView.swift in Sources */,
 				767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */,
 				EF0C13972BAFE3E400B1CF8A /* Expense.swift in Sources */,
 				EF4B9C752BAB27D100559419 /* LoginView.swift in Sources */,
