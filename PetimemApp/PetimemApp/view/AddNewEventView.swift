@@ -1,8 +1,8 @@
 //
-//  addNewEventView.swift
+//  AddNewEventView.swift
 //  PetimemApp
 //
-//  Created by Yan Deng on 2024-03-20.
+//  Created by Yan Deng on 2024-03-25.
 //
 
 import SwiftUI
