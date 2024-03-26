@@ -1,8 +1,8 @@
 //
-//  tabView.swift
+//  TabView.swift
 //  PetimemApp
 //
-//  Created by Yan Deng on 2024-03-19.
+//  Created by Yan Deng on 2024-03-26.
 //
 
 import SwiftUI
@@ -82,5 +82,3 @@ struct tabView: View {
         .frame(height: 75)
     }
 }
-
-

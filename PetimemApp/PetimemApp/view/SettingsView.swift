@@ -1,8 +1,8 @@
 //
-//  ProfileView.swift
+//  SettingsView.swift
 //  PetimemApp
 //
-//  Created by wei feng on 2024-03-24.
+//  Created by Yan Deng on 2024-03-26.
 //
 
 import SwiftUI

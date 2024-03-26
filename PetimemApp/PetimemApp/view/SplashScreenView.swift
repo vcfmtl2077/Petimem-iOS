@@ -1,8 +1,8 @@
 //
-//  splashScreenView.swift
+//  SplashScreenView.swift
 //  PetimemApp
 //
-//  Created by Yan Deng on 2024-03-17.
+//  Created by Yan Deng on 2024-03-26.
 //
 
 import SwiftUI
