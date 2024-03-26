@@ -1,8 +1,8 @@
 //
-//  profileViewModel.swift
+//  ProfileViewModel.swift
 //  PetimemApp
 //
-//  Created by Yan Deng on 2024-03-20.
+//  Created by Yan Deng on 2024-03-26.
 //
 
 import SwiftUI
