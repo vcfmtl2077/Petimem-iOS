@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		7633AD7B2BB214D100DD0E63 /* AddNewPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7633AD7A2BB214D100DD0E63 /* AddNewPetView.swift */; };
 		76434C052BB2163500D98643 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76434C042BB2163500D98643 /* HomeView.swift */; };
 		767E58302BAA7AAD0010AE56 /* tabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767E582F2BAA7AAD0010AE56 /* tabView.swift */; };
@@ -134,6 +135,7 @@
 		EF0C13832BAFE2A000B1CF8A /* view */ = {
 			isa = PBXGroup;
 			children = (
+
 				EF4B9C6E2BAB27D100559419 /* ContentView.swift */,
 				EF4B9C6F2BAB27D100559419 /* LoginView.swift */,
 				76F08E4C2BB2142F00E6FF0C /* AddNewEventView.swift */,
