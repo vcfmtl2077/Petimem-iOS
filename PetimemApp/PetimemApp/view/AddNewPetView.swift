@@ -133,4 +133,3 @@ let gender = ["Female","Male"]
 #Preview {
     AddNewPetView()
 }
-
