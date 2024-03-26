@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ExpenseView: View {
+    //Environment property
+    @Environment(\.modelContext) var context
+    
     @State private var startDate: Date = .now.startOfMonth
     @State private var endDate: Date = .now.endOfMonth
     @State private var totalAmount = 1000.00
@@ -15,6 +19,10 @@ struct ExpenseView: View {
     @State private var showFilterView = false
     @State private var searchText = ""
     @State private var showingAddNewExpense = false
+    @State private var tint = "expenseCardColor"
+    
+    @Query(sort: [SortDescriptor(\Expense.dateAdded, order: .reverse)], animation: .snappy) var expenses: [Expense]
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -22,14 +30,14 @@ struct ExpenseView: View {
                     .ignoresSafeArea()
                 ScrollView(.vertical){
                     
-                    //Date filter Button
+            //---------------------Date filter Button---------------------
                     Button(action: {
                         showFilterView = true
                     }, label: {
                         Text("\(format(date: startDate, format: "dd - MMM yyyy")) to \(format(date: endDate, format: "dd -  MMM yyyy"))")
                             .foregroundStyle(.buttonAdd)
                     })
-                    //Card View
+           //-------------------Top summary of total amount spent card-------------------
                     ZStack{
                         RoundedRectangle(cornerRadius: 25)
                             .frame(width: 350, height: 100)
@@ -40,6 +48,7 @@ struct ExpenseView: View {
                             .foregroundStyle(.buttonAdd)
                         
                     }
+          //---------------------List of expenses---------------------
                     ZStack{
                         Color("bgExpenseFrameColor")
                             .frame(width: 350)
@@ -53,32 +62,42 @@ struct ExpenseView: View {
                                 }
                                 .frame(width: 300, height: 80)
                             }
-                            ForEach(sampleExpenses.filter { $0.category == selectedCategory.rawValue }, id: \.id) { expense in
-                                ExpenseCardView(Expense: expense)
+                            
+                            ForEach(expenses.filter { $0.category == selectedCategory.rawValue }, id: \.id){ expense in
+                                NavigationLink{
+                                    AddNewExpenseView(editExpense: expense)
+                                } label: {
+                                    ExpenseCardView(Expense: expense)
+                                }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
+                    Button("Add New Expense"){
+                        showingAddNewExpense = true
+                    }
+                    .foregroundColor(.white)
+                    .frame(width: 330, height: 55)
+                    .background(Color("buttonAddColor"))
+                    .cornerRadius(20)
                 }
             }
             .navigationTitle("Expense")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+            /*.toolbar {
+                    Button("Add", systemImage: "plus") {
                         showingAddNewExpense = true
-                    }) {
-                        Image(systemName: "plus")
                     }
-                }
             }
-            .background(
-                                NavigationLink(destination: AddNewExpenseView(), isActive: $showingAddNewExpense) {
-                                    EmptyView()
-                                }
-                            )
+            .navigationDestination(isPresented: $showingAddNewExpense){
+                AddNewExpenseView()
+            }*/
             .blur(radius: showFilterView ? 8: 0)
             .disabled(showFilterView)
             .searchable(text: $searchText)
                 }
+        NavigationLink(destination: AddNewExpenseView(), isActive: $showingAddNewExpense) {
+                            EmptyView()
+                        }.hidden()
         .overlay{
             ZStack{
                 if showFilterView{
@@ -113,83 +132,7 @@ func currencyToString(_ value: Double, allowedDigites: Int = 2) -> String{
     return formatter.string(from: .init(value: value)) ?? ""
 }
 
-struct CategoryView: View {
-    let category: Category
 
-    var body: some View {
-        VStack {
-            Image(category.rawValue)
-            Text(category.rawValue)
-        }
-    }
-}
-
-struct ExpenseCardView: View {
-    var Expense: Expense
-    var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 25)
-            .frame(width: 320, height: 50)
-            .foregroundColor(Color("expenseCardColor"))
-            
-                
-            
-            HStack(spacing:15){
-                Spacer()
-                Image(Expense.category)
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                VStack{
-                    
-                    Text(Expense.title)
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
-                    
-                    Text(format(date: Expense.dateAdded, format:"dd MMM yyyy"))
-                        .font(.caption)
-                        .foregroundColor(.white)
-                }
-                Spacer()
-                Text(currencyToString(Expense.amount, allowedDigites: 2))
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                Spacer()
-            }
-        }
-    }
-}
-
-struct DateFilterView: View {
-    @State var start: Date
-    @State var end: Date
-    var onSubmit:(Date,Date) -> ()
-    var onClose: () -> ()
-    var body: some View {
-        VStack(spacing: 15){
-            DatePicker("Start", selection: $start, displayedComponents: [.date])
-            DatePicker("End", selection: $end, displayedComponents: [.date])
-            
-            HStack(spacing: 15){
-                Button("Cancel"){
-                    onClose()
-                }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.roundedRectangle(radius: 5))
-                .tint(.red)
-                
-                Button("Filter"){
-                    onSubmit(start,end)
-                }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.roundedRectangle(radius: 5))
-                .tint(.buttonAdd)
-            }
-        }
-        .padding(15)
-        .background(.bar, in: .rect(cornerRadius: 10))
-        .padding(.horizontal, 30)
-    }
-}
 
 #Preview {
     //ExpenseCardView(Expense: sampleExpenses[0])

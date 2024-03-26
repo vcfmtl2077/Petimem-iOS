@@ -30,7 +30,8 @@ struct PetimemAppApp: App {
 //            ContentView()
             SplashScreenView()
         }
-        .modelContainer(sharedModelContainer)
+        //.modelContainer(sharedModelContainer)
+        .modelContainer(for: [Expense.self])
     }
     
 }

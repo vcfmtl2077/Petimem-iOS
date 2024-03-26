@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     @State private var selectedTab: Tab = .home
     @Binding var showingHomeScreen:Bool
+    
     var body: some View {
-        NavigationView{
+        NavigationStack{
             ZStack{
                 Color("bgHomeColor")
                     .ignoresSafeArea()
@@ -31,7 +33,6 @@ struct ContentView: View {
                     
                     Spacer()
                     tabView(selectedTab: $selectedTab)
-                    
                 }
             }
         }

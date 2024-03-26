@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
-
-import SwiftUI
+import SwiftData
 
 struct AddNewExpenseView: View {
+    // Environment property
+    @Environment(\.modelContext) var context
+    @Environment(\.dismiss) private var dismiss
+    var editExpense: Expense?
+    
     @State private var title: String = ""
     @State private var amount: Double = .zero
     @State private var selectedCategory: Category = .food
@@ -25,6 +29,7 @@ struct AddNewExpenseView: View {
                     .ignoresSafeArea()
                 VStack{
                     Spacer()
+                    //preview
                     ExpenseCardView(Expense: .init(
                         title: title.isEmpty ? "Title" : title,
                         amount: amount,
@@ -37,23 +42,9 @@ struct AddNewExpenseView: View {
                         .frame(width: 330,height: 450)
                         .cornerRadius(20)
                     Spacer()
-                    // Add button; insert into sampleExpenses array for testing!
-                    Button(action: {
-                        let newExpense = Expense(title: title, amount: amount, category: selectedCategory, dateAdded: dateAdded, tint: tint)
-                        
-                        //Insert into sampleExpenses
-                        sampleExpenses.append(newExpense)
-                        //reset to default once submitted
-                        title = ""
-                        amount = .zero
-                        selectedCategory = .food // or any default value you prefer
-                        dateAdded = .now
-                        tint = "expenseCardColor"
-                        
-                        shouldNavigateToExpenseView = true
-                        
-                    }) {
-                        Text("Add")
+                    
+                    Button(action: save) {
+                        Text("\(editExpense == nil ? "Add": "Save")")
                             .fontWeight(.heavy)
                             .foregroundColor(.white)
                             .frame(width: 330, height: 56)
@@ -131,7 +122,7 @@ struct AddNewExpenseView: View {
                         Spacer()
                     }
                     
-                    //tint color
+                    //selection of card color
                     VStack(spacing: 0){
                         Text("Card Color:")
                             .bold()
@@ -154,12 +145,55 @@ struct AddNewExpenseView: View {
                     }
                 }
             }
-            .navigationTitle("Add Expense")
-            .navigationDestination(isPresented: $shouldNavigateToExpenseView) {
-                ExpenseView()
-            }
+            .navigationTitle("\(editExpense == nil ? "Add": "Edit") Expense")
+            .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            if let editExpense = editExpense {
+                                Button(action: deleteExpense) {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                        }
+                    }
+            .onAppear(perform: {
+                if let editExpense{
+                    title = editExpense.title
+                    amount = editExpense.amount
+                    if let category = editExpense.rawCategory{
+                        self.selectedCategory = selectedCategory
+                    }
+                    dateAdded = editExpense.dateAdded
+                    tint = editExpense.tint
+                    
+                }
+            })
         }
     }
+    //saving items to swiftData
+    func save(){
+        if editExpense != nil {
+            editExpense?.title = title
+            editExpense?.amount = amount
+            editExpense?.category = selectedCategory.rawValue
+            editExpense?.dateAdded = dateAdded
+            editExpense?.tint = tint
+        } else {
+            let expense = Expense(title: title, amount: amount, category: selectedCategory, dateAdded: dateAdded, tint: tint)
+            
+            context.insert(expense)
+        }
+        dismiss()
+    }
+    
+    //deleting items from swiftData
+    func deleteExpense() {
+        if let editExpense = editExpense {
+            context.delete(editExpense)
+            dismiss()
+        }
+    }
+    
+    
     var numberFormatter: NumberFormatter{
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
