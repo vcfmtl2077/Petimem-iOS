@@ -15,33 +15,36 @@ struct ContentView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                Color("bgHomeColor")
-                    .ignoresSafeArea()
-                VStack {
-                    switch selectedTab {
-                    case .home:
-                        HomeView()
-                    case .event:
-                        Text("Event Content")
-                    case .moment:
-                        Text("Moment Content")
-                    case .expense:
-                        ExpenseView()
-                    case .more:
-                        SettingsView(showingHomeScreen: $showingHomeScreen)
+                
+                    Color("bgHomeColor")
+                        .ignoresSafeArea()
+                    VStack {
+                        switch selectedTab {
+                        case .home:
+                            HomeView()
+                        case .event:
+                            Text("Event Content")
+                        case .moment:
+                            Text("Moment Content")
+                        case .expense:
+                            ExpenseView()
+                        case .more:
+                            SettingsView(showingHomeScreen: $showingHomeScreen)
+                        }
+                        
+                        Spacer()
+                        tabView(selectedTab: $selectedTab)
                     }
-                    
-                    Spacer()
-                    tabView(selectedTab: $selectedTab)
                 }
             }
         }
     }
-}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(showingHomeScreen: .constant(true))
+       
     }
 }
 

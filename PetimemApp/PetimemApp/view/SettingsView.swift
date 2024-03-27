@@ -7,11 +7,31 @@
 
 import SwiftUI
 
+@MainActor
 final class SettingsViewModel: ObservableObject {
     
-    func signOut() throws{
+    func signOut() throws {
         try AuthenticationManager.shared.signOut()
     }
+    
+    func resetPassword() async throws {
+        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
+        
+        guard let email = authUser.email else{
+            throw URLError(.fileDoesNotExist)
+        }
+       try await AuthenticationManager.shared.resetPassword(email: email)
+    }
+    
+    func updatePassword() async throws {
+        let password = "Hello123!" //remeber to change later
+        try await AuthenticationManager.shared.updatePassword(password: password)
+    }
+    
+    func deleteAccount() async throws {
+        try await AuthenticationManager.shared.delete()
+    }
+    
 }
 
 struct SettingsView: View {
@@ -22,16 +42,16 @@ struct SettingsView: View {
             ZStack{
                 Color("bgHomeColor")
                     .ignoresSafeArea()
-                List {
+                  List {
                     Section(header: Text("Account")
                         .textCase(nil)
                         .font(.system(size: 30, weight: .bold))
                         .foregroundColor(Color("buttonAddColor"))) {
-                            NavigationLink("Profile", destination: Text("Profile View"))
+                            NavigationLink("Profile", destination: ProfileView())
                                 .font(.system(size: 18))
                                 .foregroundColor(Color("buttonAddColor"))
                                 .listRowBackground(Color("bgFrameColor"))
-                            NavigationLink("Password", destination: Text("Password View"))
+                            NavigationLink("Password", destination: PasswordView())
                                 .font(.system(size: 18))
                                 .foregroundColor(Color("buttonAddColor"))
                                 .listRowBackground(Color("bgFrameColor"))
