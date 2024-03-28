@@ -18,7 +18,7 @@ final class SettingsViewModel: ObservableObject {
         let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
         
         guard let email = authUser.email else{
-            throw URLError(.fileDoesNotExist)
+            throw URLError(.fileDoesNotExist) //remember to customize error
         }
        try await AuthenticationManager.shared.resetPassword(email: email)
     }
@@ -116,7 +116,6 @@ struct SettingsView: View {
                 }
                 .scrollContentBackground(.hidden)
             }
-            //            .navigationTitle("Pets")
         }
     }
 }
