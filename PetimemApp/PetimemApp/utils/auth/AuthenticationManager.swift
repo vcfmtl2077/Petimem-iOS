@@ -7,15 +7,17 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-struct AuthDataResultModel {
+struct AuthDataResultModel: Codable {
     let uid: String
     let email: String?
     
-    init(uid: String, email: String) {
+    /*init(uid: String, email: String) {
         self.uid = uid
         self.email = email
-    }
+    }*/
     
     init(user: User) {
         self.uid = user.uid
@@ -26,9 +28,7 @@ struct AuthDataResultModel {
 final class AuthenticationManager {
     
     static let shared = AuthenticationManager()
-    private init() {
-        
-    }
+    private init() { }
     
     func getAuthenticatedUser() throws -> AuthDataResultModel {
         guard let user = Auth.auth().currentUser else {
