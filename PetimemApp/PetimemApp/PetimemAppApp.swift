@@ -8,6 +8,9 @@
 import SwiftUI
 import SwiftData
 import Firebase
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 @main
 struct PetimemAppApp: App {
@@ -33,8 +36,8 @@ struct PetimemAppApp: App {
                 //LoginView()
             }
         }
-        //.modelContainer(sharedModelContainer)
-        .modelContainer(for: [Expense.self])
+        .modelContainer(sharedModelContainer)
+        //.modelContainer(for: [Expense.self])
     }
     
 }
@@ -43,7 +46,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        
         return true
     }
 }

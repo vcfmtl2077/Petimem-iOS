@@ -7,40 +7,6 @@
 
 import SwiftUI
 
-final class LoginViewModel: ObservableObject {
-    @Published var email = ""
-    @Published var password = ""
-    @Published var showAlert = false
-    @Published var alertMessage = ""
-    @Published var logInSuccess = false
-
-    func signIn() {
-        guard !email.isEmpty,!password.isEmpty else {
-            alertMessage = "Invalid input or passwords do not match."
-            showAlert = true
-            return
-        }
-
-        Task{
-            do{
-                let userData = try await AuthenticationManager.shared.signInUser(email: email, password: password)
-                DispatchQueue.main.async { [weak self] in
-                    self?.alertMessage = "User Login Successful!"
-                    self?.showAlert = true
-                    self?.logInSuccess = true
-                }
-                
-            }catch{
-                DispatchQueue.main.async { [weak self] in
-                    self?.alertMessage = error.localizedDescription
-                    self?.showAlert = true
-                    self?.logInSuccess = false
-                }
-            }
-        }
-    }
-}
-
 
 struct LoginView: View {
     @State private var wrongEmail = 0
@@ -76,7 +42,10 @@ struct LoginView: View {
                         Text("")
                         Text("")
                         Text("")
-                        Text("")
+                    if !viewModel.alertMessage.isEmpty{
+                        Text(viewModel.alertMessage)
+                            .foregroundStyle(.red)
+                    }
                     TextField("Email", text: $viewModel.email)
                             .padding()
                             .frame(width: 300, height: 50)
@@ -104,7 +73,11 @@ struct LoginView: View {
                             .frame(width: 300, height: 50)
                             .background(Color.blue)
                             .cornerRadius(20)
-                     Rectangle()
+                            .onChange(of: viewModel.logInSuccess, initial: false) {
+                                self.showingHomeScreen = true
+                            }
+                     
+                    Rectangle()
                         .frame(width: 280, height: 1)
                         .foregroundColor(.blue)
                     
@@ -148,7 +121,7 @@ struct LoginView: View {
                 }
                 
             }
-            .alert(isPresented: $viewModel.showAlert) {
+           /* .alert(isPresented: $viewModel.showAlert) {
                 if viewModel.logInSuccess {
                     return Alert(
                         title: Text("Login Successful"),
@@ -164,17 +137,15 @@ struct LoginView: View {
                         dismissButton: .default(Text("Try Again"))
                     )
                 }
-            }
+            }*/
             .onAppear{
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
                 self.showingHomeScreen = authUser == nil ? true : false
             }
             .fullScreenCover(isPresented: $showingHomeScreen) {
-                NavigationStack{
-                    ContentView(showingHomeScreen: $showingHomeScreen).navigationBarHidden(true)
-                }
+                ContentView(showingHomeScreen: $showingHomeScreen).navigationBarHidden(true)
             }
-        }.navigationTitle("Sign Up")
+        }
     }
 }
 

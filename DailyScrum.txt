@@ -59,3 +59,58 @@ login view with email
 
 3. Need assistance / figure things out
 Not for now
+
+
+
+2024/03/24 --- update
+1. Done since last scrum
+-Navigation redirection for all the pages we have
+-Finalize Login with email(check if user is logged in/ redirect to content view)
+-Create user profile page view
+
+2. Not Done since last scrum
+-Finished up Expense View 
+
+3. Plan until next Scrum
+-google authentication
+-Finished up Expense View
+
+3. Need assistance / figure things out
+Not for now
+
+
+
+2024/03/25 --- update
+1. Done since last scrum
+-Finished up Expense View
+
+2. Not Done since last scrum
+-google authentication
+
+3. Plan until next Scrum
+-Studying Firestore
+-solve main and branch conflicts
+-replace some files
+
+3. Need assistance / figure things out
+Not for now
+
+
+
+2024/03/26 --- update
+********Start working alone **********
+Important: Will downsize the project; achieve user authentication + event logs + expense tracks +CRUD with firestore;
+
+1. Done since last scrum
+-Finished up Expense View
+
+2. Not Done since last scrum
+-google authentication
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-add users to firestore after sign up authentication
+-build firestore collections
+
+3. Need assistance / figure things out
+Not for now
