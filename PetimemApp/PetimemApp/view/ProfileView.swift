@@ -43,11 +43,13 @@ struct ProfileView: View {
                 Color("bgHomeColor")
                     .ignoresSafeArea()
                 VStack{
+                    
                     Section{
                         if let user = viewModelB.user{
                             Text("UserID:\(user.userID)")
                         }
                     }
+                    
                     Button(role: .destructive){
                         Task{
                             do{

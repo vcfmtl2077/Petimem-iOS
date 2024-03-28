@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct DBUser{
+struct DBUser: Codable {
     let userID: String
     let email: String?
     let dateCreated: Date?
@@ -18,21 +18,34 @@ struct DBUser{
 final class UserManager{
     static let shared = UserManager()
     private init(){ }
-    let db = Firestore.firestore()
+    
+    private let userCollection = Firestore.firestore().collection("users")
+    private func userDocument(userID: String) -> DocumentReference {
+        userCollection.document(userID)
+    }
+    
+    //private let encoder: Firestore.Encoder{
+        
+    //}()encoder: Firestore.Encoder
+    
+    func createNewUser(user: DBUser) async throws{
+        try userDocument(userID: user.userID).setData(from: user, merge: false)
+    }
     
     func createNewUser(auth: AuthDataResultModel) async throws {
         
-            var userData:[String: Any ] = [
-                "userID" : auth.uid,
-                "email" : auth.email ?? "",
-                "dateCreated" : Timestamp()
-            ]
+        var userData:[String: Any ] = [
+            "userID" : auth.uid,
+            "email" : auth.email ?? "",
+            "dateCreated" : Timestamp()
+        ]
         
-        try await db.collection("users").document(auth.uid).setData(userData, merge: false)
-        }
+        try await userDocument(userID: auth.uid).setData(userData, merge: false)
+        
+    }
     
     func getUser(userID: String) async throws -> DBUser {
-        let snapshot = try await db.collection("users").document(userID).getDocument()
+        let snapshot = try await userDocument(userID: userID).getDocument()
         
         guard let data = snapshot.data(), let userID = data["userID"] as? String else {
             throw URLError(.badServerResponse)
