@@ -30,9 +30,9 @@ Plan until next Scrum
 Yan: contentView & addNewPetView updated
 Wei: fireauth with email/password
 
+
 2024/03/22 --- update
 1. Done since last scrum
-Enable firebase authentication in login view with email
 addNewPet view
 
 2. Plan until next Scrum
@@ -43,13 +43,14 @@ addNewExpenseView
 3. Need assistance / figure things out
 Not for now
 
+---------------------------------------------------------------------------------------
 2024/03/23 --- update
 1. Done since last scrum
 addNewExpenseView
 addNewPet view
 
 2. Not Done since last scrum
-login view with email
+fireauth with email/password
 
 3. Plan until next Scrum
 -Navigation redirection for all the pages we have
@@ -59,3 +60,132 @@ login view with email
 
 3. Need assistance / figure things out
 Not for now
+
+---------------------------------------------------------------------------------------
+2024/03/24 --- update
+1. Done since last scrum
+-Navigation redirection for all the pages we have
+-Finalize Login with email(check if user is logged in/ redirect to content view)
+-Create user profile page view
+
+2. Not Done since last scrum
+-Finished up Expense View 
+
+3. Plan until next Scrum
+-google authentication
+-Finished up Expense View
+-Finish up user profile page
+
+3. Need assistance / figure things out
+Not for now
+
+---------------------------------------------------------------------------------------
+
+2024/03/25 --- update
+1. Done since last scrum
+-Finished up Expense View
+
+2. Not Done since last scrum
+-google authentication
+-Finish up user profile page
+
+3. Plan until next Scrum
+-Finish up user profile page
+-Studying Firestore
+-solve main and branch conflicts
+-replace some files
+
+3. Need assistance / figure things out
+Not for now
+
+---------------------------------------------------------------------------------------
+
+2024/03/26 --- update
+********Start working alone **********
+Important: Will downsize the project; achieve user authentication + event logs + expense tracks +CRUD with firestore;
+
+1. Done since last scrum
+-Finished up Expense View
+-Finish up user profile page(allow user reset&update password; delete account)
+
+2. Not Done since last scrum
+-google authentication(Drop this)
+-sign up navigation bugs
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-add users to firestore after sign up authentication
+-fix sign up navigation bugs
+
+3. Need assistance / figure things out
+Not for now
+
+---------------------------------------------------------------------------------------
+
+2024/03/27 --- update
+1. Done since last scrum
+-Solved sign up with email navigation bugs
+
+2. Not Done since last scrum
+-add users to firestore after sign up authentication
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-add users to firestore after sign up authentication
+
+
+3. Need assistance / figure things out
+Not for now
+
+---------------------------------------------------------------------------------------
+
+2024/03/28 --- update
+1. Done since last scrum
+add users to firestore after sign up authentication
+
+2. Not Done since last scrum
+N/A
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-keep building the firestorm collection > allow user to add pet collection under each user
+
+
+3. Need assistance / figure things out
+-need help in designing database structrue
+User > pet 1 > events(activities)
+     > pet 2 > events(activities)
+     > Expenses
+
+Design1:
+Collection(Users) > documents(user1) > Collection(pets) > documents(pet1) > Collection(events)
+                                                        > documents(pet2) > Collection(events)
+                                     > Collection(expenses)
+                  > documents(user2) > Collection(pets)
+
+Will this structure have limitation when users scale up?
+
+
+Design2:
+Collection(Users)
+Collection(Pets) > documents(pet1) + reference(userId) > Collection(events)
+                 > documents(pet2) + reference(userId) > Collection(events)
+Collection(expenses) > documents(expense1) + reference(userId)
+                     > documents(expense2) + reference(userId)
+
+- I wanted to keep working on the app until it's ready to publish; Can I keep the original design if I am not going to implement functions like album?
+- Events supposed to have different kinds of event > Diet > feed
+                                                          > treat
+                                                   > Outdoor > walk
+                                                             > poop
+                                                             > pee
+                                                   > Care > teeth brushing
+                                                          > grooming
+                                                   > Health > deworm
+                                                            > vaccine
+                                                            > weight
+                                                            > unusual conditions
+- Events with dropdown list to classify the events;
+
+-Picture requirement; Does profile picture count? Will try to add picture in event form;
+

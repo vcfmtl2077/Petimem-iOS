@@ -1,8 +1,8 @@
 //
-//  addNewPetView.swift
+//  AddNewPetView.swift
 //  PetimemApp
 //
-//  Created by Yan Deng on 2024-03-19.
+//  Created by Yan Deng on 2024-03-25.
 //
 
 import SwiftUI
@@ -20,7 +20,7 @@ let gender = ["Female","Male"]
         ZStack{
             Color("bgHomeColor")
                 .ignoresSafeArea()
-            VStack{ 
+            VStack{
                 Spacer()
                 Rectangle()
                     .foregroundColor(Color("bgFrameColor"))

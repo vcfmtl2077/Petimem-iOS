@@ -8,6 +8,9 @@
 import SwiftUI
 import SwiftData
 import Firebase
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 @main
 struct PetimemAppApp: App {
@@ -27,10 +30,14 @@ struct PetimemAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            SplashScreenView()
+            NavigationStack{
+                //          ContentView()
+                SplashScreenView()
+                //LoginView()
+            }
         }
         .modelContainer(sharedModelContainer)
+        //.modelContainer(for: [Expense.self])
     }
     
 }
@@ -39,7 +46,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        
         return true
     }
 }
