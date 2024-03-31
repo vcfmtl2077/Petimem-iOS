@@ -76,7 +76,6 @@ struct LoginView: View {
                             .onChange(of: viewModel.logInSuccess, initial: false) {
                                 self.showingHomeScreen = true
                             }
-                     
                     Rectangle()
                         .frame(width: 280, height: 1)
                         .foregroundColor(.blue)
@@ -141,6 +140,13 @@ struct LoginView: View {
             .onAppear{
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
                 self.showingHomeScreen = authUser == nil ? true : false
+                
+                if(authUser == nil){
+                    self.showingHomeScreen = false
+                } else{
+                    self.showingHomeScreen = true
+                }
+
             }
             .fullScreenCover(isPresented: $showingHomeScreen) {
                 ContentView(showingHomeScreen: $showingHomeScreen).navigationBarHidden(true)
