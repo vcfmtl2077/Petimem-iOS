@@ -68,6 +68,11 @@ struct LoginView: View {
                         Button("Login"){
                             //Authenticate user
                             viewModel.signIn()
+                            if(viewModel.logInSuccess){
+                                self.showingHomeScreen = true
+                            }else{
+                                self.showingHomeScreen = false
+                            }
                         }
                             .foregroundColor(.white)
                             .frame(width: 300, height: 50)
