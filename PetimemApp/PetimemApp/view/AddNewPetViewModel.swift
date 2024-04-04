@@ -17,8 +17,10 @@ class AddPetViewModel: ObservableObject {
     @Published var name = ""
     @Published var gender = ""
     @Published var birthday = Date()
+    @Published var tint = "expenseCardColor"
     @Published var showAlert = false
     @Published var alertMessage = ""
+    @Published var isPetAddedSuccessfully = false
     //--------------------------Add pet profile picture--------------------------------
     @Published var selectedItem: PhotosPickerItem?{
         didSet{ Task { try await loadImage() }}
@@ -62,7 +64,8 @@ class AddPetViewModel: ObservableObject {
             name: name,
             gender: gender,
             birthday: birthday,
-            dateCreated: Date())
+            dateCreated: Date(),
+            tint: tint)
         //save model
         
         do {
@@ -72,6 +75,7 @@ class AddPetViewModel: ObservableObject {
                 // Handle success
                 alertMessage = "Pet added successfully."
                 showAlert = true
+                isPetAddedSuccessfully = true
             } catch {
                 // Handle error
                 alertMessage = "Failed to add pet: \(error.localizedDescription)"

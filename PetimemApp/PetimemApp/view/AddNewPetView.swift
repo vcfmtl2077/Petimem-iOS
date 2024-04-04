@@ -9,9 +9,12 @@ import SwiftUI
 import PhotosUI
 
 struct AddNewPetView: View {
-@StateObject var viewModel = AddPetViewModel()
-let gender = ["Female","Male"]
-
+    @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel = AddPetViewModel()
+    
+    let gender = ["Female","Male"]
+    let colors: [String] = ["expenseCardColor","expenseCardColor1","expenseCardColor2","expenseCardColor3","expenseCardColor4"]
+    @State private var tint: String = "expenseCardColor"
     
     var body: some View {
         ZStack{
@@ -21,25 +24,28 @@ let gender = ["Female","Male"]
                 Spacer()
                 Rectangle()
                     .foregroundColor(Color("bgFrameColor"))
-                    .frame(width: 330,height: 450)
+                    .frame(width: 330,height: 500)
                     .cornerRadius(20)
                 Spacer()
                     Button("Add"){
                         Task {
-                                        await viewModel.addPet()
-                                    }
+                            await viewModel.addPet()
+                    }
                 }
                     .foregroundColor(.white)
                     .frame(width: 330, height: 55)
                     .background(Color("buttonAddColor"))
                     .cornerRadius(20)
+                    .onChange(of: viewModel.isPetAddedSuccessfully, initial: false) {
+                        dismiss()
+                    }
                 Spacer()
                 Text("")
                 
             }
             VStack(spacing: 15){
                 Spacer()
-                //profile picture selection
+    //---------------------------profile picture selection---------------------------
                 PhotosPicker(selection: $viewModel.selectedItem){
                     if let profileImage = viewModel.profileImage{
                         profileImage
@@ -54,39 +60,34 @@ let gender = ["Female","Male"]
                             .foregroundColor(Color(.systemGray))
                     }
                 }
-                Text("")
-                // rest of the form inputs
-                // Name row
-                HStack{
-                    Spacer()
+    //------------------------------------Name row--------------------------------------
+                VStack(spacing:0){
+                    
                     Text("Name:")
                         .bold()
                         .font(.title3)
                         .foregroundColor(Color("buttonAddColor"))
-                    Text("")
-                    Text("")
+                        .frame(width: 300, alignment: .leading)
+                    
                     TextField("Your pet name", text: $viewModel.name)
                         .padding()
-                        .frame(width: 200, height: 35)
+                        .frame(width: 300, height: 40)
                         .background(Color.white)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke( Color.blue)
                         )
-                    Spacer()
+                    
                 }
-               
                 
-                
-                //Gender row
-                HStack{
-                    Spacer()
+    //------------------------------------Gender row------------------------------------
+                HStack(spacing: 40){
                     Text("Gender:")
                         .bold()
                         .font(.title3)
                         .foregroundColor(Color("buttonAddColor"))
-                    Spacer()
+                    
                     ForEach(gender, id: \.self) { option in
                         HStack {
                             Text(option)
@@ -103,25 +104,41 @@ let gender = ["Female","Male"]
                             self.viewModel.gender = option
                         }
                     }
-                    Spacer()
+                    
                 }
                 
-                //Birthday row
-                HStack{
-                    Spacer()
+    //------------------------------------Birthday row----------------------------------
+                HStack(spacing:100){
                     Text("Birthday:")
                         .bold()
                         .font(.title3)
                         .foregroundColor(Color("buttonAddColor"))
                     
-                    Spacer()
-                    Text("")
-                    Text("")
-                    
                     DatePicker("",selection: $viewModel.birthday,in: ...Date(),displayedComponents: .date) // Only show the date picker, not time
                         .labelsHidden()
-                    Spacer()
                     }
+       //---------------------------selection of card color---------------------------
+                VStack(spacing: 0){
+                    Text("Card Color:")
+                        .bold()
+                        .font(.title3)
+                        .foregroundColor(Color("buttonAddColor"))
+                        .frame(width: 300, alignment: .leading)
+                    HStack(spacing: 20){
+                        ForEach(colors, id: \.self){ color in
+                            Circle()
+                                .foregroundColor(Color(color))
+                                .frame(width: 40, height: 40)
+                                .onTapGesture {
+                                    withAnimation(.snappy){
+                                        tint = color
+                                        viewModel.tint = tint 
+                                    }
+                                }
+                        }
+                    }
+                    
+                }
                 Spacer()
                 Spacer()
                 }
@@ -129,8 +146,8 @@ let gender = ["Female","Male"]
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Notification"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
+        .navigationTitle("Add New Pet")
         }
-    
     }
 
 #Preview {
