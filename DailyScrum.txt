@@ -189,3 +189,114 @@ Collection(expenses) > documents(expense1) + reference(userId)
 
 -Picture requirement; Does profile picture count? Will try to add picture in event form;
 
+---------------------------------------------------------------------------------------
+
+2024/03/29 --- update
+1. Done since last scrum
+N/A
+
+2. Not Done since last scrum
+-keep building the firestorm collection > allow user to add pet collection under each user
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-keep building the firestorm collection > allow user to add pet collection under each user
+
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/03/30 --- update
+1. Done since last scrum
+N/A
+
+2. Not Done since last scrum
+-keep building the firestorm collection > allow user to add pet collection under each user
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-keep building the firestorm collection > allow user to add pet collection under each user
+
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/03/31 --- update
+1. Done since last scrum
+allow user to add pet collection under each user
+
+2. Not Done since last scrum
+N/A
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-keep building the firestorm collection > allow user to add expense collection under each user
+-allow user to update their profile
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/03/29 --- update
+1. Done since last scrum
+-allow user to update their profile
+
+2. Not Done since last scrum
+-keep building the firestorm collection > allow user to add expense collection under each user
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-Add events collection under pet's collection
+
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/04/01 --- update
+1. Done since last scrum
+N/A
+
+2. Not Done since last scrum
+-Add events collection under pet's collection
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-Add events collection under pet's collection
+
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/04/02 --- update
+1. Done since last scrum
+N/A
+
+2. Not Done since last scrum
+-Add events collection under pet's collection
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-Add events collection under pet's collection
+
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/04/03 --- update
+1. Done since last scrum
+N/A
+
+2. Not Done since last scrum
+-Add events collection under pet's collection
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-Add events collection under pet's collection
+
+
+3. Need assistance / figure things out

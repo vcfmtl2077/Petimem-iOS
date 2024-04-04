@@ -142,15 +142,11 @@ struct LoginView: View {
                     )
                 }
             }*/
+            //If user has recently authenticated, show the home screen directly;
             .onAppear{
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-                self.showingHomeScreen = authUser == nil ? true : false
-                
-                if(authUser == nil){
-                    self.showingHomeScreen = false
-                } else{
-                    self.showingHomeScreen = true
-                }
+
+                self.showingHomeScreen = authUser == nil ? false : true
 
             }
             .fullScreenCover(isPresented: $showingHomeScreen) {

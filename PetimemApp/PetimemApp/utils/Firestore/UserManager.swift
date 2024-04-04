@@ -10,51 +10,73 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct DBUser: Codable {
-    let userID: String
+    let userId: String
+    let firstName: String?
+    let lastName: String?
     let email: String?
     let dateCreated: Date?
+    
+    init(auth: AuthDataResultModel) {
+        self.userId = auth.uid
+        self.firstName = ""
+        self.lastName = ""
+        self.email = auth.email
+        self.dateCreated = Date()
+    }
+    
+    init(userID: String, firstName: String? = nil, lastName: String? = nil, email: String? = nil, dateCreated: Date? = nil) {
+        self.userId = userID
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.dateCreated = dateCreated
+    }
+    
+    func updateCurrentUser(first: String, last: String) -> DBUser {
+        return DBUser(userID: userId, firstName: first, lastName: last, email: email, dateCreated: dateCreated)
+    }
 }
 
-final class UserManager{
+final class UserManager {
     static let shared = UserManager()
-    private init(){ }
+    private init() { }
     
     private let userCollection = Firestore.firestore().collection("users")
     private func userDocument(userID: String) -> DocumentReference {
         userCollection.document(userID)
     }
     
-    //private let encoder: Firestore.Encoder{
-        
-    //}()encoder: Firestore.Encoder
+    private let encoder: Firestore.Encoder = {
+        let encoder = Firestore.Encoder()
+        encoder.keyEncodingStrategy = .convertToSnakeCase
+        return encoder
+    }()
     
-    func createNewUser(user: DBUser) async throws{
-        try userDocument(userID: user.userID).setData(from: user, merge: false)
-    }
+    private let decoder: Firestore.Decoder = {
+        let decoder = Firestore.Decoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
     
-    func createNewUser(auth: AuthDataResultModel) async throws {
-        
-        var userData:[String: Any ] = [
-            "userID" : auth.uid,
-            "email" : auth.email ?? "",
-            "dateCreated" : Timestamp()
-        ]
-        
-        try await userDocument(userID: auth.uid).setData(userData, merge: false)
-        
+    func createNewUser(user: DBUser) async throws {
+        try userDocument(userID: user.userId).setData(from: user, merge: false, encoder: encoder)
     }
     
     func getUser(userID: String) async throws -> DBUser {
-        let snapshot = try await userDocument(userID: userID).getDocument()
-        
-        guard let data = snapshot.data(), let userID = data["userID"] as? String else {
-            throw URLError(.badServerResponse)
-        }
-        let email = data["email"] as? String
-        let dateCreated = data["dateCreated"] as? Date
-        
-        return DBUser(userID: userID, email: email, dateCreated: dateCreated)
-
+        try await userDocument(userID: userID).getDocument(as: DBUser.self, decoder: decoder)
+    }
+    
+    func updateUserProfile(user: DBUser) async throws {
+        try userDocument(userID: user.userId).setData(from: user, merge: true, encoder: encoder)
+    }
+    
+    @Published var alertMessage = ""
+    
+    func updateUserProfile(userID: String, first: String, last: String) async throws {
+        var data: [String: Any] = [
+            "first_name": first,
+            "last_name": last
+        ]
+        try await userDocument(userID: userID).updateData(data)
     }
 }
-
