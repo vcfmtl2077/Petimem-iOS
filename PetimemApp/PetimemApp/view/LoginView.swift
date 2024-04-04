@@ -68,6 +68,11 @@ struct LoginView: View {
                         Button("Login"){
                             //Authenticate user
                             viewModel.signIn()
+                            if(viewModel.logInSuccess){
+                                self.showingHomeScreen = true
+                            }else{
+                                self.showingHomeScreen = false
+                            }
                         }
                             .foregroundColor(.white)
                             .frame(width: 300, height: 50)
@@ -76,7 +81,6 @@ struct LoginView: View {
                             .onChange(of: viewModel.logInSuccess, initial: false) {
                                 self.showingHomeScreen = true
                             }
-                     
                     Rectangle()
                         .frame(width: 280, height: 1)
                         .foregroundColor(.blue)
@@ -141,7 +145,9 @@ struct LoginView: View {
             //If user has recently authenticated, show the home screen directly;
             .onAppear{
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+
                 self.showingHomeScreen = authUser == nil ? false : true
+
             }
             .fullScreenCover(isPresented: $showingHomeScreen) {
                 ContentView(showingHomeScreen: $showingHomeScreen).navigationBarHidden(true)
