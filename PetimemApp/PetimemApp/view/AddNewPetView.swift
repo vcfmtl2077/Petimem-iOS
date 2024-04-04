@@ -9,12 +9,9 @@ import SwiftUI
 import PhotosUI
 
 struct AddNewPetView: View {
-    
-@StateObject var viewModel = ProfileViewModel()
-@State private var petName = ""
-@State private var selectedDate: Date = Date()
+@StateObject var viewModel = AddPetViewModel()
 let gender = ["Female","Male"]
-@State private var selectedOption = ""
+
     
     var body: some View {
         ZStack{
@@ -28,7 +25,9 @@ let gender = ["Female","Male"]
                     .cornerRadius(20)
                 Spacer()
                     Button("Add"){
-                    //input validation
+                        Task {
+                                        await viewModel.addPet()
+                                    }
                 }
                     .foregroundColor(.white)
                     .frame(width: 330, height: 55)
@@ -66,7 +65,7 @@ let gender = ["Female","Male"]
                         .foregroundColor(Color("buttonAddColor"))
                     Text("")
                     Text("")
-                    TextField("Your pet name", text: $petName)
+                    TextField("Your pet name", text: $viewModel.name)
                         .padding()
                         .frame(width: 200, height: 35)
                         .background(Color.white)
@@ -91,7 +90,7 @@ let gender = ["Female","Male"]
                     ForEach(gender, id: \.self) { option in
                         HStack {
                             Text(option)
-                            if selectedOption == option {
+                            if viewModel.gender == option {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.blue)
                             } else {
@@ -101,7 +100,7 @@ let gender = ["Female","Male"]
                         }
                         .onTapGesture {
                             // This sets the selected option to the one that was tapped
-                            self.selectedOption = option
+                            self.viewModel.gender = option
                         }
                     }
                     Spacer()
@@ -119,7 +118,7 @@ let gender = ["Female","Male"]
                     Text("")
                     Text("")
                     
-                    DatePicker("",selection: $selectedDate,in: ...Date(),displayedComponents: .date) // Only show the date picker, not time
+                    DatePicker("",selection: $viewModel.birthday,in: ...Date(),displayedComponents: .date) // Only show the date picker, not time
                         .labelsHidden()
                     Spacer()
                     }
@@ -127,7 +126,11 @@ let gender = ["Female","Male"]
                 Spacer()
                 }
             }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(title: Text("Notification"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
+        }
+    
     }
 
 #Preview {

@@ -11,6 +11,9 @@
 		76549CE62BB31E450094810B /* ExpenseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76549CE52BB31E450094810B /* ExpenseCardView.swift */; };
 		76549CE82BB31E960094810B /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76549CE72BB31E960094810B /* DateFilterView.swift */; };
 		76549CEA2BB31F3B0094810B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76549CE92BB31F3B0094810B /* CategoryView.swift */; };
+		765E9C472BBE4051009DA595 /* PetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E9C462BBE4051009DA595 /* PetManager.swift */; };
+		765E9C492BBE4DF7009DA595 /* AddNewPetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E9C482BBE4DF7009DA595 /* AddNewPetViewModel.swift */; };
+		765E9C4B2BBE686E009DA595 /* PetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765E9C4A2BBE686E009DA595 /* PetCardView.swift */; };
 		766F8DBE2BB3BE57007D3190 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 766F8DBD2BB3BE57007D3190 /* FirebaseFirestore */; };
 		766F8DC02BB3BE57007D3190 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 766F8DBF2BB3BE57007D3190 /* FirebaseFirestoreSwift */; };
 		766F8DC42BB3D2C6007D3190 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F8DC32BB3D2C6007D3190 /* UserManager.swift */; };
@@ -71,6 +74,9 @@
 		76549CE52BB31E450094810B /* ExpenseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCardView.swift; sourceTree = "<group>"; };
 		76549CE72BB31E960094810B /* DateFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
 		76549CE92BB31F3B0094810B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
+		765E9C462BBE4051009DA595 /* PetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PetManager.swift; path = PetimemApp/utils/Firestore/PetManager.swift; sourceTree = SOURCE_ROOT; };
+		765E9C482BBE4DF7009DA595 /* AddNewPetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPetViewModel.swift; sourceTree = "<group>"; };
+		765E9C4A2BBE686E009DA595 /* PetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCardView.swift; sourceTree = "<group>"; };
 		766F8DC32BB3D2C6007D3190 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		766F8DC52BB487D0007D3190 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		766F8DC92BB48C02007D3190 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 		766F8DC22BB3CAD4007D3190 /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
+				765E9C462BBE4051009DA595 /* PetManager.swift */,
 				766F8DC32BB3D2C6007D3190 /* UserManager.swift */,
 			);
 			path = Firestore;
@@ -161,6 +168,7 @@
 				EF4B9C6E2BAB27D100559419 /* ContentView.swift */,
 				76434C042BB2163500D98643 /* HomeView.swift */,
 				76F2B68E2BB34005001110CC /* AddNewPetView.swift */,
+				765E9C482BBE4DF7009DA595 /* AddNewPetViewModel.swift */,
 				76F08E4C2BB2142F00E6FF0C /* AddNewEventView.swift */,
 				76F2B68C2BB33FB0001110CC /* ExpenseView.swift */,
 				76D9A2CA2BB2155E00908DE0 /* AddNewExpenseView.swift */,
@@ -196,6 +204,7 @@
 				76549CE92BB31F3B0094810B /* CategoryView.swift */,
 				768302C62BB3102B007AA2AC /* TabView.swift */,
 				76549CE72BB31E960094810B /* DateFilterView.swift */,
+				765E9C4A2BBE686E009DA595 /* PetCardView.swift */,
 				76549CE52BB31E450094810B /* ExpenseCardView.swift */,
 				766F8DC22BB3CAD4007D3190 /* Firestore */,
 				EF35FBA52BAD2E09006E0A9E /* auth */,
@@ -434,13 +443,16 @@
 				EF4B9C742BAB27D100559419 /* ContentView.swift in Sources */,
 				76F2B6932BB34093001110CC /* DateExtensions.swift in Sources */,
 				EF4B9C762BAB27D100559419 /* SignUpView.swift in Sources */,
+				765E9C472BBE4051009DA595 /* PetManager.swift in Sources */,
 				76F2B6972BB3AC61001110CC /* ProfileView.swift in Sources */,
 				76F2B68F2BB34005001110CC /* AddNewPetView.swift in Sources */,
+				765E9C492BBE4DF7009DA595 /* AddNewPetViewModel.swift in Sources */,
 				768302CD2BB3117C007AA2AC /* SplashScreenView.swift in Sources */,
 				766F8DC62BB487D0007D3190 /* LoginViewModel.swift in Sources */,
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,
 				766F8DCA2BB48C02007D3190 /* SignUpViewModel.swift in Sources */,
 				76434C052BB2163500D98643 /* HomeView.swift in Sources */,
+				765E9C4B2BBE686E009DA595 /* PetCardView.swift in Sources */,
 				EF0C13952BAFE3E400B1CF8A /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -26,33 +26,14 @@ final class SignupEmailViewModel: ObservableObject {
             let authDataResult = try await AuthenticationManager.shared.createUser(email: email, password: password)
             print("AuthenticationManager successfully created a user.")
             signUpSuccess = true
-            try await UserManager.shared.createNewUser(auth: authDataResult)
+            let user = DBUser(auth: authDataResult)
+            try await UserManager.shared.createNewUser(user: user)
+           // try await UserManager.shared.createNewUser(auth: authDataResult)
             print("UserManager successfully added the user to Firestore.")
         } catch {
             print("Error during sign up: \(error.localizedDescription)")
                     throw error
         }
-            //let authDataResult = try await AuthenticationManager.shared.createUser(email: email, password: password)
-            //try await UserManager.shared.createNewUser(auth: authDataResult)
-        
-        /*Task{
-            do{
-                let authDataResult = try await AuthenticationManager.shared.createUser(email: email, password: password)
-                try await UserManager.shared.createNewUser(auth: authDataResult)
-                DispatchQueue.main.async { [weak self] in
-                    self?.alertMessage = "User Signup Successful!"
-                    self?.showAlert = true
-                    self?.signUpSuccess = true
-                }
-                
-            }catch{
-                DispatchQueue.main.async { [weak self] in
-                    self?.alertMessage = error.localizedDescription
-                    self?.showAlert = true
-                    self?.signUpSuccess = false
-                }
-            }
-        }*/
     }
     
     private func validate () -> Bool {

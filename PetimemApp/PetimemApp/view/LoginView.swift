@@ -138,9 +138,10 @@ struct LoginView: View {
                     )
                 }
             }*/
+            //If user has recently authenticated, show the home screen directly;
             .onAppear{
                 let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-                self.showingHomeScreen = authUser == nil ? true : false
+                self.showingHomeScreen = authUser == nil ? false : true
             }
             .fullScreenCover(isPresented: $showingHomeScreen) {
                 ContentView(showingHomeScreen: $showingHomeScreen).navigationBarHidden(true)
