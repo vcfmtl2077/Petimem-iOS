@@ -39,17 +39,20 @@ struct ProfileView: View {
     @State private var last = ""
     @State private var isEditMode = false
     @State private var isCompleted = false
+    @State private var showingDeleteConfirmation = false
+    @State private var deletionErrorMessage = ""
+    @State private var showingDeletionError = false
+    
     var body: some View {
         NavigationStack{
             ZStack{
                 Color("bgHomeColor")
                     .ignoresSafeArea()
                 Rectangle()
-                    .frame(width: 340, height: 300)
+                    .frame(width: 340, height: 370)
                     .foregroundColor(.white.opacity(0.6))
                     .cornerRadius(20)
-                VStack(spacing: 30){
-                    
+                VStack(spacing: 20){
                     if isEditMode {
                         TextField("First Name", text: $first)
                             .padding()
@@ -60,9 +63,6 @@ struct ProfileView: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke( Color.blue)
                             )
-                        
-                        
-                        
                         TextField("Last Name", text: $last)
                             .padding()
                             .frame(width: 300, height: 50)
@@ -72,8 +72,6 @@ struct ProfileView: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke( Color.blue)
                             )
-                        
-                        
                         Button("Update"){
                             //input validation
                             Task {
@@ -87,7 +85,6 @@ struct ProfileView: View {
                         .cornerRadius(20)
                         
                         Button("Cancel"){
-                            //input validation
                             isEditMode = false
                         }
                         .foregroundColor(.white)
@@ -95,25 +92,20 @@ struct ProfileView: View {
                         .background(Color.gray)
                         .cornerRadius(20)
                         
-                        Button(role: .destructive){
-                            Task{
-                                do{
-                                    try await viewModel.deleteAccount()
-                                    print("Account deleted!")
-                                }catch{
-                                    print(error)
-                                }
-                            }
+                        Button(role: .destructive) {
+                            showingDeleteConfirmation = true
                         } label: {
                             Text("Delete Account")
                         }
                         .foregroundColor(.white)
                         .frame(width: 300, height: 50)
-                        .background(.red)
+                        .background(Color.red)
                         .cornerRadius(20)
                     }else {
                         if let user = viewModelB.user {
                            HStack{
+                               Text("")
+                               Text("")
                                Text("")
                                Text("")
                                Text("")
@@ -132,6 +124,8 @@ struct ProfileView: View {
                                 Text("")
                                 Text("")
                                 Text("")
+                                Text("")
+                                Text("")
                                 Text("First Name:")
                                          .bold()
                                          .font(.title3)
@@ -141,6 +135,8 @@ struct ProfileView: View {
                                 Spacer()
                                  }
                             HStack{
+                                Text("")
+                                Text("")
                                 Text("")
                                 Text("")
                                 Text("")
@@ -163,17 +159,17 @@ struct ProfileView: View {
                         }
                         
                         Button("Edit") {
-                                                isEditMode.toggle()
-                                                if isEditMode, let user = viewModelB.user {
+                                isEditMode.toggle()
+                                if isEditMode, let user = viewModelB.user {
                                                     first = user.firstName ?? ""
                                                     last = user.lastName ?? ""
                                                 }
-                                            }
-                                            .foregroundColor(.white)
-                                            .frame(width: 300, height: 50)
-                                            .background(Color.blue)
-                                            .cornerRadius(20)
-                                            .padding(.top, 10)
+                                }
+                                .foregroundColor(.white)
+                                .frame(width: 300, height: 50)
+                                .background(Color.blue)
+                                .cornerRadius(20)
+                                .padding(.top, 10)
                     }
                 }
             }
@@ -182,6 +178,43 @@ struct ProfileView: View {
                     try await viewModelB.loadCurrentUser()
                 } catch {
                     print("Error loading user: \(error)")
+                }
+            }
+            .alert("Are you sure you want to delete your account?", isPresented: $showingDeleteConfirmation) {
+                Button("Delete", role: .destructive) {
+                    Task {
+                        do {
+                            try await viewModel.deleteAccount()
+                            // After deletion, navigate the user away or clear user data
+                            print("Account deleted successfully.")
+                        } catch {
+                            deletionErrorMessage = error.localizedDescription
+                            showingDeletionError = true
+                            print("Failed to delete account: \(error)")
+                        }
+                    }
+                }
+                
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("This action cannot be undone.")
+            }
+            .alert("Error Deleting Account", isPresented: $showingDeletionError) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(deletionErrorMessage)
+            }
+            .alert("Account Deleted", isPresented: $viewModel.isAccountDeleted) {
+                Button("OK") {
+                    // Perform additional cleanup
+                    Task{
+                        do{
+                            try viewModel.signOut()
+                            LoginView()
+                        }catch{
+                            
+                        }
+                    }
                 }
             }
             .navigationTitle("Profile")
