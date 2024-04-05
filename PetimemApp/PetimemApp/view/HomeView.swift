@@ -35,10 +35,7 @@ final class HomeViewModel: ObservableObject {
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     @State private var showingAddNewPetView = false
-    @State var items: [DBPets] = [
-        .init(id: "1", photoUrl: nil, name: "Heyhey", gender: "Male", birthday: Date(), dateCreated: Date(),tint: "expenseCardColor"),
-        .init(id: "2", photoUrl: nil, name: "Meimei", gender: "Female", birthday: Date(), dateCreated: Date(),tint: "expenseCardColor1")
-    ];
+
     var body: some View {
         NavigationStack{
             ZStack{
