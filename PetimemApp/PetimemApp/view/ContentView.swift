@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
-import SwiftData
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct ContentView: View {
     @State private var selectedTab: Tab = .home

@@ -66,8 +66,8 @@ class AddPetViewModel: ObservableObject {
             birthday: birthday,
             dateCreated: Date(),
             tint: tint)
-        //save model
         
+        //save model
         do {
                 // Await the setData operation to ensure it completes.
                 try await Firestore.firestore().collection("users").document(userId)

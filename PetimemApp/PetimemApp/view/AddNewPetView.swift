@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct AddNewPetView: View {
+    // Environment property
     @Environment(\.dismiss) var dismiss
     @StateObject var viewModel = AddPetViewModel()
     
