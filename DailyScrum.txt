@@ -297,6 +297,41 @@ N/A
 3. Plan until next Scrum
 -Keep studying Firestore
 -Add events collection under pet's collection
+- write Expense CRUD into firestore
+-Write pets profile CRUD into firestore
+
+
+3. Need assistance / figure things out
+---------------------------------------------------------------------------------------
+
+2024/04/04 --- update
+1. Done since last scrum
+N/A
+
+2. Not Done since last scrum
+-Add events collection under pet's collection
+- write Expense CRUD into firestore
+-Write pets profile CRUD into firestore
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-Add events collection under pet's collection
+
+
+3. Need assistance / figure things out
+---------------------------------------------------------------------------------------
+
+2024/04/05 --- update
+1. Done since last scrum
+- write Expense CRUD into firestore
+- Write pets profile CRUD into firestore
+
+2. Not Done since last scrum
+-Add events collection under pet's collection
+
+3. Plan until next Scrum
+-Keep studying Firestore
+-Add events collection under pet's collection
 
 
 3. Need assistance / figure things out
