@@ -80,8 +80,8 @@ class AddExpenseViewModel: ObservableObject {
             return false
         }
         
-        guard title.count <= 12 else{
-            alertMessage = "title must be within 12 characters!"
+        guard title.count <= 35 else{
+            alertMessage = "title must be within 50 characters!"
             showAlert = true
             return false
         }

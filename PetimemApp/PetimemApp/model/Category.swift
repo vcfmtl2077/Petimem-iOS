@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 enum Category: String, CaseIterable{
     case food = "Food"

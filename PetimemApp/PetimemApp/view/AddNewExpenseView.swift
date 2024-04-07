@@ -12,10 +12,11 @@ struct AddNewExpenseView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject var viewModel = AddExpenseViewModel()
     var expenseToEdit: DBExpense?
+    
     let colors: [String] = ["expenseCardColor","expenseCardColor1","expenseCardColor2","expenseCardColor3","expenseCardColor4"]
     @State private var tint: String = "expenseCardColor"
     @State private var shouldNavigateToExpenseView = false
-    
+    @State private var showingDeleteAlert = false
     
     var body: some View {
         NavigationStack{
@@ -34,10 +35,10 @@ struct AddNewExpenseView: View {
                     
                     Rectangle()
                         .foregroundColor(Color("bgFrameColor"))
-                        .frame(width: 330,height: 450)
+                        .frame(width: 330,height: 530)
                         .cornerRadius(20)
                     
-                    //--------------------------------Save button--------------------------------
+            //--------------------------------Save button--------------------------------
                     Button {
                         Task {
                             if expenseToEdit == nil {
@@ -74,7 +75,7 @@ struct AddNewExpenseView: View {
                                 .font(.title3)
                                 .foregroundColor(Color("buttonAddColor"))
                                 .frame(width: 300, alignment: .leading)
-                            TextField("within 12 characters", text: $viewModel.title)
+                            TextField("within 35 characters", text: $viewModel.title)
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 12)
                                 .background(.background, in: .rect(cornerRadius: 10))
@@ -83,10 +84,12 @@ struct AddNewExpenseView: View {
                                         .stroke( Color.blue)
                                 )
                                 .frame(width: 300)
+                            // Disablesss automatic capitalization
+                                .textInputAutocapitalization(.none)
                             //constraint 12 characters
                                 .onChange(of: viewModel.title) { newValue in
-                                    if newValue.count > 12 {
-                                        viewModel.title = String(newValue.prefix(12))
+                                    if newValue.count > 35 {
+                                        viewModel.title = String(newValue.prefix(35))
                                     }
                                 }
                             
@@ -126,7 +129,6 @@ struct AddNewExpenseView: View {
                             Spacer()
                         }
                         
-                        //selection of card color
                         VStack(spacing: 0){
                             Text("Card Color:")
                                 .bold()
@@ -136,17 +138,16 @@ struct AddNewExpenseView: View {
                             HStack(spacing: 20){
                                 ForEach(colors, id: \.self){ color in
                                     Circle()
-                                        .foregroundColor(Color(color))
-                                        .frame(width: 40, height: 40)
+                                        .foregroundColor(Color(color).opacity(color == tint ? 1 : 0.5))
+                                        .frame(width: color == tint ? 50 : 40, height: color == tint ? 50 : 40)
                                         .onTapGesture {
-                                            withAnimation(.snappy){
+                                            withAnimation(.spring()){
                                                 tint = color
                                                 viewModel.tint = tint
                                             }
                                         }
                                 }
                             }
-                            
                         }
                     }
                 }
@@ -155,18 +156,14 @@ struct AddNewExpenseView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if let _ = expenseToEdit {
                         Button(action: {
-                            // Use a Task to call the asynchronous deleteExpense function
-                            Task {
-                                await viewModel.deleteExpense()
-                                // After deleting, you might want to perform additional actions, like navigating away
-                                dismiss()
-                            }
+                            showingDeleteAlert = true // Show the alert when the button is pressed
                         }) {
                             Label("Delete", systemImage: "trash")
                         }
                     }
                 }
-            }            .onAppear(perform: {
+            }            
+            .onAppear(perform: {
                 if let expenseToEdit{
                     viewModel.title = expenseToEdit.title
                     viewModel.amount = expenseToEdit.amount
@@ -180,6 +177,17 @@ struct AddNewExpenseView: View {
                     viewModel.expenseToEdit = expenseToEdit
                 }
             })
+            .alert("Confirm Deletion", isPresented: $showingDeleteAlert) {
+                Button("Delete", role: .destructive) {
+                    Task {
+                        await viewModel.deleteExpense()
+                        dismiss()
+                    }
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Are you sure you want to delete this expense?")
+            }
             }
         }
         

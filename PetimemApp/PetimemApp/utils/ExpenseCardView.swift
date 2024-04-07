@@ -12,11 +12,10 @@ struct ExpenseCardView: View {
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 25)
-            .frame(width: 320, height: 50)
+            .frame(width: 320)
             .foregroundColor(Color(expense.tint))
             
-            HStack(spacing:15){
-                Spacer()
+            HStack(alignment: .center, spacing: 15){
                 Image(expense.category)
                     .resizable()
                     .frame(width: 40, height: 40)
@@ -30,12 +29,13 @@ struct ExpenseCardView: View {
                         .font(.caption)
                         .foregroundColor(.white)
                 }
-                Spacer()
+                
                 Text(currencyToString(expense.amount, allowedDigites: 2))
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
-                Spacer()
             }
+            .padding(.horizontal, 40)
+            .padding(.vertical, 15)
         }
     }
 }
