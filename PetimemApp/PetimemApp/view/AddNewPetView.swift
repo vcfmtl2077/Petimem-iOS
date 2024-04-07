@@ -25,9 +25,10 @@ struct AddNewPetView: View {
             VStack{
                 Spacer()
                 Rectangle()
-                    .foregroundColor(Color("bgFrameColorPet"))
+                    .foregroundColor(Color(tint))
                     .frame(width: 330,height: 500)
                     .cornerRadius(20)
+                    .opacity(0.5)
                 Spacer()
                     Button{
                         Task {
@@ -79,6 +80,7 @@ struct AddNewPetView: View {
                         .frame(width: 300, alignment: .leading)
                     
                     TextField("Your pet name", text: $viewModel.name)
+                        .autocapitalization(.none)
                         .padding()
                         .frame(width: 300, height: 40)
                         .background(Color.white)
