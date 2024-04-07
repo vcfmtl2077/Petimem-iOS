@@ -59,14 +59,14 @@ struct ExpenseView: View {
                     .ignoresSafeArea()
                 ScrollView(.vertical){
                     
-                    //---------------------Date filter Button---------------------
+//--------------------------------Date filter Button-----------------------------------------
                     Button(action: {
                         showFilterView = true
                     }, label: {
                         Text("\(format(date: startDate, format: "dd - MMM yyyy")) to \(format(date: endDate, format: "dd -  MMM yyyy"))")
                             .foregroundStyle(.buttonAdd)
                     })
-                    //-------------------Top summary of total amount spent card-------------------
+//---------------------------Top summary of total amount spent card--------------------------
                     ZStack{
                         RoundedRectangle(cornerRadius: 25)
                             .frame(width: 350, height: 100)
@@ -77,7 +77,7 @@ struct ExpenseView: View {
                             .foregroundStyle(.buttonAdd)
                         
                     }
-                    //---------------------List of expenses---------------------
+//-------------------------------------List of expenses--------------------------------------
                     ZStack{
                         Color("bgExpenseFrameColor")
                             .frame(width: 350)

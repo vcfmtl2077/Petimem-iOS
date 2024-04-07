@@ -17,6 +17,7 @@ struct AddNewPetView: View {
     let colors: [String] = ["expenseCardColor","expenseCardColor1","expenseCardColor2","expenseCardColor3","expenseCardColor4"]
     @State private var tint: String = "expenseCardColor"
     
+    @Binding var showingAddNewPet: Bool
     var body: some View {
         ZStack{
             Color("bgHomeColor")
@@ -24,25 +25,32 @@ struct AddNewPetView: View {
             VStack{
                 Spacer()
                 Rectangle()
-                    .foregroundColor(Color("bgFrameColor"))
+                    .foregroundColor(Color("bgFrameColorPet"))
                     .frame(width: 330,height: 500)
                     .cornerRadius(20)
                 Spacer()
-                    Button("Add"){
+                    Button{
                         Task {
                             await viewModel.addPet()
+                            if viewModel.isPetAddedSuccessfully, let selectedItem = viewModel.selectedItem {
+                                        await viewModel.saveProfileImage(item: selectedItem)
+                                        showingAddNewPet = false
+                                    } else {
+                                        viewModel.alertMessage = viewModel.isPetAddedSuccessfully ? "No picture selected to save." : "Please fill in all fields."
+                                        print("No picture selected to save.")
+                        }
                     }
-                }
-                    .foregroundColor(.white)
-                    .frame(width: 330, height: 55)
-                    .background(Color("buttonAddColor"))
-                    .cornerRadius(20)
-                    .onChange(of: viewModel.isPetAddedSuccessfully, initial: false) {
-                        dismiss()
+                    }label: {
+                        Text("Add")
+                            .foregroundColor(.white)
+                            .frame(width: 330, height: 55)
+                            .background(Color("buttonAddColor"))
+                            .cornerRadius(20)
                     }
+                    .disabled(viewModel.name.isEmpty || viewModel.profileImage == nil )
+                    .opacity(viewModel.name.isEmpty || viewModel.profileImage == nil ? 0.5 : 1)
                 Spacer()
                 Text("")
-                
             }
             VStack(spacing: 15){
                 Spacer()
@@ -55,7 +63,7 @@ struct AddNewPetView: View {
                             .frame(width: 150, height: 150)
                             .clipShape(Circle())
                     }else{
-                        Image(systemName: "person.circle.fill")
+                        Image(systemName: "dog.circle.fill")
                             .resizable()
                             .frame(width: 150, height: 150)
                             .foregroundColor(Color(.systemGray))
@@ -128,17 +136,16 @@ struct AddNewPetView: View {
                     HStack(spacing: 20){
                         ForEach(colors, id: \.self){ color in
                             Circle()
-                                .foregroundColor(Color(color))
-                                .frame(width: 40, height: 40)
+                                .foregroundColor(Color(color).opacity(color == tint ? 1 : 0.5))
+                                .frame(width: color == tint ? 50 : 40, height: color == tint ? 50 : 40)
                                 .onTapGesture {
-                                    withAnimation(.snappy){
+                                    withAnimation(.spring()){
                                         tint = color
-                                        viewModel.tint = tint 
+                                        viewModel.tint = tint
                                     }
                                 }
                         }
                     }
-                    
                 }
                 Spacer()
                 Spacer()
@@ -148,9 +155,9 @@ struct AddNewPetView: View {
             Alert(title: Text("Notification"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
         .navigationTitle("Add New Pet")
+        .onChange(of: viewModel.isPetAddedSuccessfully, initial: false) {
+            dismiss()
+        }
         }
     }
 
-#Preview {
-    AddNewPetView()
-}

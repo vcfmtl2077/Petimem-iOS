@@ -24,7 +24,6 @@ final class HomeViewModel: ObservableObject {
             let fetchedPets = try await PetManager.shared.getPets(forUserID: userID)
             DispatchQueue.main.async {
                 self.pets = fetchedPets
-                print("Fetched pets: \(fetchedPets)")
             }
         } catch {
             print("Error fetching pets: \(error)")
@@ -51,27 +50,28 @@ struct HomeView: View {
                             }
                             .buttonStyle(.plain)
                         }
-                        
-                        Button("Add Your Pet"){
+                            
+                        Button(action: {
                             showingAddNewPetView = true
+                        }) {
+                            Text("Add Your Pet")
+                                .frame(width: 330, height: 55)
+                                .foregroundColor(.white)
+                                .background(Color("buttonAddColor"))
+                                .cornerRadius(20)
                         }
-                        .foregroundColor(.white)
-                        .frame(width: 330, height: 55)
-                        .background(Color("buttonAddColor"))
-                        .cornerRadius(20)
                         Spacer()
                     }
                 }
             }
             .navigationTitle("Pets")
+            .navigationDestination(isPresented: $showingAddNewPetView){
+                AddNewPetView(showingAddNewPet: $showingAddNewPetView)
+            }
             .task {
-                            await viewModel.getPets()
-                        }
+                await viewModel.getPets()
+           }
         }
-        
-        NavigationLink(destination: AddNewPetView(), isActive: $showingAddNewPetView) {
-                            EmptyView()
-                        }.hidden()
     }
 }
 

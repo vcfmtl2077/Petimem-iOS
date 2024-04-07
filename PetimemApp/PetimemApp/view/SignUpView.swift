@@ -30,26 +30,25 @@ struct SignUpView: View {
                         .cornerRadius(20)
                     Spacer()
                     Spacer()
-                    Button("Sign Up"){
-                        //input validation
+                    Button(action: {
                         Task {
-                                do {
-                                    try await viewModel.signup()
-                                } catch {
-                                    // Handle errors
-                                }
+                            do {
+                                try await viewModel.signup()
+                            } catch {
+                                // Handle errors
                             }
+                        }
+                    }) {
+                        Text("Sign Up")
+                            .foregroundColor(.white)
+                            .frame(width: 340, height: 50)
+                            .background(Color.blue)
                     }
-                    .foregroundColor(.white)
-                    .frame(width: 340, height: 50)
                     .background(Color.blue)
                     .cornerRadius(20)
-                   /* .alert(isPresented: $showAlert, content: {
-                        Alert(title: Text("Signup Successful."))
-                    })*/
-                    .onChange(of: viewModel.signUpSuccess, initial: false) {
+                    .onChange(of: viewModel.signUpSuccess, perform: { _ in
                         dismiss()
-                    }
+                    })
                     Spacer()
                 }
                 VStack(spacing: 20){
@@ -62,15 +61,6 @@ struct SignUpView: View {
                         .bold()
                         .font(.title2)
                         .foregroundColor(.blue)
-                    //                TextField("Username", text: $viewModel.username)
-                    //                    .padding()
-                    //                    .frame(width: 300, height: 50)
-                    //                    .background(Color.white)
-                    //                    .cornerRadius(20)
-                    //                    .overlay(
-                    //                        RoundedRectangle(cornerRadius: 20)
-                    //                            .stroke( Color.blue)
-                    //                    )
                     TextField("Email", text: $viewModel.email)
                         .padding()
                         .frame(width: 300, height: 50)
@@ -104,24 +94,6 @@ struct SignUpView: View {
                         .frame(width: 250)
                 }
             }
-          /*  .alert(isPresented: $viewModel.showAlert) {
-                if viewModel.signUpSuccess {
-                    return Alert(
-                        title: Text("Signup Successful"),
-                        message: Text(viewModel.alertMessage),
-                        dismissButton: .default(Text("OK"), action: {
-                            viewModel.signUpSuccess = true
-                            dismiss()
-                        })
-                    )
-                } else {
-                    return Alert(
-                        title: Text("Signup Failed"),
-                        message: Text(viewModel.alertMessage),
-                        dismissButton: .default(Text("Try Again"))
-                    )
-                }
-            }*/
         }
     }
     

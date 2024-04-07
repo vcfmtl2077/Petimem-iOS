@@ -332,6 +332,26 @@ N/A
 3. Plan until next Scrum
 -Keep studying Firestore
 -Add events collection under pet's collection
+-Add weather API for additional feature
+-Save pet profile picture to Cloud Storage then fetch the URL and display
+-Fix problems found in peer test
+
+3. Need assistance / figure things out
+---------------------------------------------------------------------------------------
+
+2024/04/06 --- update
+1. Done since last scrum
+-Add weather API for additional feature
+-Save pet profile picture to Cloud Storage then fetch the URL and display
+-Fix problems found in peer test
+
+2. Not Done since last scrum
+-Add events collection under pet's collection
+
+3. Plan until next Scrum
+-Add Event CRUD
+-Allow deletion of pet profile
+-Allow updates of pet profile
 
 
 3. Need assistance / figure things out

@@ -19,7 +19,7 @@ struct DBPets: Codable,Identifiable {
     let dateCreated: Date?
     let tint: String
     
-    enum CodingKeys: String, CodingKey {
+   /* enum CodingKeys: String, CodingKey {
             case id
             case photoUrl = "photo_url"
             case name
@@ -27,9 +27,8 @@ struct DBPets: Codable,Identifiable {
             case birthday
             case dateCreated = "date_created"
             case tint
-        }
+        }*/
 }
-
 
 final class PetManager {
     static let shared = PetManager()
@@ -40,7 +39,7 @@ final class PetManager {
         userCollection.document(userID)
     }
     
-    private let encoder: Firestore.Encoder = {
+   /* private let encoder: Firestore.Encoder = {
         let encoder = Firestore.Encoder()
         encoder.keyEncodingStrategy = .convertToSnakeCase
         return encoder
@@ -54,12 +53,21 @@ final class PetManager {
     
     
     func getPets(forUserID userID: String) async throws -> [DBPets] {
-            let snapshot = try await userCollection.document(userID).collection("pets").getDocuments()
-            let pets = try snapshot.documents.compactMap { document -> DBPets? in
-                try document.data(as: DBPets.self, decoder: decoder)
-            }
-            return pets
+        let snapshot = try await userCollection.document(userID).collection("pets").getDocuments()
+        let pets = try snapshot.documents.compactMap { document -> DBPets? in
+            try document.data(as: DBPets.self, decoder: decoder)
         }
-    
-   
+        return pets
+    } */
+    func getPets(forUserID userID: String) async throws -> [DBPets] {
+        let snapshot = try await userCollection.document(userID).collection("pets").getDocuments()
+        let pets = snapshot.documents.compactMap { document -> DBPets? in
+            guard let pet = try? document.data(as: DBPets.self) else {
+                print("Error decoding pet: \(document.documentID)")
+                return nil
+            }
+            return pet
+        }
+        return pets
+    }
 }

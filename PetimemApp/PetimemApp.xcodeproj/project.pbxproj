@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		76434C052BB2163500D98643 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76434C042BB2163500D98643 /* HomeView.swift */; };
+		7648C48D2BC24E1300B0BB54 /* WeatherAPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7648C48C2BC24E1300B0BB54 /* WeatherAPIViewModel.swift */; };
+		7648C48F2BC24E8000B0BB54 /* WeatherAPIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7648C48E2BC24E8000B0BB54 /* WeatherAPIView.swift */; };
 		76549CE62BB31E450094810B /* ExpenseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76549CE52BB31E450094810B /* ExpenseCardView.swift */; };
 		76549CE82BB31E960094810B /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76549CE72BB31E960094810B /* DateFilterView.swift */; };
 		76549CEA2BB31F3B0094810B /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76549CE92BB31F3B0094810B /* CategoryView.swift */; };
@@ -25,6 +27,8 @@
 		768302CB2BB3110B007AA2AC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768302CA2BB3110B007AA2AC /* SettingsView.swift */; };
 		768302CD2BB3117C007AA2AC /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768302CC2BB3117C007AA2AC /* SplashScreenView.swift */; };
 		76D9A2CB2BB2155E00908DE0 /* AddNewExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9A2CA2BB2155E00908DE0 /* AddNewExpenseView.swift */; };
+		76E64D672BC0BD0C004B4B76 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 76E64D662BC0BD0C004B4B76 /* FirebaseStorage */; };
+		76E64D6B2BC0C36B004B4B76 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E64D6A2BC0C36B004B4B76 /* StorageManager.swift */; };
 		76F08E4D2BB2142F00E6FF0C /* AddNewEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F08E4C2BB2142F00E6FF0C /* AddNewEventView.swift */; };
 		76F2B68D2BB33FB0001110CC /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F2B68C2BB33FB0001110CC /* ExpenseView.swift */; };
 		76F2B68F2BB34005001110CC /* AddNewPetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F2B68E2BB34005001110CC /* AddNewPetView.swift */; };
@@ -72,6 +76,8 @@
 
 /* Begin PBXFileReference section */
 		76434C042BB2163500D98643 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7648C48C2BC24E1300B0BB54 /* WeatherAPIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIViewModel.swift; sourceTree = "<group>"; };
+		7648C48E2BC24E8000B0BB54 /* WeatherAPIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIView.swift; sourceTree = "<group>"; };
 		76549CE52BB31E450094810B /* ExpenseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCardView.swift; sourceTree = "<group>"; };
 		76549CE72BB31E960094810B /* DateFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
 		76549CE92BB31F3B0094810B /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 		768302CA2BB3110B007AA2AC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		768302CC2BB3117C007AA2AC /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		76D9A2CA2BB2155E00908DE0 /* AddNewExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExpenseView.swift; sourceTree = "<group>"; };
+		76E64D6A2BC0C36B004B4B76 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		76F08E4C2BB2142F00E6FF0C /* AddNewEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewEventView.swift; sourceTree = "<group>"; };
 		76F2B68C2BB33FB0001110CC /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
 		76F2B68E2BB34005001110CC /* AddNewPetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPetView.swift; sourceTree = "<group>"; };
@@ -121,6 +128,7 @@
 				EF43BC2E2BB119F800297A36 /* GoogleSignIn in Frameworks */,
 				766F8DC02BB3BE57007D3190 /* FirebaseFirestoreSwift in Frameworks */,
 				EF5C03D62BA9F3F00076CA27 /* FirebaseAuth in Frameworks */,
+				76E64D672BC0BD0C004B4B76 /* FirebaseStorage in Frameworks */,
 				EF5C03D12BA9D9720076CA27 /* FirebaseAnalytics in Frameworks */,
 				766F8DBE2BB3BE57007D3190 /* FirebaseFirestore in Frameworks */,
 			);
@@ -146,11 +154,27 @@
 		766F8DC22BB3CAD4007D3190 /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
+				76E64D682BC0BDB3004B4B76 /* New Group */,
 				766F8DC32BB3D2C6007D3190 /* UserManager.swift */,
 				765E9C462BBE4051009DA595 /* PetManager.swift */,
 				765E9C4C2BBF581F009DA595 /* ExpenseManager.swift */,
 			);
 			path = Firestore;
+			sourceTree = "<group>";
+		};
+		76E64D682BC0BDB3004B4B76 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		76E64D692BC0C309004B4B76 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				76E64D6A2BC0C36B004B4B76 /* StorageManager.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		EF0C136A2BAFE17500B1CF8A /* Recovered References */ = {
@@ -179,6 +203,8 @@
 				768302CA2BB3110B007AA2AC /* SettingsView.swift */,
 				76F2B6962BB3AC61001110CC /* ProfileView.swift */,
 				76F2B6942BB38D61001110CC /* PasswordView.swift */,
+				7648C48C2BC24E1300B0BB54 /* WeatherAPIViewModel.swift */,
+				7648C48E2BC24E8000B0BB54 /* WeatherAPIView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -210,6 +236,7 @@
 				765E9C4A2BBE686E009DA595 /* PetCardView.swift */,
 				76549CE52BB31E450094810B /* ExpenseCardView.swift */,
 				766F8DC22BB3CAD4007D3190 /* Firestore */,
+				76E64D692BC0C309004B4B76 /* Storage */,
 				EF35FBA52BAD2E09006E0A9E /* auth */,
 			);
 			path = utils;
@@ -247,11 +274,11 @@
 		EF691BD82BA49F42001C15AB /* PetimemApp */ = {
 			isa = PBXGroup;
 			children = (
+				EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */,
+				EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */,
 				EF0C13942BAFE3E400B1CF8A /* model */,
 				EF0C13832BAFE2A000B1CF8A /* view */,
-				EF5C03CB2BA9D8140076CA27 /* GoogleService-Info.plist */,
 				EF5C03CA2BA882210076CA27 /* utils */,
-				EF691BD92BA49F42001C15AB /* PetimemAppApp.swift */,
 				EF691BDF2BA49F43001C15AB /* Assets.xcassets */,
 				EF691BE12BA49F43001C15AB /* Preview Content */,
 			);
@@ -307,6 +334,7 @@
 				EF43BC2F2BB119F800297A36 /* GoogleSignInSwift */,
 				766F8DBD2BB3BE57007D3190 /* FirebaseFirestore */,
 				766F8DBF2BB3BE57007D3190 /* FirebaseFirestoreSwift */,
+				76E64D662BC0BD0C004B4B76 /* FirebaseStorage */,
 			);
 			productName = PetimemApp;
 			productReference = EF691BD62BA49F42001C15AB /* PetimemApp.app */;
@@ -437,6 +465,7 @@
 				76549CE82BB31E960094810B /* DateFilterView.swift in Sources */,
 				768302C72BB3102B007AA2AC /* TabView.swift in Sources */,
 				766F8DC42BB3D2C6007D3190 /* UserManager.swift in Sources */,
+				7648C48D2BC24E1300B0BB54 /* WeatherAPIViewModel.swift in Sources */,
 				76F2B68D2BB33FB0001110CC /* ExpenseView.swift in Sources */,
 				76F08E4D2BB2142F00E6FF0C /* AddNewEventView.swift in Sources */,
 				EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */,
@@ -448,6 +477,7 @@
 				765E9C4D2BBF581F009DA595 /* ExpenseManager.swift in Sources */,
 				EF4B9C762BAB27D100559419 /* SignUpView.swift in Sources */,
 				765E9C472BBE4051009DA595 /* PetManager.swift in Sources */,
+				7648C48F2BC24E8000B0BB54 /* WeatherAPIView.swift in Sources */,
 				76F2B6972BB3AC61001110CC /* ProfileView.swift in Sources */,
 				76F2B68F2BB34005001110CC /* AddNewPetView.swift in Sources */,
 				765E9C492BBE4DF7009DA595 /* AddNewPetViewModel.swift in Sources */,
@@ -456,6 +486,7 @@
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,
 				766F8DCA2BB48C02007D3190 /* SignUpViewModel.swift in Sources */,
 				76434C052BB2163500D98643 /* HomeView.swift in Sources */,
+				76E64D6B2BC0C36B004B4B76 /* StorageManager.swift in Sources */,
 				765E9C4B2BBE686E009DA595 /* PetCardView.swift in Sources */,
 				EF0C13952BAFE3E400B1CF8A /* Category.swift in Sources */,
 			);
@@ -821,6 +852,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		76E64D662BC0BD0C004B4B76 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF5C03CF2BA9D9720076CA27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 		EF43BC2D2BB119F800297A36 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

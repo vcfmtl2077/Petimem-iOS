@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct PetCardView: View {
     var pet: DBPets
@@ -17,10 +20,34 @@ struct PetCardView: View {
             
             HStack(spacing:30){
                 Spacer()
-                Image("test")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
+                if let photoUrl = pet.photoUrl, let url = URL(string: photoUrl) {
+                               AsyncImage(url: url) { phase in
+                                   switch phase {
+                                   case .empty:
+                                       ProgressView() // Display a progress indicator while loading
+                                   case .success(let image):
+                                       // Display the loaded image
+                                       image.resizable()
+                                           .aspectRatio(contentMode: .fill)
+                                           .frame(width: 100, height: 100)
+                                           .clipShape(Circle())
+                                   case .failure:
+                                       // In case of failure
+                                       Image(systemName: "dog.circle.fill")
+                                           .resizable()
+                                           .frame(width: 100, height: 100)
+                                           .clipShape(Circle())
+                                   @unknown default:
+                                       EmptyView()
+                                   }
+                               }
+                           } else {
+                               //if `photoUrl` is nil
+                               Image(systemName: "dog.circle.fill")
+                                   .resizable()
+                                   .frame(width: 100, height: 100)
+                                   .clipShape(Circle())
+                           }
                 
                 VStack{
                     Text(pet.name)
