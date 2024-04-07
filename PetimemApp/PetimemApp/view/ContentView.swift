@@ -27,8 +27,7 @@ struct ContentView: View {
                         case .event:
                             Text("Event Content")
                         case .moment:
-                            //Text("Moment Content")
-                            WeatherAPIView()
+                            Text("Moment Content")
                         case .expense:
                             ExpenseView()
                         case .more:

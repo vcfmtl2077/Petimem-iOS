@@ -32,10 +32,10 @@ struct AddNewExpenseView: View {
                         category: viewModel.selectedCategory,
                         dateAdded: viewModel.dateAdded,
                         tint: viewModel.tint))
-                    
+
                     Rectangle()
                         .foregroundColor(Color("bgFrameColor"))
-                        .frame(width: 330,height: 530)
+                        .frame(width: 330,height: 520)
                         .cornerRadius(20)
                     
             //--------------------------------Save button--------------------------------
@@ -76,6 +76,7 @@ struct AddNewExpenseView: View {
                                 .foregroundColor(Color("buttonAddColor"))
                                 .frame(width: 300, alignment: .leading)
                             TextField("within 35 characters", text: $viewModel.title)
+                                .autocapitalization(.none)
                                 .padding(.horizontal, 15)
                                 .padding(.vertical, 12)
                                 .background(.background, in: .rect(cornerRadius: 10))

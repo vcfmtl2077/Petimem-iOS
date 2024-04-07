@@ -34,7 +34,8 @@ final class HomeViewModel: ObservableObject {
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     @State private var showingAddNewPetView = false
-
+    @State private var showingWeatherAPIView = false
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -71,6 +72,14 @@ struct HomeView: View {
             .task {
                 await viewModel.getPets()
            }
+            .toolbar{
+                Button("weather", systemImage: "cloud.sun"){
+                    showingWeatherAPIView = true
+                }
+            }
+            .navigationDestination(isPresented: $showingWeatherAPIView ){
+                WeatherAPIView()
+            }
         }
     }
 }

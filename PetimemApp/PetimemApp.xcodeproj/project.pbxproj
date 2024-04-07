@@ -203,8 +203,8 @@
 				768302CA2BB3110B007AA2AC /* SettingsView.swift */,
 				76F2B6962BB3AC61001110CC /* ProfileView.swift */,
 				76F2B6942BB38D61001110CC /* PasswordView.swift */,
-				7648C48C2BC24E1300B0BB54 /* WeatherAPIViewModel.swift */,
 				7648C48E2BC24E8000B0BB54 /* WeatherAPIView.swift */,
+				7648C48C2BC24E1300B0BB54 /* WeatherAPIViewModel.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";

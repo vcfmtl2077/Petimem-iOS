@@ -50,12 +50,14 @@ class WeatherViewModel: ObservableObject {
         return weatherData
     }
     
-    
+    //-----------------------------set condition to temp in between 0-30 c; No snow and rain;--------------------------
     func isGoodWeatherForWalk(weatherData: WeatherData) -> Bool {
         let mainWeatherCondition = weatherData.weather.first?.main ?? ""
+        
         let temperature = weatherData.main.temp
         
-        //conditions: not raining and between 10°C and 25°C
-        return !mainWeatherCondition.contains("Rain") && (10...25).contains(temperature)
+        let unacceptableConditions = ["Rain", "Snow"]
+        
+        return !unacceptableConditions.contains(where: mainWeatherCondition.contains) && (0...30).contains(temperature)
     }
 }

@@ -101,6 +101,7 @@ struct ExpenseView: View {
                                     .buttonStyle(.plain)
                             }
                         }
+                        .padding(.vertical, 15)
                     }
                 }
             }
