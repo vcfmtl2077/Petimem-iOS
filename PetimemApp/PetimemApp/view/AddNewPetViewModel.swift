@@ -36,26 +36,6 @@ class AddPetViewModel: ObservableObject {
         self.profileImage = Image(uiImage: uiImage)
     }
     
-    // save pet profile image to Storage > Upload image path to pet's profile
-   /* func saveProfileImage(item: PhotosPickerItem) {
-        Task{
-            guard let data = try await item.loadTransferable(type: Data.self) else { return }
-            guard let userId = Auth.auth().currentUser?.uid else {
-                self.alertMessage = "Authentication Error. Please sign in."
-                self.showAlert = true
-                return
-            }
-            // save image to firestore Storage
-            let (path, name) = try await StorageManager.shared.saveImage(data: data, userId: userId)
-            // Generate the download URL
-            let imageURL = try await StorageManager.shared.getUrlForImage(path: path)
-            
-            print("Success!")
-            print(path)
-            print(name)
-        }
-    }*/
-    
     func saveProfileImage(item: PhotosPickerItem) async {
         do {
             guard let data = try await item.loadTransferable(type: Data.self) else { return }
@@ -96,46 +76,6 @@ class AddPetViewModel: ObservableObject {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }()
-    
-    
-    /*func addPet() async {
-        guard validate() else{
-            return
-        }
-        //get current userId
-        guard let userId = Auth.auth().currentUser?.uid else {
-            return
-        }
-        // create model
-        let newId = UUID().uuidString
-        // Store newId for later use
-        self.newPetId = newId
-        let photoUrl = ""
-        let newPet = DBPets(
-            id: newId,
-            photoUrl:photoUrl,
-            name: name,
-            gender: gender,
-            birthday: birthday,
-            dateCreated: Date(),
-            tint: tint)
-        
-        //save model
-        do {
-                // Await the setData operation to ensure it completes.
-                try await Firestore.firestore().collection("users").document(userId)
-                    .collection("pets").document(newId).setData(from: newPet, merge: false, encoder: encoder)
-                // Handle success
-                alertMessage = "Pet added successfully."
-                showAlert = true
-                isPetAddedSuccessfully = true
-            } catch {
-                // Handle error
-                alertMessage = "Failed to add pet: \(error.localizedDescription)"
-                showAlert = true
-            } 
-        
-    }*/
     
     func addPet() async {
         guard validate() else { return }

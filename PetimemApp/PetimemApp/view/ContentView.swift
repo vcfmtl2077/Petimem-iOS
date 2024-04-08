@@ -17,7 +17,6 @@ struct ContentView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                
                     Color("bgHomeColor")
                         .ignoresSafeArea()
                     VStack {
@@ -25,7 +24,7 @@ struct ContentView: View {
                         case .home:
                             HomeView()
                         case .event:
-                            Text("Event Content")
+                            EventView()
                         case .moment:
                             Text("Moment Content")
                         case .expense:
