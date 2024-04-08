@@ -11,7 +11,8 @@ import SwiftUI
 struct WeatherAPIView: View {
     @State private var city: String = ""
     @State private var weatherDescription: String = " "
-    @State private var isgoodForWalk: Bool = false
+    @State private var isGoodForWalk: Bool = false
+    @State private var showWeatherIcon: Bool = false
     @StateObject private var viewModel = WeatherViewModel()
 
         var body: some View {
@@ -25,22 +26,30 @@ struct WeatherAPIView: View {
                                 .frame(width: 350, height: 200)
                                 .clipShape(RoundedRectangle(cornerSize: CGSize(width: 20, height: 10)))
                                 .foregroundStyle(Color("bgColor"))
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text(weatherDescription)
-                                    .font(.title2)
-                                    .foregroundColor(Color(isgoodForWalk ? "safeGreen" : "warningRed"))
-                                    .fontWeight(.bold)
-                                
-                                HStack{ 
-                                    Text("Temperature: \(viewModel.temperature)")
-                                        .bold()
-                                        .foregroundColor(Color("buttonAddColor"))
-                                    Text("Condition: \(viewModel.weatherCondition)")
-                                        .bold()
-                                        .foregroundColor(Color("buttonAddColor"))
+                            VStack{
+                                    if showWeatherIcon {
+                                        Image(isGoodForWalk ? "sunnyIcon" : "rainIcon")
+                                    } else {
+                                        Color.clear
+                                    }
+                                VStack(alignment: .leading, spacing: 10) {
+                                    
+                                    Text(weatherDescription)
+                                        .font(.title2)
+                                        .foregroundColor(Color(isGoodForWalk ? "safeGreen" : "warningRed"))
+                                        .fontWeight(.bold)
+                                    
+                                    HStack{
+                                        Text("Temperature: \(viewModel.temperature)")
+                                            .bold()
+                                            .foregroundColor(Color("buttonAddColor"))
+                                        Text("Condition: \(viewModel.weatherCondition)")
+                                            .bold()
+                                            .foregroundColor(Color("buttonAddColor"))
+                                    }
                                 }
-                            }
                         }
+                    }
                         .frame(width: 280,height: 200)
                         
                         HStack{
@@ -59,6 +68,7 @@ struct WeatherAPIView: View {
                             Task {
                                 await checkWeather()
                             }
+                            showWeatherIcon = true
                         }
                         .disabled(city.isEmpty)
                         .opacity(city.isEmpty ? 0.5 : 1)
@@ -79,7 +89,7 @@ struct WeatherAPIView: View {
             do {
                 let weatherData = try await viewModel.fetchCurrentWeather(forCity: city)
                 let goodForWalk = viewModel.isGoodWeatherForWalk(weatherData: weatherData)
-                isgoodForWalk = goodForWalk
+                isGoodForWalk = goodForWalk
                 weatherDescription = goodForWalk ? "Good day for a walk.Let's go!" : "Oh, let's play indoors today!"
             } catch {
                 weatherDescription = "oops, something went wrong. Please try again!"
