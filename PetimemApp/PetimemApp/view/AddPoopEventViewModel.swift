@@ -107,6 +107,8 @@ class AddPoopEventViewModel: ObservableObject {
         }
         return true
     }
+    
+    
 }
 
 
@@ -118,6 +120,24 @@ final class PoopEventManager{
     private let userCollection = Firestore.firestore().collection("users")
     private func userDocument(userID: String) -> DocumentReference {
         userCollection.document(userID)
+    }
+    
+    func getPoopEvents(forPetId petId: String) async throws -> [DBPoop] {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            throw NSError(domain: "AuthError", code: 0, userInfo: [NSLocalizedDescriptionKey: "User not authenticated"])
+        }
+        
+        let querySnapshot = try await Firestore.firestore()
+            .collection("users")
+            .document(userId)
+            .collection("poops")
+            .whereField("petId", isEqualTo: petId)
+            .getDocuments()
+
+        let poopEvents = querySnapshot.documents.compactMap { document -> DBPoop? in
+            try? document.data(as: DBPoop.self)
+        }
+        return poopEvents
     }
     
 }
