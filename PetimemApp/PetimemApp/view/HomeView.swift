@@ -44,13 +44,10 @@ struct HomeView: View {
                 ScrollView(.vertical){
                     VStack{
                         ForEach(viewModel.pets) { pet in
-                            NavigationLink{
-                                Text("event view")
-                            } label: {
-                                PetCardView(pet: pet)
-                            }
-                            .buttonStyle(.plain)
-                        }
+                                                    NavigationLink(destination: EventListView(petId: pet.id)) {
+                                                        PetCardView(pet: pet)
+                                                    }
+                                                }
                             
                         Button(action: {
                             showingAddNewPetView = true

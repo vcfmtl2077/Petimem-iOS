@@ -23,6 +23,8 @@
 		766F8DC42BB3D2C6007D3190 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F8DC32BB3D2C6007D3190 /* UserManager.swift */; };
 		766F8DC62BB487D0007D3190 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F8DC52BB487D0007D3190 /* LoginViewModel.swift */; };
 		766F8DCA2BB48C02007D3190 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766F8DC92BB48C02007D3190 /* SignUpViewModel.swift */; };
+		767498E12BC4EA1500DB2026 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767498E02BC4EA1500DB2026 /* EventListView.swift */; };
+		767498E32BC4F2A700DB2026 /* PoopEventCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767498E22BC4F2A700DB2026 /* PoopEventCardView.swift */; };
 		768302C72BB3102B007AA2AC /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768302C62BB3102B007AA2AC /* TabView.swift */; };
 		768302CB2BB3110B007AA2AC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768302CA2BB3110B007AA2AC /* SettingsView.swift */; };
 		768302CD2BB3117C007AA2AC /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768302CC2BB3117C007AA2AC /* SplashScreenView.swift */; };
@@ -91,6 +93,8 @@
 		766F8DC32BB3D2C6007D3190 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		766F8DC52BB487D0007D3190 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		766F8DC92BB48C02007D3190 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		767498E02BC4EA1500DB2026 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
+		767498E22BC4F2A700DB2026 /* PoopEventCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoopEventCardView.swift; sourceTree = "<group>"; };
 		768302C62BB3102B007AA2AC /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		768302CA2BB3110B007AA2AC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		768302CC2BB3117C007AA2AC /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
@@ -158,19 +162,11 @@
 		766F8DC22BB3CAD4007D3190 /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
-				76E64D682BC0BDB3004B4B76 /* New Group */,
 				766F8DC32BB3D2C6007D3190 /* UserManager.swift */,
 				765E9C462BBE4051009DA595 /* PetManager.swift */,
 				765E9C4C2BBF581F009DA595 /* ExpenseManager.swift */,
 			);
 			path = Firestore;
-			sourceTree = "<group>";
-		};
-		76E64D682BC0BDB3004B4B76 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		76E64D692BC0C309004B4B76 /* Storage */ = {
@@ -198,6 +194,7 @@
 				766F8DC92BB48C02007D3190 /* SignUpViewModel.swift */,
 				EF4B9C6E2BAB27D100559419 /* ContentView.swift */,
 				76434C042BB2163500D98643 /* HomeView.swift */,
+				767498E02BC4EA1500DB2026 /* EventListView.swift */,
 				76F2B68E2BB34005001110CC /* AddNewPetView.swift */,
 				765E9C482BBE4DF7009DA595 /* AddNewPetViewModel.swift */,
 				76F604252BC3796000999831 /* EventView.swift */,
@@ -239,8 +236,9 @@
 				76549CE92BB31F3B0094810B /* CategoryView.swift */,
 				768302C62BB3102B007AA2AC /* TabView.swift */,
 				76549CE72BB31E960094810B /* DateFilterView.swift */,
-				765E9C4A2BBE686E009DA595 /* PetCardView.swift */,
 				76549CE52BB31E450094810B /* ExpenseCardView.swift */,
+				765E9C4A2BBE686E009DA595 /* PetCardView.swift */,
+				767498E22BC4F2A700DB2026 /* PoopEventCardView.swift */,
 				766F8DC22BB3CAD4007D3190 /* Firestore */,
 				76E64D692BC0C309004B4B76 /* Storage */,
 				EF35FBA52BAD2E09006E0A9E /* auth */,
@@ -473,6 +471,7 @@
 				766F8DC42BB3D2C6007D3190 /* UserManager.swift in Sources */,
 				7648C48D2BC24E1300B0BB54 /* WeatherAPIViewModel.swift in Sources */,
 				76F6042A2BC38C4D00999831 /* AddPoopEventView.swift in Sources */,
+				767498E12BC4EA1500DB2026 /* EventListView.swift in Sources */,
 				76F2B68D2BB33FB0001110CC /* ExpenseView.swift in Sources */,
 				EF35FBA72BAD2E21006E0A9E /* AuthenticationManager.swift in Sources */,
 				76D9A2CB2BB2155E00908DE0 /* AddNewExpenseView.swift in Sources */,
@@ -493,6 +492,7 @@
 				76F6042C2BC3966600999831 /* AddPoopEventViewModel.swift in Sources */,
 				EF691BDA2BA49F42001C15AB /* PetimemAppApp.swift in Sources */,
 				766F8DCA2BB48C02007D3190 /* SignUpViewModel.swift in Sources */,
+				767498E32BC4F2A700DB2026 /* PoopEventCardView.swift in Sources */,
 				76434C052BB2163500D98643 /* HomeView.swift in Sources */,
 				76E64D6B2BC0C36B004B4B76 /* StorageManager.swift in Sources */,
 				765E9C4B2BBE686E009DA595 /* PetCardView.swift in Sources */,

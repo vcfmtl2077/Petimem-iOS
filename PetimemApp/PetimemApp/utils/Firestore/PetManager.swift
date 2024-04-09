@@ -39,26 +39,6 @@ final class PetManager {
         userCollection.document(userID)
     }
     
-   /* private let encoder: Firestore.Encoder = {
-        let encoder = Firestore.Encoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return encoder
-    }()
-    
-    private let decoder: Firestore.Decoder = {
-        let decoder = Firestore.Decoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
-    
-    
-    func getPets(forUserID userID: String) async throws -> [DBPets] {
-        let snapshot = try await userCollection.document(userID).collection("pets").getDocuments()
-        let pets = try snapshot.documents.compactMap { document -> DBPets? in
-            try document.data(as: DBPets.self, decoder: decoder)
-        }
-        return pets
-    } */
     func getPets(forUserID userID: String) async throws -> [DBPets] {
         let snapshot = try await userCollection.document(userID).collection("pets").getDocuments()
         let pets = snapshot.documents.compactMap { document -> DBPets? in
