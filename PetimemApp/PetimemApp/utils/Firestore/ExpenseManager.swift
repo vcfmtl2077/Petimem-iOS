@@ -19,15 +19,6 @@ struct DBExpense: Codable,Identifiable {
     let dateAdded: Date?
     let tint: String
     
-    enum CodingKeys: String, CodingKey {
-            case id
-            case title
-            case amount
-            case category
-            case dateAdded = "date_added"
-            case tint
-        }
-    
     init(id: String, title: String, amount: Double, category: Category, dateAdded: Date, tint: String) {
         self.id = id
         self.title = title
@@ -36,7 +27,6 @@ struct DBExpense: Codable,Identifiable {
         self.dateAdded = dateAdded
         self.tint = tint
     }
-    
 }
 
 final class ExpenseManager{
@@ -48,22 +38,11 @@ final class ExpenseManager{
         userCollection.document(userID)
     }
     
-    private let encoder: Firestore.Encoder = {
-        let encoder = Firestore.Encoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return encoder
-    }()
-    
-    private let decoder: Firestore.Decoder = {
-        let decoder = Firestore.Decoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
-    
+
     func getExpenses(forUserID userID: String) async throws -> [DBExpense] {
             let snapshot = try await userCollection.document(userID).collection("expenses").getDocuments()
             let expenses = try snapshot.documents.compactMap { document -> DBExpense? in
-                try document.data(as: DBExpense.self, decoder: decoder)
+                try document.data(as: DBExpense.self)
             }
             return expenses
         }

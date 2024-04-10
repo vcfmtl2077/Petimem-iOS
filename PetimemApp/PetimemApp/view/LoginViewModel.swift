@@ -24,17 +24,15 @@ final class LoginViewModel: ObservableObject {
         //information validated; try to sign in
         Task{
             do{
-                let userData = try await AuthenticationManager.shared.signInUser(email: email, password: password)
+                _ = try await AuthenticationManager.shared.signInUser(email: email, password: password)
                 DispatchQueue.main.async { [weak self] in
                     self?.alertMessage = ""
-                   // self?.showAlert = true
                     self?.logInSuccess = true
                 }
                 
             }catch{
                 DispatchQueue.main.async { [weak self] in
-                    self?.alertMessage = error.localizedDescription
-                    //self?.showAlert = true
+                    self?.alertMessage = "An unexpected error occurred. Please try again later."
                     self?.logInSuccess = false
                 }
             }

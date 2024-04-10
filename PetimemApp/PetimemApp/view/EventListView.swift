@@ -16,7 +16,7 @@ final class EventListViewModel: ObservableObject {
     
     
     func loadPoopEvents(forPetId petId: String) async {
-        guard let userID = Auth.auth().currentUser?.uid else {
+        guard Auth.auth().currentUser?.uid != nil else {
             print("User not logged in")
             return
         }
@@ -34,6 +34,11 @@ struct EventListView: View {
     let petId: String
     @StateObject private var viewModel = EventListViewModel()
     
+    //for update event
+    @State private var selectedPoopEvent: DBPoop?
+    @State private var showingPoopEvent = false
+    var pets: [DBPets]
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -42,13 +47,15 @@ struct EventListView: View {
                 ScrollView {
                     VStack {
                         ForEach(viewModel.poopEvents) { PoopEvent in
-                            NavigationLink(destination: Text("Edit View Placeholder")) {
+                            NavigationLink{
+                                AddPoopEventView(pets: pets, poopEventToEdit: PoopEvent)
+                            } label: {
                                 PoopEventCardView(poop: PoopEvent)
                             }
                             .buttonStyle(.plain)
                         }
                     }
-                    .navigationTitle("Poop Events")
+                    .navigationTitle("Events")
                     .onAppear {
                         Task {
                             await viewModel.loadPoopEvents(forPetId: petId)

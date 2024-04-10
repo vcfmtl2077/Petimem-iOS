@@ -25,16 +25,19 @@ final class SignupEmailViewModel: ObservableObject {
         do{
             let authDataResult = try await AuthenticationManager.shared.createUser(email: email, password: password)
             print("AuthenticationManager successfully created a user.")
+            alertMessage = "Account successfully created!"
             signUpSuccess = true
             let user = DBUser(auth: authDataResult)
             try await UserManager.shared.createNewUser(user: user)
-           // try await UserManager.shared.createNewUser(auth: authDataResult)
             print("UserManager successfully added the user to Firestore.")
+            alertMessage = "Account successfully created!"
         } catch {
             print("Error during sign up: \(error.localizedDescription)")
+            alertMessage = "An unexpected error occurred. Please try again later."
                     throw error
         }
     }
+    
     
     private func validate () -> Bool {
         //whenver the function be called; Reset alertMessage
@@ -54,6 +57,13 @@ final class SignupEmailViewModel: ObservableObject {
             alertMessage = "Password must contains 6 characters!"
             return false
         }
+        
+        guard password == confirmPassword else {
+                   alertMessage = "Passwords do not match!"
+                   showAlert = true
+                   return false
+               }
+        
         return true
     }
 }

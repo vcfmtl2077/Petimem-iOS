@@ -24,7 +24,7 @@ struct AddNewExpenseView: View {
                 Color("bgHomeColor")
                     .ignoresSafeArea()
                 VStack{
-                    //--------------------------------preview--------------------------------
+            //--------------------------------preview--------------------------------
                     ExpenseCardView(expense: .init(
                         id: "preview",
                         title: viewModel.title.isEmpty ? "Title" : viewModel.title,
@@ -38,7 +38,7 @@ struct AddNewExpenseView: View {
                         .frame(width: 330,height: 520)
                         .cornerRadius(20)
                     
-            //--------------------------------Save button--------------------------------
+        //--------------------------------Save button--------------------------------
                     Button {
                         Task {
                             if expenseToEdit == nil {

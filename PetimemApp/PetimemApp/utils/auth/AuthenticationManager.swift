@@ -14,11 +14,6 @@ struct AuthDataResultModel: Codable {
     let uid: String
     let email: String?
     
-    /*init(uid: String, email: String) {
-        self.uid = uid
-        self.email = email
-    }*/
-    
     init(user: User) {
         self.uid = user.uid
         self.email = user.email
@@ -71,5 +66,24 @@ final class AuthenticationManager {
             throw URLError(.badURL)
         }
         try await user.delete()
+    }
+}
+
+extension AuthenticationManager {
+    
+    // Re-authenticates the current user with their email and password
+    func reauthenticateUser(email: String, password: String) async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.userAuthenticationRequired) // Adjust the error as needed
+        }
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        do {
+            try await user.reauthenticate(with: credential)
+        } catch {
+            // Here, you can map Firebase errors to more user-friendly errors if needed
+            throw error
+        }
     }
 }

@@ -43,9 +43,11 @@ class AddPoopEventViewModel: ObservableObject {
     @Published var tint: String = "expenseCardColor"
     @Published var selectedPetId: String = ""
     
-    
     @Published var alertMessage = ""
     @Published var isPoopAddedSuccessfully = false
+    
+    // for updates
+    var poopEventToEdit: DBPoop?
     
     func addPoopEvent() async {
 
@@ -108,6 +110,74 @@ class AddPoopEventViewModel: ObservableObject {
         return true
     }
     
+    func updatePoop() async {
+        guard validate() else {
+            return
+        }
+
+        // Ensure there's an existing poop event to update
+        guard let poopEventToEdit = poopEventToEdit else {
+            alertMessage = "No poop event selected for update."
+            return
+        }
+        
+        // Use the existing poop event's ID
+        let poopEventId = poopEventToEdit.id
+
+        // Get current user ID
+        guard let userId = Auth.auth().currentUser?.uid else {
+            alertMessage = "User not logged in."
+            return
+        }
+
+        // Create updated poop event model
+        let updatedPoopEvent = DBPoop(
+            id: poopEventId,
+            dateAndTime: dateAndTime,
+            consistency: consistency,
+            color: color,
+            bloodOrMucus: bloodOrMucus,
+            foreignObjects: foreignObjects,
+            tint: tint,
+            petId: poopEventToEdit.petId)
+
+        do {
+            try await Firestore.firestore().collection("users").document(userId)
+                .collection("poops").document(poopEventToEdit.id).setData(from: updatedPoopEvent, merge: true)
+            // Handle success
+            alertMessage = "Poop event updated successfully."
+            isPoopAddedSuccessfully = true
+        } catch {
+            // Handle error
+            alertMessage = "Failed to poop event : \(error.localizedDescription)"
+        }
+    }
+    
+    func deletePoop() async {
+          // Ensure there's an poop event selected to delete
+          guard let poopEventId = poopEventToEdit?.id else {
+              print("No poop event selected for deletion")
+              return
+          }
+
+          // Get current user ID
+          guard let userId = Auth.auth().currentUser?.uid else {
+              print("User not logged in")
+              return
+          }
+
+          // Define the path to the document to delete
+          let documentReference = Firestore.firestore().collection("users").document(userId).collection("poops").document(poopEventId)
+
+          do {
+              // Perform the delete operation
+              try await documentReference.delete()
+              print("Poop event successfully deleted")
+          } catch {
+              print("Error deleting poop event: \(error)")
+              // Handle any errors, such as showing an error message to the user
+          }
+      }
     
 }
 
