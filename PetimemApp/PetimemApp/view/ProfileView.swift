@@ -42,14 +42,14 @@ struct ProfileView: View {
     @State private var showingDeleteConfirmation = false
     @State private var deletionErrorMessage = ""
     @State private var showingDeletionError = false
-    
+    @State private var showLoginScreen = false
     var body: some View {
         NavigationStack{
             ZStack{
                 Color("bgHomeColor")
                     .ignoresSafeArea()
                 Rectangle()
-                    .frame(width: 340, height: 370)
+                    .frame(width: 340, height: 400)
                     .foregroundColor(.white.opacity(0.6))
                     .cornerRadius(20)
                 VStack(spacing: 20){
@@ -72,35 +72,43 @@ struct ProfileView: View {
                                 RoundedRectangle(cornerRadius: 20)
                                     .stroke( Color.blue)
                             )
-                        Button("Update"){
-                            //input validation
+    //-------------------------------Update Button-----------------------------
+                        Button{
                             Task {
                                 viewModelB.updateCurrentUser(first: first, last: last)
                                 dismiss()
                             }
+                        }label: {
+                            Text("Update")
+                                .foregroundColor(.white)
+                                .frame(width: 300, height: 50)
+                                .background(Color.blue)
+                                .cornerRadius(20)
                         }
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.blue)
-                        .cornerRadius(20)
-                        
-                        Button("Cancel"){
+    //-------------------------------Update Button-----------------------------
+                        Button{
                             isEditMode = false
+                        }label: {
+                            Text("Cancel")
+                                .foregroundColor(.white)
+                                .frame(width: 300, height: 50)
+                                .background(Color.gray)
+                                .cornerRadius(20)
                         }
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.gray)
-                        .cornerRadius(20)
-                        
-                        Button(role: .destructive) {
+    //-------------------------------Delete Account Button Button-----------------------------
+                        Button{
                             showingDeleteConfirmation = true
-                        } label: {
+                        }label: {
                             Text("Delete Account")
+                                .foregroundColor(.white)
+                                .frame(width: 300, height: 50)
+                                .background(Color.red)
+                                .cornerRadius(20)
                         }
-                        .foregroundColor(.white)
-                        .frame(width: 300, height: 50)
-                        .background(Color.red)
-                        .cornerRadius(20)
+                        NavigationLink(destination: LoginView(), isActive: $showLoginScreen) {
+                                            EmptyView()
+                                        }
+                        
                     }else {
                         if let user = viewModelB.user {
                            HStack{
@@ -158,18 +166,19 @@ struct ProfileView: View {
                                             }
                         }
                         
-                        Button("Edit") {
-                                isEditMode.toggle()
-                                if isEditMode, let user = viewModelB.user {
-                                                    first = user.firstName ?? ""
-                                                    last = user.lastName ?? ""
-                                                }
-                                }
+                        Button{
+                            isEditMode.toggle()
+                            if isEditMode, let user = viewModelB.user {
+                                                first = user.firstName ?? ""
+                                                last = user.lastName ?? ""
+                                            }
+                        }label: {
+                            Text("Edit")
                                 .foregroundColor(.white)
                                 .frame(width: 300, height: 50)
                                 .background(Color.blue)
                                 .cornerRadius(20)
-                                .padding(.top, 10)
+                        }
                     }
                 }
             }
@@ -185,7 +194,7 @@ struct ProfileView: View {
                     Task {
                         do {
                             try await viewModel.deleteAccount()
-                            // After deletion, navigate the user away or clear user data
+                            showLoginScreen = true
                             print("Account deleted successfully.")
                         } catch {
                             deletionErrorMessage = error.localizedDescription
@@ -210,7 +219,7 @@ struct ProfileView: View {
                     Task{
                         do{
                             try viewModel.signOut()
-                            LoginView()
+                            
                         }catch{
                             
                         }

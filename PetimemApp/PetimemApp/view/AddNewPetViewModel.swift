@@ -29,12 +29,36 @@ class AddPetViewModel: ObservableObject {
     
     @Published var newPetId: String?
     
+    var petToEdit: DBPets?
+    
     func loadImage() async throws {
         guard let item = selectedItem else{ return }
         guard let imageData = try await item.loadTransferable(type: Data.self) else { return }
         guard let uiImage = UIImage(data: imageData) else { return }
         self.profileImage = Image(uiImage: uiImage)
     }
+    
+    func loadImage(from urlString: String?) async {
+        guard let urlString = urlString, let url = URL(string: urlString) else {
+            self.profileImage = Image(systemName: "photo") // Fallback image
+            return
+        }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let uiImage = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    self.profileImage = Image(uiImage: uiImage)
+                }
+            } else {
+                self.profileImage = Image(systemName: "photo") // Fallback image
+            }
+        } catch {
+            print("Failed to load image from URL: \(error)")
+            self.profileImage = Image(systemName: "photo") // Fallback image in case of error
+        }
+    }
+    
     
     func saveProfileImage(item: PhotosPickerItem) async {
         do {
@@ -64,18 +88,6 @@ class AddPetViewModel: ObservableObject {
         let petDocumentRef = Firestore.firestore().collection("users").document(userId).collection("pets").document(petId)
         try await petDocumentRef.updateData(["photoUrl": imageURL])
     }
-    
-    private let encoder: Firestore.Encoder = {
-        let encoder = Firestore.Encoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return encoder
-    }()
-    
-    private let decoder: Firestore.Decoder = {
-        let decoder = Firestore.Decoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
     
     func addPet() async {
         guard validate() else { return }
@@ -121,5 +133,90 @@ class AddPetViewModel: ObservableObject {
             return false
         }
         return true
+    }
+    
+    func updatePet() async {
+        guard validate(), let userId = Auth.auth().currentUser?.uid, let petToEdit = self.petToEdit else {
+            alertMessage = "Please ensure all fields are filled and you are signed in."
+            showAlert = true
+            return
+        }
+
+        var newImageUrl: String? = petToEdit.photoUrl // Start with the existing URL
+
+        // If a new image was selected, upload it and get the new URL
+        if let selectedItem = selectedItem {
+            do {
+                if let data = try await selectedItem.loadTransferable(type: Data.self) {
+                    let (path, _) = try await StorageManager.shared.saveImage(data: data, userId: userId)
+                    let imageURL = try await StorageManager.shared.getUrlForImage(path: path)
+                    newImageUrl = imageURL.absoluteString
+                } else {
+                    print("No image data available")
+                }
+            } catch {
+                alertMessage = "Failed to upload new image: \(error.localizedDescription)"
+                showAlert = true
+                return
+            }
+        }
+
+        // Construct the updated pet object, including the new or existing image URL
+        let updatedPet = DBPets(id: petToEdit.id, photoUrl: newImageUrl, name: name, gender: gender, birthday: birthday, dateCreated: petToEdit.dateCreated, tint: tint)
+
+        // Update Firestore document
+        do {
+            let petDocumentRef = Firestore.firestore().collection("users").document(userId).collection("pets").document(petToEdit.id)
+            try await petDocumentRef.setData(from: updatedPet)
+            alertMessage = "Pet updated successfully."
+            showAlert = true
+            isPetAddedSuccessfully = true
+        } catch let error {
+            alertMessage = "Failed to update pet: \(error.localizedDescription)"
+            showAlert = true
+        }
+    }
+    
+    func deletePet(petId: String) async {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("User not logged in")
+            alertMessage = "User not logged in"
+            showAlert = true
+            return
+        }
+        
+        await deletePoopEvents(forPetId: petId, userId: userId)
+
+        let documentReference = Firestore.firestore().collection("users").document(userId).collection("pets").document(petId)
+
+        do {
+            try await documentReference.delete()
+            print("Pet successfully deleted")
+            alertMessage = "Pet successfully deleted"
+            showAlert = true
+        } catch {
+            print("Error deleting pet: \(error)")
+            alertMessage = "Error deleting pet: \(error.localizedDescription)"
+            showAlert = true
+        }
+    }
+    
+    func deletePoopEvents(forPetId petId: String, userId: String) async {
+        let poopEventsCollection = Firestore.firestore().collection("users").document(userId).collection("poops")
+        let querySnapshot = try? await poopEventsCollection.whereField("petId", isEqualTo: petId).getDocuments()
+
+        guard let documents = querySnapshot?.documents else {
+            print("No poop events found for petId: \(petId)")
+            return
+        }
+        
+        for document in documents {
+            do {
+                try await document.reference.delete()
+                print("Poop event \(document.documentID) deleted successfully")
+            } catch {
+                print("Error deleting poop event \(document.documentID): \(error)")
+            }
+        }
     }
 }

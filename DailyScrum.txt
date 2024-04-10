@@ -355,3 +355,81 @@ N/A
 
 
 3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/04/07 --- update
+1. Done since last scrum
+- event list view
+- add event view
+
+2. Not Done since last scrum
+- delete event
+- update event
+- pet profile updates
+- pet profile deletion
+
+3. Plan until next Scrum
+- delete event
+- update event
+- pet profile updates
+- pet profile deletion
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/04/08 --- update
+1. Done since last scrum
+-Fixed more problems found in peer test
+
+2. Not Done since last scrum
+- delete event
+- update event
+- pet profile updates
+- pet profile deletion
+
+3. Plan until next Scrum
+- delete event
+- update event
+- pet profile updates
+- pet profile deletion
+
+
+3. Need assistance / figure things out
+N/a
+
+---------------------------------------------------------------------------------------
+
+2024/04/09 --- update
+1. Done since last scrum
+- delete event
+- update event
+- adjusted some view details
+- enhanced error handling
+
+2. Not Done since last scrum
+- pet profile updates
+- pet profile deletion
+
+3. Plan until next Scrum
+- pet profile updates
+- pet profile deletion
+
+3. Need assistance / figure things out
+
+---------------------------------------------------------------------------------------
+
+2024/04/10 --- update
+1. Done since last scrum
+- pet profile updates
+- pet profile deletion
+
+2. Not Done since last scrum
+N/A
+
+3. Plan until next Scrum
+- prepare presentation
+
+3. Need assistance / figure things out
+N/A

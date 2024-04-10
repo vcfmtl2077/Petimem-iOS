@@ -24,18 +24,6 @@ class AddExpenseViewModel: ObservableObject {
     @Published var alertMessage = ""
     @Published var isExpenseAddedSuccessfully = false
     var expenseToEdit: DBExpense?
-   
-    private let encoder: Firestore.Encoder = {
-        let encoder = Firestore.Encoder()
-        encoder.keyEncodingStrategy = .convertToSnakeCase
-        return encoder
-    }()
-    
-    private let decoder: Firestore.Decoder = {
-        let decoder = Firestore.Decoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        return decoder
-    }()
     
     func addExpense() async {
         guard validate() else{
@@ -59,7 +47,7 @@ class AddExpenseViewModel: ObservableObject {
         do {
                 // Await the setData operation to ensure it completes.
                 try await Firestore.firestore().collection("users").document(userId)
-                    .collection("expenses").document(newId).setData(from: newExpense, merge: false, encoder: encoder)
+                    .collection("expenses").document(newId).setData(from: newExpense)
                 // Handle success
                 alertMessage = "Expense added successfully."
                 showAlert = true
@@ -121,7 +109,7 @@ class AddExpenseViewModel: ObservableObject {
         do {
             // Await the setData operation to update the document.
             try await Firestore.firestore().collection("users").document(userId)
-                .collection("expenses").document(expenseId).setData(from: updatedExpense, merge: true, encoder: encoder)
+                .collection("expenses").document(expenseId).setData(from: updatedExpense, merge: true)
             // Handle success
             alertMessage = "Expense updated successfully."
             showAlert = true
@@ -146,14 +134,13 @@ class AddExpenseViewModel: ObservableObject {
               return
           }
 
-          // Define the path to the document you wish to delete
+          // Define the path to the document to delete
           let documentReference = Firestore.firestore().collection("users").document(userId).collection("expenses").document(expenseId)
 
           do {
               // Perform the delete operation
               try await documentReference.delete()
               print("Expense successfully deleted")
-              // Optionally, handle any UI updates or navigation here, such as dismissing a view
           } catch {
               print("Error deleting expense: \(error)")
               // Handle any errors, such as showing an error message to the user

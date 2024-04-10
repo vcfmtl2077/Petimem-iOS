@@ -18,6 +18,12 @@ struct AddNewPetView: View {
     @State private var tint: String = "expenseCardColor"
     
     @Binding var showingAddNewPet: Bool
+    //for deletion
+    @State private var showingDeleteAlert = false
+    
+    //for update
+    var petToEdit: DBPets?
+   
     var body: some View {
         ZStack{
             Color("bgHomeColor")
@@ -30,19 +36,30 @@ struct AddNewPetView: View {
                     .cornerRadius(20)
                     .opacity(0.5)
                 Spacer()
+//--------------------------------------------Add/Edit Button------------------------------
                     Button{
                         Task {
-                            await viewModel.addPet()
-                            if viewModel.isPetAddedSuccessfully, let selectedItem = viewModel.selectedItem {
-                                        await viewModel.saveProfileImage(item: selectedItem)
-                                        showingAddNewPet = false
-                                    } else {
-                                        viewModel.alertMessage = viewModel.isPetAddedSuccessfully ? "No picture selected to save." : "Please fill in all fields."
-                                        print("No picture selected to save.")
-                        }
+                            if petToEdit == nil{
+                                await viewModel.addPet()
+                                if viewModel.isPetAddedSuccessfully, let selectedItem = viewModel.selectedItem {
+                                    await viewModel.saveProfileImage(item: selectedItem)
+                                    showingAddNewPet = false
+                                } else {
+                                    viewModel.alertMessage = viewModel.isPetAddedSuccessfully ? "No picture selected to save." : "Please fill in all fields."
+                                    print("No picture selected to save.")
+                                }
+                            } else {
+                                await viewModel.updatePet()
+                                            // If a new image was selected, save it. Otherwise, retain the existing image.
+                                            if let selectedItem = viewModel.selectedItem {
+                                                await viewModel.saveProfileImage(item: selectedItem)
+                                            }
+                                            showingAddNewPet = false
+                                
+                            }
                     }
                     }label: {
-                        Text("Add")
+                        Text(petToEdit == nil ? "Add" : "Save")
                             .foregroundColor(.white)
                             .frame(width: 330, height: 55)
                             .background(Color("buttonAddColor"))
@@ -55,7 +72,7 @@ struct AddNewPetView: View {
             }
             VStack(spacing: 15){
                 Spacer()
-    //---------------------------profile picture selection---------------------------
+//------------------------------------------profile picture selection---------------------------
                 PhotosPicker(selection: $viewModel.selectedItem){
                     if let profileImage = viewModel.profileImage{
                         profileImage
@@ -156,10 +173,26 @@ struct AddNewPetView: View {
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Notification"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
-        .navigationTitle("Add New Pet")
+        .navigationTitle("\(petToEdit == nil ? "Add": "Edit") Pet")
         .onChange(of: viewModel.isPetAddedSuccessfully, initial: false) {
             dismiss()
         }
+        //pop existing values to the form
+        .onAppear(perform: {
+            
+            if let petToEdit{
+                if let photoUrl = petToEdit.photoUrl {
+                            Task {
+                                await viewModel.loadImage(from: photoUrl)
+                            }
+                        }
+                viewModel.name = petToEdit.name
+                viewModel.gender = petToEdit.gender
+                viewModel.birthday = petToEdit.birthday
+                viewModel.tint = petToEdit.tint
+                viewModel.petToEdit = petToEdit
+            }
+        })
         }
     }
 

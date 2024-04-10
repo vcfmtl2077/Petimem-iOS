@@ -14,7 +14,8 @@ import FirebaseFirestoreSwift
 @MainActor
 final class HomeViewModel: ObservableObject {
     @Published private(set) var pets: [DBPets] = []
-    
+    @Published var showAlert = false
+    @Published var alertMessage = ""
     func getPets() async {
         guard let userID = Auth.auth().currentUser?.uid else {
             print("User not logged in")
@@ -29,12 +30,23 @@ final class HomeViewModel: ObservableObject {
             print("Error fetching pets: \(error)")
         }
     }
+    
+    func removePet(byId petId: String) {
+        DispatchQueue.main.async {
+            self.pets.removeAll { $0.id == petId }
+        }
+    }
 }
 
 struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     @State private var showingAddNewPetView = false
     @State private var showingWeatherAPIView = false
+    
+    //for update event
+    @State private var petToEdit: DBPets?
+    @State private var showingPet = false
+
     
     var body: some View {
         NavigationStack{
@@ -44,8 +56,14 @@ struct HomeView: View {
                 ScrollView(.vertical){
                     VStack{
                         ForEach(viewModel.pets) { pet in
-                                                    NavigationLink(destination: EventListView(petId: pet.id)) {
-                                                        PetCardView(pet: pet)
+                           
+                           NavigationLink(destination: EventListView(petId: pet.id, pets: viewModel.pets)) {
+                               PetCardView(pet: pet, onEditTapped: {
+                                   self.petToEdit = pet
+                                   self.showingAddNewPetView = true
+                               }, onPetDeleted: {
+                                   viewModel.removePet(byId: pet.id)
+                               }, viewModel: AddPetViewModel())
                                                     }
                                                 }
                             
@@ -63,8 +81,9 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Pets")
-            .navigationDestination(isPresented: $showingAddNewPetView){
-                AddNewPetView(showingAddNewPet: $showingAddNewPetView)
+            .navigationDestination(isPresented: $showingAddNewPetView) {
+                // Ensure petToEdit is passed to AddNewPetView when navigating
+                AddNewPetView(showingAddNewPet: $showingAddNewPetView, petToEdit: petToEdit)
             }
             .task {
                 await viewModel.getPets()

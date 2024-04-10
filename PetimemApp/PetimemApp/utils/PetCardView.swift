@@ -14,17 +14,51 @@ struct PetCardView: View {
     var pet: DBPets
     @State private var showDeleteAction: Bool = false
     @State private var dragOffset: CGFloat = 0
+    var onEditTapped: () -> Void
+    var onPetDeleted: () -> Void
+    var viewModel: AddPetViewModel
+    @State private var showingDeletionAlert = false
     
     var body: some View {
+//--------------------------------------------swipe left to show delete and edit button-------------------------------------------
         if showDeleteAction{
             HStack{
-                
+        
                 ZStack{
                     RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 280, height: 140)
+                        .frame(width: 270, height: 140)
                         .foregroundColor(Color(pet.tint))
                     
                     HStack(spacing:30){
+                        if let photoUrl = pet.photoUrl, let url = URL(string: photoUrl) {
+                            AsyncImage(url: url) { phase in
+                                switch phase {
+                                case .empty:
+                                    ProgressView()
+                                case .success(let image):
+                                    // Display the loaded image
+                                    image.resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 80, height: 80)
+                                        .clipShape(Circle())
+                                case .failure:
+                                    // In case of failure
+                                    Image(systemName: "dog.circle.fill")
+                                        .resizable()
+                                        .frame(width: 80, height: 80)
+                                        .clipShape(Circle())
+                                @unknown default:
+                                    EmptyView()
+                                }
+                            }
+                        } else {
+                            //if `photoUrl` is nil
+                            Image(systemName: "dog.circle.fill")
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                        }
+                        
                         VStack{
                             Text(pet.name)
                                 .foregroundColor(.white)
@@ -37,24 +71,42 @@ struct PetCardView: View {
                                     .foregroundColor(.white)
                             }
                         }
-                        Spacer()
-                        Spacer()
                     }
                 }
                 .gesture(swipeGesture)
                 .transition(.move(edge: .trailing))
                 .animation(.snappy, value: showDeleteAction)
-                
-                Button(action: {
-                                  // Handle delete action
-                                  print("Delete tapped")
-                              }) {
-                                  Text("Delete")
-                                      .foregroundColor(.white)
-                                      .padding()
-                                      .background(Color.red)
-                                      .cornerRadius(10)
-                              }
+                VStack{
+                    Button{
+                        showingDeletionAlert = true
+                    }label: {
+                        Label("", systemImage: "trash")
+                            .foregroundColor(.white)
+                            .frame(width: 70, height: 60)
+                            .background(Color.red)
+                            .cornerRadius(20)
+                    }
+                    Button{
+                        onEditTapped() 
+                    }label: {
+                        Label("", systemImage: "pencil")
+                            .foregroundColor(.white)
+                            .frame(width: 70, height: 60)
+                            .background(Color.blue)
+                            .cornerRadius(20)
+                    }
+                    .alert("Delete Pet", isPresented: $showingDeletionAlert) {
+                        Button("Cancel", role: .cancel) { }
+                        Button("Confirm", role: .destructive) {
+                            Task {
+                                await viewModel.deletePet(petId: pet.id)
+                                onPetDeleted()
+                            }
+                        }
+                    } message: {
+                        Text("Are you sure you want to delete this pet?")
+                    }
+                }
             }
         } else {
             ZStack{
@@ -129,7 +181,7 @@ extension PetCardView {
                 withAnimation {
                     if abs(horizontalAmount) > threshold {
                         if horizontalAmount < 0 {
-                            // Exceeding left swipe threshold
+                            
                             showDeleteAction = true
                         } else {
                             // Swiping right
@@ -137,7 +189,7 @@ extension PetCardView {
                             showDeleteAction = false
                         }
                     } else {
-                        // Not reaching the threshold > reset
+                        
                         dragOffset = 0
                         showDeleteAction = false
                     }

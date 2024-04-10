@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 @MainActor
 final class SettingsViewModel: ObservableObject {
@@ -23,17 +26,29 @@ final class SettingsViewModel: ObservableObject {
        try await AuthenticationManager.shared.resetPassword(email: email)
     }
     
-    func updatePassword() async throws {
-        let password = "Hello123!" //remeber to change later
-        try await AuthenticationManager.shared.updatePassword(password: password)
+    func updatePassword(oldPassword: String, newPassword: String) async throws {
+        guard let authUser = try? AuthenticationManager.shared.getAuthenticatedUser(), let email = authUser.email else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        
+        // re-authenticate the user with the old password
+        try await AuthenticationManager.shared.reauthenticateUser(email: email, password: oldPassword)
+        
+        //updating the password
+        try await AuthenticationManager.shared.updatePassword(password: newPassword)
     }
     
     @Published var isAccountDeleted = false
     func deleteAccount() async throws {
-        try await AuthenticationManager.shared.delete()
-        self.isAccountDeleted = true
-    }
-    
+          guard let uid = Auth.auth().currentUser?.uid else {
+              throw URLError(.userAuthenticationRequired)
+          }
+          // Delete the account from auth
+          try await AuthenticationManager.shared.delete()
+
+          // Sign out user
+          self.isAccountDeleted = true
+      }
 }
 
 struct SettingsView: View {

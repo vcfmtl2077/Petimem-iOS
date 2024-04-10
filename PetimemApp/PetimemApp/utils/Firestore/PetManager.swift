@@ -18,16 +18,7 @@ struct DBPets: Codable,Identifiable {
     let birthday: Date
     let dateCreated: Date?
     let tint: String
-    
-   /* enum CodingKeys: String, CodingKey {
-            case id
-            case photoUrl = "photo_url"
-            case name
-            case gender
-            case birthday
-            case dateCreated = "date_created"
-            case tint
-        }*/
+
 }
 
 final class PetManager {
