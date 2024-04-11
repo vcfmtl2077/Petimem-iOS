@@ -113,7 +113,7 @@ class AddExpenseViewModel: ObservableObject {
             // Handle success
             alertMessage = "Expense updated successfully."
             showAlert = true
-            isExpenseAddedSuccessfully = true // Consider renaming or changing logic for updates
+            isExpenseAddedSuccessfully = true
         } catch {
             // Handle error
             alertMessage = "Failed to update expense: \(error.localizedDescription)"
@@ -138,12 +138,12 @@ class AddExpenseViewModel: ObservableObject {
           let documentReference = Firestore.firestore().collection("users").document(userId).collection("expenses").document(expenseId)
 
           do {
-              // Perform the delete operation
+              // Perform the deletion
               try await documentReference.delete()
               print("Expense successfully deleted")
           } catch {
               print("Error deleting expense: \(error)")
-              // Handle any errors, such as showing an error message to the user
+              
           }
       }
 }
