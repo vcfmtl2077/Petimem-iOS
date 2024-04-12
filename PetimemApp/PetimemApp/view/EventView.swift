@@ -22,15 +22,15 @@ struct EventView: View {
                             Text("Rountine")
                                 .bold()
                                 .foregroundStyle(Color("buttonAddColor"))
-                            //Dividing sections line
+//------------------------------Dividing sections line-------------------------------------
                             Rectangle()
                                 .frame(width: 320, height: 2)
                                 .foregroundColor(Color("buttonAddColor"))
                         }
-                        // First line
+// ---------------------------------------First line--------------------------------------
                         HStack(spacing: 40){
                             Button(action: {
-                                //pass feed view
+//---------------------------------------pass feed view------------------------------------
                                 print("Image Button tapped!")
                             }) {
                                 ZStack{
@@ -73,7 +73,7 @@ struct EventView: View {
                         //second line
                         HStack(spacing: 40){
                             Button(action: {
-                                //pass feed view
+//-----------------------------------------pass feed view---------------------------------
                                 print("Image Button tapped!")
                             }) {
                                 ZStack{
@@ -90,7 +90,7 @@ struct EventView: View {
                             Text("Care")
                                 .bold()
                                 .foregroundStyle(Color("buttonAddColor"))
-                            //Dividing sections line
+//------------------------------------Dividing sections line-----------------------------
                             Rectangle()
                                 .frame(width: 330, height: 2)
                                 .foregroundColor(Color("buttonAddColor"))
@@ -98,7 +98,7 @@ struct EventView: View {
                         // Third line
                         HStack(spacing: 40){
                             Button(action: {
-                                //pass feed view
+//-------------------------------------pass feed view-------------------------------------
                                 print("Image Button tapped!")
                             }) {
                                 ZStack{
@@ -112,7 +112,7 @@ struct EventView: View {
                             }
                             
                             Button(action: {
-                                //pass feed view
+//---------------------------------------pass feed view------------------------------------
                                 print("Image Button tapped!")
                             }) {
                                 ZStack{
@@ -125,10 +125,10 @@ struct EventView: View {
                                 }
                             }
                         }
-                        // fourth line
+// ---------------------------------------fourth line--------------------------------------
                         HStack(spacing: 40){
                             Button(action: {
-                                //pass feed view
+//-------------------------------------pass feed view--------------------------------------
                                 print("Image Button tapped!")
                             }) {
                                 ZStack{

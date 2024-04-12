@@ -35,7 +35,7 @@ struct SignUpView: View {
                             do {
                                 try await viewModel.signup()
                             } catch {
-                                // Handle errors
+// ---------------------------------------Handle errors-----------------------------------
                             }
                         }
                     }) {

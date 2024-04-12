@@ -30,7 +30,7 @@ class AddExpenseViewModel: ObservableObject {
             return
         }
         
-        //get current userId
+//-----------------------------------------------get current userId--------------------------------------------
         guard let userId = Auth.auth().currentUser?.uid else {
             return
         }
@@ -43,24 +43,23 @@ class AddExpenseViewModel: ObservableObject {
                                    category: selectedCategory,
                                    dateAdded: dateAdded,
                                    tint: tint)
-        //save model
+//--------------------------------------------------save model------------------------------------------------------
         do {
-                // Await the setData operation to ensure it completes.
                 try await Firestore.firestore().collection("users").document(userId)
                     .collection("expenses").document(newId).setData(from: newExpense)
-                // Handle success
+               
                 alertMessage = "Expense added successfully."
                 showAlert = true
                 isExpenseAddedSuccessfully = true
             } catch {
-                // Handle error
+
                 alertMessage = "Failed to add expense: \(error.localizedDescription)"
                 showAlert = true
             }
     }
     
     private func validate () -> Bool {
-        //whenver the function be called; Reset alertMessage
+//-------------------------------------whenver the function be called; Reset alertMessage-----------------------------------------
         alertMessage = ""
         guard !title.trimmingCharacters(in: .whitespaces).isEmpty else{
             alertMessage = "Please fill in all fields"
@@ -81,7 +80,7 @@ class AddExpenseViewModel: ObservableObject {
             return
         }
 
-        // Ensure there's an existing expense to update
+// ---------------------------------------Ensure there's an existing expense to update------------------------------------------
         guard let expenseToUpdate = expenseToEdit else {
             alertMessage = "No expense selected for update."
             showAlert = true
@@ -107,38 +106,38 @@ class AddExpenseViewModel: ObservableObject {
                                        tint: tint)
 
         do {
-            // Await the setData operation to update the document.
+
             try await Firestore.firestore().collection("users").document(userId)
                 .collection("expenses").document(expenseId).setData(from: updatedExpense, merge: true)
-            // Handle success
+          
             alertMessage = "Expense updated successfully."
             showAlert = true
             isExpenseAddedSuccessfully = true
         } catch {
-            // Handle error
+           
             alertMessage = "Failed to update expense: \(error.localizedDescription)"
             showAlert = true
         }
     }
     
     func deleteExpense() async {
-          // Ensure there's an expense selected to delete
+// --------------------------------------------Ensure there's an expense selected to delete-------------------------------------
           guard let expenseId = expenseToEdit?.id else {
               print("No expense selected for deletion")
               return
           }
 
-          // Get current user ID
+// -------------------------------------------------Get current user ID--------------------------------------------------------
           guard let userId = Auth.auth().currentUser?.uid else {
               print("User not logged in")
               return
           }
 
-          // Define the path to the document to delete
+//-------------------------------------- Define the path to the document to delete----------------------------------------------
           let documentReference = Firestore.firestore().collection("users").document(userId).collection("expenses").document(expenseId)
 
           do {
-              // Perform the deletion
+//-------------------------------------------------Perform the deletion----------------------------------------------------------
               try await documentReference.delete()
               print("Expense successfully deleted")
           } catch {

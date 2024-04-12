@@ -184,7 +184,7 @@ extension PetCardView {
                             
                             showDeleteAction = true
                         } else {
-                            // Swiping right
+// -----------------------------------------------Swiping right---------------------------------------
                             dragOffset = 0
                             showDeleteAction = false
                         }

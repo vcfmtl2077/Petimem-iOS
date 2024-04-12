@@ -95,7 +95,7 @@ struct ProfileView: View {
                                 .background(Color.gray)
                                 .cornerRadius(20)
                         }
-    //-------------------------------Delete Account Button Button-----------------------------
+    //----------------------------Delete Account Button Button-----------------------------
                         Button{
                             showingDeleteConfirmation = true
                         }label: {

@@ -17,7 +17,7 @@ final class StorageManager{
     
     private let storage = Storage.storage().reference()
     
-    //each user has it's own folder
+    //---------------------------------------each user has it's own folder---------------------------------------
     private func userReference(userId: String) -> StorageReference {
         storage.child("users").child(userId)
     }

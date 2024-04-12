@@ -61,14 +61,14 @@ struct AddNewExpenseView: View {
                 }
                     VStack(spacing: 25){
                         
-                        //Category Section
+//---------------------------------Category Section----------------------------------------
                         Picker("Category", selection: $viewModel.selectedCategory) {
                             ForEach(Category.allCases, id: \.self) { category in
                                 CategoryView(category: category)
                                     .tag(category)
                             }
                         }
-                        //Title Section
+//-----------------------------------Title Section-----------------------------------------
                         VStack(spacing: 0){
                             Text("Title:")
                                 .bold()
@@ -85,9 +85,9 @@ struct AddNewExpenseView: View {
                                         .stroke( Color.blue)
                                 )
                                 .frame(width: 300)
-                            // Disablesss automatic capitalization
+// ------------------------Disable automatic capitalization--------------------------------
                                 .textInputAutocapitalization(.none)
-                            //constraint 12 characters
+//------------------------------constraint 12 characters-----------------------------------
                                 .onChange(of: viewModel.title) { newValue in
                                     if newValue.count > 35 {
                                         viewModel.title = String(newValue.prefix(35))
@@ -96,7 +96,7 @@ struct AddNewExpenseView: View {
                             
                         }
                         
-                        //Amount Section
+//------------------------------------Amount Section--------------------------------------
                         VStack(spacing: 0){
                             Text("Amount:")
                                 .bold()
@@ -115,7 +115,7 @@ struct AddNewExpenseView: View {
                                 .keyboardType(.decimalPad)
                         }
                         
-                        //Date added section
+//-------------------------------------Date added section---------------------------------
                         HStack{
                             Spacer()
                             Text("Date:")
@@ -157,7 +157,7 @@ struct AddNewExpenseView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     if let _ = expenseToEdit {
                         Button(action: {
-                            showingDeleteAlert = true // Show the alert when the button is pressed
+                            showingDeleteAlert = true
                         }) {
                             Label("Delete", systemImage: "trash")
                         }

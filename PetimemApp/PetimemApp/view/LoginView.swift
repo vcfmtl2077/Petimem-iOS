@@ -68,7 +68,7 @@ struct LoginView: View {
                                 .stroke(wrongEmail > 0 ? Color.red : Color.blue, lineWidth:CGFloat(wrongEmail > 0 ? wrongEmail : 1))
                         )
                     Button(action: {
-                        // Authenticate user
+//------------------------------------- Authenticate user----------------------------------
                         viewModel.signIn()
                     }) {
                         Text("Login")
@@ -77,7 +77,7 @@ struct LoginView: View {
                             .background(Color.blue)
                             .cornerRadius(20)
                     }
-                    .contentShape(Rectangle()) // Make sure the entire button area is tappable
+                    .contentShape(Rectangle()) 
                     .onChange(of: viewModel.logInSuccess) { success in
                         self.showingHomeScreen = success
                     }
