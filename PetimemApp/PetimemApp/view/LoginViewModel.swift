@@ -17,11 +17,11 @@ final class LoginViewModel: ObservableObject {
     @Published var logInSuccess = false
 
     func signIn() {
-        //try to validate information; if fail, will stop
+//-------------------------------------------try to validate information; if fail, will stop-------------------------------------
         guard validate() else{
             return
         }
-        //information validated; try to sign in
+//-------------------------------------------information validated; try to sign in-----------------------------------------------
         Task{
             do{
                 _ = try await AuthenticationManager.shared.signInUser(email: email, password: password)
@@ -40,7 +40,7 @@ final class LoginViewModel: ObservableObject {
     }
     
     private func validate () -> Bool{
-        //whenver the function be called; Reset alertMessage
+//----------------------------------whenver the function be called; Reset alertMessage------------------------------------------
         alertMessage = ""
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,!password.trimmingCharacters(in: .whitespaces).isEmpty else {
             alertMessage = "Please fill in all fields"

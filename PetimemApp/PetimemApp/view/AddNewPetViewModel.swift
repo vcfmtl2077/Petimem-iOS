@@ -25,7 +25,8 @@ class AddPetViewModel: ObservableObject {
     @Published var selectedItem: PhotosPickerItem?{
         didSet{ Task { try await loadImage() }}
     }
-    @Published var profileImage: Image? //display the seleted item
+    //------------------------------------display the seleted item----------------------------------
+    @Published var profileImage: Image?
     
     @Published var newPetId: String?
     
@@ -39,8 +40,9 @@ class AddPetViewModel: ObservableObject {
     }
     
     func loadImage(from urlString: String?) async {
+        // ------------------------------------Fallback image--------------------------------------
         guard let urlString = urlString, let url = URL(string: urlString) else {
-            self.profileImage = Image(systemName: "photo") // Fallback image
+            self.profileImage = Image(systemName: "photo")
             return
         }
         
@@ -51,11 +53,13 @@ class AddPetViewModel: ObservableObject {
                     self.profileImage = Image(uiImage: uiImage)
                 }
             } else {
-                self.profileImage = Image(systemName: "photo") // Fallback image
+        // ------------------------------------Fallback image--------------------------------------
+                self.profileImage = Image(systemName: "photo")
             }
         } catch {
             print("Failed to load image from URL: \(error)")
-            self.profileImage = Image(systemName: "photo") // Fallback image in case of error
+        // ------------------------------------Fallback image--------------------------------------
+            self.profileImage = Image(systemName: "photo")
         }
     }
     
@@ -68,13 +72,13 @@ class AddPetViewModel: ObservableObject {
                 self.showAlert = true
                 return
             }
-            // Save the image to Firebase Storage
+// -----------------------------------Save the image to Firebase Storage---------------------------------------
             let (path, _) = try await StorageManager.shared.saveImage(data: data, userId: userId)
-            // Generate the download URL
+// ---------------------------------------Generate the download URL----------------------------------------------
             let imageURL = try await StorageManager.shared.getUrlForImage(path: path)
-            // get the petId
+// ------------------------------------------get the petId-------------------------------------------------------
             guard let newId = self.newPetId else { return }
-            // Save the imageURL to Firestore in the pet's document
+// ----------------------------Save the imageURL to Firestore in the pet's document-----------------------------------
             try await updatePetImageURL(userId: userId, petId: newId, imageURL: imageURL.absoluteString)
             self.alertMessage = "Pet and Image added successfully."
             self.showAlert = true
@@ -119,7 +123,7 @@ class AddPetViewModel: ObservableObject {
     }
     
     private func validate () -> Bool {
-        //whenver the function be called; Reset alertMessage
+//---------------------------------------whenver the function be called; Reset alertMessage---------------------------------
         alertMessage = ""
         guard !name.trimmingCharacters(in: .whitespaces).isEmpty,!gender.isEmpty else{
             alertMessage = "Please fill in all fields"
@@ -144,7 +148,7 @@ class AddPetViewModel: ObservableObject {
 
         var newImageUrl: String? = petToEdit.photoUrl // Start with the existing URL
 
-        // If a new image was selected, upload it and get the new URL
+// --------------------------------If a new image was selected, upload it and get the new URL----------------------------------
         if let selectedItem = selectedItem {
             do {
                 if let data = try await selectedItem.loadTransferable(type: Data.self) {
@@ -161,10 +165,10 @@ class AddPetViewModel: ObservableObject {
             }
         }
 
-        // Construct the updated pet object, including the new or existing image URL
+// -----------------------------Construct the updates, including the new or existing image URL----------------------------------
         let updatedPet = DBPets(id: petToEdit.id, photoUrl: newImageUrl, name: name, gender: gender, birthday: birthday, dateCreated: petToEdit.dateCreated, tint: tint)
 
-        // Update Firestore document
+// --------------------------------------------Update Firestore document--------------------------------------------------
         do {
             let petDocumentRef = Firestore.firestore().collection("users").document(userId).collection("pets").document(petToEdit.id)
             try await petDocumentRef.setData(from: updatedPet)

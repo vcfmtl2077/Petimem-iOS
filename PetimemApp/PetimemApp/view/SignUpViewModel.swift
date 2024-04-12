@@ -40,7 +40,7 @@ final class SignupEmailViewModel: ObservableObject {
     
     
     private func validate () -> Bool {
-        //whenver the function be called; Reset alertMessage
+//---------------------------------------whenver the function be called; Reset alertMessage--------------------------------------
         alertMessage = ""
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,!password.trimmingCharacters(in: .whitespaces).isEmpty else{
             alertMessage = "Please fill in all fields"

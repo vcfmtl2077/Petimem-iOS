@@ -82,7 +82,7 @@ struct HomeView: View {
             }
             .navigationTitle("Pets")
             .navigationDestination(isPresented: $showingAddNewPetView) {
-                // Ensure petToEdit is passed to AddNewPetView when navigating
+// ---------------------------Ensure petToEdit is passed to AddNewPetView when navigating-------------------------------
                 AddNewPetView(showingAddNewPet: $showingAddNewPetView, petToEdit: petToEdit)
             }
             .task {
@@ -99,7 +99,3 @@ struct HomeView: View {
         }
     }
 }
-
-/*#Preview {
-    HomeView(userId: "20CDQsq8YHbmidqxQXHZGttbIT92")
-}*/

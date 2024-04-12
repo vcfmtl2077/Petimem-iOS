@@ -19,9 +19,9 @@ final class SettingsViewModel: ObservableObject {
     
     func resetPassword() async throws {
         let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
-        
+//---------------------------remember to customize error later----------------------------
         guard let email = authUser.email else{
-            throw URLError(.fileDoesNotExist) //remember to customize error
+            throw URLError(.fileDoesNotExist)
         }
        try await AuthenticationManager.shared.resetPassword(email: email)
     }
@@ -31,10 +31,10 @@ final class SettingsViewModel: ObservableObject {
             throw URLError(.userAuthenticationRequired)
         }
         
-        // re-authenticate the user with the old password
+// --------------------re-authenticate the user with the old password---------------------
         try await AuthenticationManager.shared.reauthenticateUser(email: email, password: oldPassword)
         
-        //updating the password
+//---------------------------------updating the password----------------------------------
         try await AuthenticationManager.shared.updatePassword(password: newPassword)
     }
     
@@ -43,10 +43,10 @@ final class SettingsViewModel: ObservableObject {
           guard let uid = Auth.auth().currentUser?.uid else {
               throw URLError(.userAuthenticationRequired)
           }
-          // Delete the account from auth
+//-------------------------------- Delete the account from auth----------------------------
           try await AuthenticationManager.shared.delete()
 
-          // Sign out user
+// -------------------------------------Sign out user-------------------------------------
           self.isAccountDeleted = true
       }
 }

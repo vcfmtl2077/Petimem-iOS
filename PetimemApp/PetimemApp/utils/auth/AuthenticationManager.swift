@@ -70,11 +70,10 @@ final class AuthenticationManager {
 }
 
 extension AuthenticationManager {
-    
-    // Re-authenticates the current user with their email and password
+
     func reauthenticateUser(email: String, password: String) async throws {
         guard let user = Auth.auth().currentUser else {
-            throw URLError(.userAuthenticationRequired) // Adjust the error as needed
+            throw URLError(.userAuthenticationRequired)
         }
         
         let credential = EmailAuthProvider.credential(withEmail: email, password: password)
@@ -82,7 +81,6 @@ extension AuthenticationManager {
         do {
             try await user.reauthenticate(with: credential)
         } catch {
-            // Here, you can map Firebase errors to more user-friendly errors if needed
             throw error
         }
     }
